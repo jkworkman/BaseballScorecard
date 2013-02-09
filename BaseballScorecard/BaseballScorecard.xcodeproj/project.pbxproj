@@ -18,6 +18,8 @@
 		1CAAFE8416C6D87F00F0C44C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8316C6D87F00F0C44C /* Default-568h@2x.png */; };
 		1CAAFE8716C6D87F00F0C44C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */; };
 		1CAAFE8A16C6D87F00F0C44C /* BaseballViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */; };
+		1CAAFE9A16C6DBA500F0C44C /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE9916C6DBA500F0C44C /* GameData.m */; };
+		1CAAFE9D16C6DBC000F0C44C /* GameDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,10 @@
 		1CAAFE8616C6D87F00F0C44C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		1CAAFE8816C6D87F00F0C44C /* BaseballViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseballViewController.h; sourceTree = "<group>"; };
 		1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseballViewController.m; sourceTree = "<group>"; };
+		1CAAFE9816C6DBA500F0C44C /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		1CAAFE9916C6DBA500F0C44C /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataController.h; sourceTree = "<group>"; };
+		1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,10 @@
 				1CAAFE7C16C6D87F00F0C44C /* BaseballAppDelegate.h */,
 				1CAAFE7D16C6D87F00F0C44C /* BaseballAppDelegate.m */,
 				1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */,
+				1CAAFE9816C6DBA500F0C44C /* GameData.h */,
+				1CAAFE9916C6DBA500F0C44C /* GameData.m */,
+				1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */,
+				1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */,
 				1CAAFE8816C6D87F00F0C44C /* BaseballViewController.h */,
 				1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */,
 				1CAAFE7416C6D87F00F0C44C /* Supporting Files */,
@@ -177,6 +187,8 @@
 				1CAAFE7A16C6D87F00F0C44C /* main.m in Sources */,
 				1CAAFE7E16C6D87F00F0C44C /* BaseballAppDelegate.m in Sources */,
 				1CAAFE8A16C6D87F00F0C44C /* BaseballViewController.m in Sources */,
+				1CAAFE9A16C6DBA500F0C44C /* GameData.m in Sources */,
+				1CAAFE9D16C6DBC000F0C44C /* GameDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
