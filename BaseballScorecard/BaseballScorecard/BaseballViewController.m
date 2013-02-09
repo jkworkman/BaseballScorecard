@@ -10,6 +10,8 @@
 
 @interface BaseballViewController ()
 
+@property (nonatomic) int balls;
+@property (nonatomic) int strikes;
 @end
 
 @implementation BaseballViewController
@@ -26,4 +28,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)PitchedBall:(id)sender {
+    _balls += 1;
+}
+
+- (IBAction)PitchedStrike:(id)sender {
+    _strikes += 1;
+}
 @end

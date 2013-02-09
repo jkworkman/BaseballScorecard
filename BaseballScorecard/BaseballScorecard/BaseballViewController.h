@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseballViewController : UIViewController
+- (IBAction)PitchedBall:(id)sender;
+- (IBAction)PitchedStrike:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PitchedStrikeLabel;
 
 @end
