@@ -17,6 +17,7 @@
 - (IBAction)HitDouble:(id)sender;
 - (IBAction)HitTriple:(id)sender;
 - (IBAction)HitHomeRun:(id)sender;
+- (IBAction)HitOut:(id)sender;
 
 
 
@@ -32,10 +33,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *HitDoubleOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *HitTripleOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *HitHomeRunOutlet;
+@property (weak, nonatomic) IBOutlet UIButton *HitOutOutlet;
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 
-@property GameDataController *game;
 
 //*****************************************************
 @property (nonatomic, copy) NSMutableArray *masterGame;

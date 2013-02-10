@@ -19,5 +19,6 @@
 @property (nonatomic) BOOL isBottomInning;
 
 -(id)init;
+-(void)PitchedBall;
 
 @end
