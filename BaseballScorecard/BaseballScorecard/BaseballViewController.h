@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GameDataController.h"
 
+@class GameDataController;
+
 @interface BaseballViewController : UIViewController
 - (IBAction)PitchedBall:(id)sender;
 - (IBAction)PitchedStrike:(id)sender;
@@ -37,8 +39,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 
+@property (strong, nonatomic) GameDataController *dataController;
 
-//*****************************************************
-@property (nonatomic, copy) NSMutableArray *masterGame;
-//*****************************************************
+-(void)ShowMainMenu;
+-(void)ShowSubMenu;
+-(void)Refresh;
+
 @end

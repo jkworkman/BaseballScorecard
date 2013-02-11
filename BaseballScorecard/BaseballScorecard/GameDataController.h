@@ -17,8 +17,25 @@
 @property (nonatomic) NSString *sideInning;
 @property (nonatomic) int numInning;
 @property (nonatomic) BOOL isBottomInning;
+@property (nonatomic) NSMutableArray *Bases;
+@property (nonatomic) NSMutableArray *HomeTeam;
+@property (nonatomic) NSMutableArray *AwayTeam;
+@property (nonatomic) int HomeTeamLineupIndex;
+@property (nonatomic) int AwayTeamLineupIndex;
+@property (nonatomic) NSObject *FirstBase;
+@property (nonatomic) NSObject *SecondBase;
+@property (nonatomic) NSObject *ThirdBase;
+@property (nonatomic) int HomePlate;
+@property (nonatomic) int HomeScore;
+@property (nonatomic) int AwayScore;
 
 -(id)init;
 -(void)PitchedBall;
+-(void)PitchedStrike;
+-(void)HitSingle;
+-(void)HitDouble;
+-(void)HitTriple;
+-(void)HitHomeRun;
+-(void)HitOut;
 
 @end
