@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameData.h"
+#import "Player.h"
 
 @interface GameDataController : NSObject
 
@@ -17,7 +17,6 @@
 @property (nonatomic) NSString *sideInning;
 @property (nonatomic) int numInning;
 @property (nonatomic) BOOL isBottomInning;
-@property (nonatomic) NSMutableArray *Bases;
 @property (nonatomic) NSMutableArray *HomeTeam;
 @property (nonatomic) NSMutableArray *AwayTeam;
 @property (nonatomic) int HomeTeamLineupIndex;
@@ -25,9 +24,18 @@
 @property (nonatomic) NSObject *FirstBase;
 @property (nonatomic) NSObject *SecondBase;
 @property (nonatomic) NSObject *ThirdBase;
-@property (nonatomic) int HomePlate;
 @property (nonatomic) int HomeScore;
 @property (nonatomic) int AwayScore;
+
+@property Player *Leadoff;
+@property Player *SecondSpot;
+@property Player *ThirdSpot;
+@property Player *FourthSpot;
+@property Player *FifthSpot;
+@property Player *SixthSpot;
+@property Player *SeventhSpot;
+@property Player *EighthSpot;
+@property Player *NinthSpot;
 
 -(id)init;
 -(void)PitchedBall;
@@ -37,5 +45,8 @@
 -(void)HitTriple;
 -(void)HitHomeRun;
 -(void)HitOut;
+
+-(void)HomePlayerLineup;
+-(void)AwayPlayerLineup;
 
 @end

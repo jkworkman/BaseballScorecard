@@ -31,16 +31,15 @@
 - (IBAction)PitchedBall:(id)sender {
     [_dataController PitchedBall];
     [self Refresh];
-    
+
     NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
-}
+    }
 
 - (IBAction)PitchedStrike:(id)sender {
     [self.dataController PitchedStrike];
     [self Refresh];
-    
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
 
+    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
 }
 
 - (IBAction)HitBall:(id)sender {

@@ -7,6 +7,7 @@
 //
 
 #import "GameDataController.h"
+#import "Player.h"
 
 
 
@@ -22,17 +23,19 @@
         _numInning = 1;
         _isBottomInning = false;
         _sideInning = @"Top";
-        _Bases = [[NSMutableArray alloc] initWithCapacity:3];
         _HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         _HomeTeamLineupIndex = 0;
         _AwayTeamLineupIndex = 0;
-        
+        [self AwayPlayerLineup];
+        [self HomePlayerLineup];
+        /*
         for(int i = 0; i < 9; i++)
         {
             [_HomeTeam addObject:[NSNumber numberWithInt:i]];
             [_AwayTeam addObject:[NSNumber numberWithInt:i]];
         }
+         */
     }
     return self;
 }
@@ -367,5 +370,50 @@
     }
 
 }
+
+-(void)HomePlayerLineup {
+    _Leadoff = [[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS"];
+    [_HomeTeam addObject:_Leadoff];
+    _SecondSpot = [[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B"];
+    [_HomeTeam addObject:_SecondSpot];
+    _ThirdSpot = [[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B"];
+    [_HomeTeam addObject:_ThirdSpot];
+    _FourthSpot = [[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B"];
+    [_HomeTeam addObject:_FourthSpot];
+    _FifthSpot = [[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF"];
+    [_HomeTeam addObject:_FifthSpot];
+    _SixthSpot = [[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF"];
+    [_HomeTeam addObject:_SixthSpot];
+    _SeventhSpot = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF"];
+    [_HomeTeam addObject:_SeventhSpot];
+    _EighthSpot = [[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P"];
+    [_HomeTeam addObject:_EighthSpot];
+    _NinthSpot = [[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C"];
+    [_HomeTeam addObject:_NinthSpot];
+}
+
+-(void)AwayPlayerLineup {
+    Player *Leadoff = [[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B"];
+    [_AwayTeam addObject:Leadoff];
+    Player *SecondSpot = [[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B"];
+    [_AwayTeam addObject:SecondSpot];
+    Player *ThirdSpot = [[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B"];
+    [_AwayTeam addObject:ThirdSpot];
+    Player *FourthSpot = [[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF"];
+    [_AwayTeam addObject:FourthSpot];
+    Player *FifthSpot = [[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C"];
+    [_AwayTeam addObject:FifthSpot];
+    Player *SixthSpot = [[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF"];
+    [_AwayTeam addObject:SixthSpot];
+    Player *SeventhSpot = [[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS"];
+    [_AwayTeam addObject:SeventhSpot];
+    Player *EighthSpot = [[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF"];
+    [_AwayTeam addObject:EighthSpot];
+    Player *NinthSpot = [[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P"];
+    [_AwayTeam addObject:NinthSpot];
+}
+
+
+
 
 @end
