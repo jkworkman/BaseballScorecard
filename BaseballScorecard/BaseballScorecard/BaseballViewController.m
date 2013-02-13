@@ -32,14 +32,14 @@
     [_dataController PitchedBall];
     [self Refresh];
 
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
+    [self CallLog];
     }
 
 - (IBAction)PitchedStrike:(id)sender {
-    [self.dataController PitchedStrike];
+    [_dataController PitchedStrike];
     [self Refresh];
 
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
+    [self CallLog];
 }
 
 - (IBAction)HitBall:(id)sender {
@@ -51,7 +51,7 @@
     [_dataController HitSingle];
     [self Refresh];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
+    [self CallLog];
 }
 
 - (IBAction)HitDouble:(id)sender {
@@ -59,8 +59,7 @@
     [_dataController HitDouble];
     [self Refresh];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
-
+    [self CallLog];
 }
 
 - (IBAction)HitTriple:(id)sender {
@@ -68,8 +67,7 @@
     [_dataController HitTriple];
     [self Refresh];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
-
+    [self CallLog];
 }
 
 - (IBAction)HitHomeRun:(id)sender {
@@ -77,7 +75,7 @@
     [_dataController HitHomeRun];
     [self Refresh];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
+    [self CallLog];
 }
 
 - (IBAction)HitOut:(id)sender {
@@ -85,7 +83,7 @@
     [_dataController HitOut];
     [self Refresh];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase, _dataController.SecondBase, _dataController.ThirdBase);
+    [self CallLog];
 }
 
 -(void)ShowMainMenu {
@@ -118,6 +116,10 @@
     _NumInningLabel.text = IntToString(_dataController.numInning);
     _HomeScoreLabel.text = IntToString(_dataController.HomeScore);
     _AwayScoreLabel.text = IntToString(_dataController.AwayScore);
+}
+
+-(void) CallLog {
+    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase.LastName, _dataController.SecondBase.LastName, _dataController.ThirdBase.LastName);
 }
 
 NSString *IntToString(int p)

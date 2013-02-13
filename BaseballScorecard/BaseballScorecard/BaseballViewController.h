@@ -45,4 +45,6 @@
 -(void)ShowSubMenu;
 -(void)Refresh;
 
+-(void) CallLog;
+
 @end

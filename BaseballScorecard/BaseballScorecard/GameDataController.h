@@ -21,9 +21,9 @@
 @property (nonatomic) NSMutableArray *AwayTeam;
 @property (nonatomic) int HomeTeamLineupIndex;
 @property (nonatomic) int AwayTeamLineupIndex;
-@property (nonatomic) NSObject *FirstBase;
-@property (nonatomic) NSObject *SecondBase;
-@property (nonatomic) NSObject *ThirdBase;
+@property (nonatomic) Player *FirstBase;
+@property (nonatomic) Player *SecondBase;
+@property (nonatomic) Player *ThirdBase;
 @property (nonatomic) int HomeScore;
 @property (nonatomic) int AwayScore;
 
