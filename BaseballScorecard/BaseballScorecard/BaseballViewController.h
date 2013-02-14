@@ -21,6 +21,8 @@
 - (IBAction)HitHomeRun:(id)sender;
 - (IBAction)HitOut:(id)sender;
 
+@property (nonatomic) NSString *temp;
+
 
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;

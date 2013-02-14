@@ -33,6 +33,8 @@
     [self Refresh];
 
     [self CallLog];
+    
+    NSLog(@"tempString: %@", _temp);
     }
 
 - (IBAction)PitchedStrike:(id)sender {
