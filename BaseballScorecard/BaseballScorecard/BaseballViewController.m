@@ -11,14 +11,21 @@
 
 @implementation BaseballViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
 
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
+        NSLog(@"Temp Variable: %@" , _game.dataController.temp);
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    _dataController = [[GameDataController alloc] init];
+        _game = [[GameTabViewController alloc] init];
     [self ShowMainMenu];
 }
 
@@ -29,16 +36,14 @@
 }
 
 - (IBAction)PitchedBall:(id)sender {
-    [_dataController PitchedBall];
+    [_game.dataController PitchedBall];
     [self Refresh];
-
+    NSLog(@"Temp Variable: %@" , _game.dataController.temp);
     [self CallLog];
-    
-    NSLog(@"tempString: %@", _temp);
     }
 
 - (IBAction)PitchedStrike:(id)sender {
-    [_dataController PitchedStrike];
+    [_game.dataController PitchedStrike];
     [self Refresh];
 
     [self CallLog];
@@ -50,7 +55,7 @@
 
 - (IBAction)HitSingle:(id)sender {
     [self ShowMainMenu];
-    [_dataController HitSingle];
+    [_game.dataController HitSingle];
     [self Refresh];
     
     [self CallLog];
@@ -58,7 +63,7 @@
 
 - (IBAction)HitDouble:(id)sender {
     [self ShowMainMenu];
-    [_dataController HitDouble];
+    [_game.dataController HitDouble];
     [self Refresh];
     
     [self CallLog];
@@ -66,7 +71,7 @@
 
 - (IBAction)HitTriple:(id)sender {
     [self ShowMainMenu];
-    [_dataController HitTriple];
+    [_game.dataController HitTriple];
     [self Refresh];
     
     [self CallLog];
@@ -74,7 +79,7 @@
 
 - (IBAction)HitHomeRun:(id)sender {
     [self ShowMainMenu];
-    [_dataController HitHomeRun];
+    [_game.dataController HitHomeRun];
     [self Refresh];
     
     [self CallLog];
@@ -82,7 +87,7 @@
 
 - (IBAction)HitOut:(id)sender {
     [self ShowMainMenu];
-    [_dataController HitOut];
+    [_game.dataController HitOut];
     [self Refresh];
     
     [self CallLog];
@@ -111,17 +116,17 @@
 }
 
 -(void)Refresh {
-    _PitchedBallLabel.text = IntToString(_dataController.balls);
-    _PitchedStrikeLabel.text = IntToString(_dataController.strikes);
-    _RecordedOutLabel.text = IntToString(_dataController.outs);
-    _SideInningLabel.text = _dataController.sideInning;
-    _NumInningLabel.text = IntToString(_dataController.numInning);
-    _HomeScoreLabel.text = IntToString(_dataController.HomeScore);
-    _AwayScoreLabel.text = IntToString(_dataController.AwayScore);
+    _PitchedBallLabel.text = IntToString(_game.dataController.balls);
+    _PitchedStrikeLabel.text = IntToString(_game.dataController.strikes);
+    _RecordedOutLabel.text = IntToString(_game.dataController.outs);
+    _SideInningLabel.text = _game.dataController.sideInning;
+    _NumInningLabel.text = IntToString(_game.dataController.numInning);
+    _HomeScoreLabel.text = IntToString(_game.dataController.HomeScore);
+    _AwayScoreLabel.text = IntToString(_game.dataController.AwayScore);
 }
 
 -(void) CallLog {
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _dataController.strikes, _dataController.balls, _dataController.outs, _dataController.FirstBase.LastName, _dataController.SecondBase.LastName, _dataController.ThirdBase.LastName);
+    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _game.dataController.strikes, _game.dataController.balls, _game.dataController.outs, _game.dataController.FirstBase.LastName, _game.dataController.SecondBase.LastName, _game.dataController.ThirdBase.LastName);
 }
 
 NSString *IntToString(int p)

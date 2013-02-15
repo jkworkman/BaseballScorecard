@@ -9,6 +9,8 @@
 #import "AwayLineupViewController.h"
 #import "BaseballViewController.h"
 
+@class GameTabViewController;
+
 @interface AwayLineupViewController ()
 
 @end
@@ -19,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _Lineup = [[GameTabViewController alloc] init];
     }
     return self;
 }
@@ -41,12 +43,12 @@
     return YES;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Return"]) {
-        BaseballViewController *newtemp = [[BaseballViewController alloc] init];
-        newtemp.temp = @"ThisString";
-        NSLog(@"tempString: %@", newtemp.temp);
-    }
-}
 
+- (IBAction)AwaySubmit:(id)sender {
+    /*
+    _game.dataController.temp = _FirstFirstName.text;
+     */
+    _Lineup.dataController.temp = _FirstFirstName.text;
+    NSLog(@"Temp Variable: %@" , _FirstFirstName.text);
+}
 @end

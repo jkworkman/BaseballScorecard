@@ -29,6 +29,7 @@
         _AwayTeamLineupIndex = 0;
         [self AwayPlayerLineup];
         [self HomePlayerLineup];
+        _temp = @"This";
         /*
         for(int i = 0; i < 9; i++)
         {

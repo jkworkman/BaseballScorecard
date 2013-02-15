@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameDataController.h"
+#import "GameTabViewController.h"
 
 @class GameDataController;
 
@@ -20,10 +21,6 @@
 - (IBAction)HitTriple:(id)sender;
 - (IBAction)HitHomeRun:(id)sender;
 - (IBAction)HitOut:(id)sender;
-
-@property (nonatomic) NSString *temp;
-
-
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitchedStrikeLabel;
@@ -41,7 +38,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 
-@property (strong, nonatomic) GameDataController *dataController;
+@property (strong, nonatomic) GameTabViewController *game;
+
 
 -(void)ShowMainMenu;
 -(void)ShowSubMenu;

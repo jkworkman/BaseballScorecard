@@ -1,63 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="y3I-bS-P4c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hSa-HU-7y2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Away Lineup View Controller-->
-        <scene sceneID="j8P-MX-JEN">
-            <objects>
-                <viewController id="y3I-bS-P4c" customClass="AwayLineupViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Jz-qD-22q">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZB7-P6-rL4">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="2" kind="modal" identifier="Return" id="Wp4-pt-olW"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2RW-e8-dJY">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="N5i-cy-YV4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="y3I-bS-P4c" id="047-Hl-4GL"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2RW-e8-dJY" firstAttribute="centerX" secondItem="ZB7-P6-rL4" secondAttribute="centerX" type="default" id="Cov-gN-WgY"/>
-                            <constraint firstAttribute="bottom" secondItem="ZB7-P6-rL4" secondAttribute="bottom" constant="164" id="Nrj-iQ-hSZ"/>
-                            <constraint firstItem="2RW-e8-dJY" firstAttribute="centerY" secondItem="0Jz-qD-22q" secondAttribute="centerY" type="default" id="hVK-aZ-adX"/>
-                            <constraint firstItem="ZB7-P6-rL4" firstAttribute="centerX" secondItem="0Jz-qD-22q" secondAttribute="centerX" type="default" id="sLm-ch-jwu"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="FirstFirstName" destination="2RW-e8-dJY" id="WjR-D3-xzn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebu-a4-pOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-340" y="39"/>
-        </scene>
-        <!--Baseball View Controller-->
+        <!--Baseball View Controller - Game-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="BaseballViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxR-PD-7It">
@@ -241,7 +193,6 @@
                             <constraint firstItem="5Y8-UU-x1X" firstAttribute="centerX" secondItem="ecY-Xe-i3F" secondAttribute="centerX" type="default" id="6Ju-5U-Bad"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="leading" secondItem="iJD-ab-dPv" secondAttribute="leading" type="default" id="7HI-YA-fNJ"/>
                             <constraint firstItem="Eus-c7-Mgh" firstAttribute="top" secondItem="Ywx-iy-FsH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7Ww-kD-nqf"/>
-                            <constraint firstItem="xxR-PD-7It" firstAttribute="baseline" secondItem="iJD-ab-dPv" secondAttribute="baseline" type="default" id="8dP-Cx-1yH"/>
                             <constraint firstItem="Pln-V1-MED" firstAttribute="leading" secondItem="XkP-Pj-J4q" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Bxa-8P-7Hc"/>
                             <constraint firstItem="Ywx-iy-FsH" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="54" id="D3Z-8M-Qo3"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="trailing" secondItem="hGb-vf-4o5" secondAttribute="trailing" type="default" id="DLu-yT-Wtp"/>
@@ -266,7 +217,6 @@
                             <constraint firstAttribute="trailing" secondItem="6gV-TK-fO8" secondAttribute="trailing" constant="37" id="j0C-NK-ZEo"/>
                             <constraint firstAttribute="bottom" secondItem="2yx-ce-HTe" secondAttribute="bottom" constant="208" id="k7Q-kS-zE6"/>
                             <constraint firstItem="2RH-3U-ZpX" firstAttribute="top" secondItem="3" secondAttribute="top" constant="118" id="kMn-qA-NXa"/>
-                            <constraint firstItem="6gV-TK-fO8" firstAttribute="baseline" secondItem="iJD-ab-dPv" secondAttribute="baseline" type="default" id="lNb-rr-C3l"/>
                             <constraint firstItem="K6Z-V9-Vea" firstAttribute="baseline" secondItem="Vmi-va-CS0" secondAttribute="baseline" type="default" id="nkF-na-RV2"/>
                             <constraint firstAttribute="bottom" secondItem="6gV-TK-fO8" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oMa-oh-99a"/>
                             <constraint firstItem="K6Z-V9-Vea" firstAttribute="leading" secondItem="Vmi-va-CS0" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pOG-aO-eSH"/>
@@ -274,11 +224,11 @@
                             <constraint firstItem="irU-rr-Lg4" firstAttribute="leading" secondItem="AWq-21-qmj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rGo-tF-7hw"/>
                             <constraint firstItem="Nlo-RS-TD7" firstAttribute="leading" secondItem="2RH-3U-ZpX" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rVp-NS-BcC"/>
                             <constraint firstAttribute="bottom" secondItem="iJD-ab-dPv" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="xlX-j9-pdw"/>
-                            <constraint firstItem="xxR-PD-7It" firstAttribute="baseline" secondItem="6gV-TK-fO8" secondAttribute="baseline" type="default" id="y4j-P7-EDP"/>
                             <constraint firstItem="xxR-PD-7It" firstAttribute="trailing" secondItem="2RH-3U-ZpX" secondAttribute="trailing" type="default" id="yxx-4D-3ul"/>
                             <constraint firstItem="UrD-BO-0Ri" firstAttribute="leading" secondItem="ecY-Xe-i3F" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="z50-nr-rbt"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Game" id="Tyx-B2-mXs"/>
                     <connections>
                         <outlet property="AwayScoreLabel" destination="jtj-eQ-s1d" id="TPK-9p-HCK"/>
                         <outlet property="BallButtonOutlet" destination="xxR-PD-7It" id="EtU-cV-hMe"/>
@@ -299,47 +249,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-297" y="215"/>
+        </scene>
+        <!--Game Tab View Controller-->
+        <scene sceneID="Pcc-83-iro">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="hSa-HU-7y2" customClass="GameTabViewController" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="QAq-eD-1oC">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="viewControllers" id="x4j-uT-xx1"/>
+                        <segue destination="xfc-1x-IHv" kind="relationship" relationship="viewControllers" id="ZUG-CL-l3F"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t8b-ke-QKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-879" y="543"/>
+        </scene>
+        <!--Away Lineup View Controller - AwayLineup-->
+        <scene sceneID="tVj-7K-q0g">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Kl-4n-73n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="xfc-1x-IHv" customClass="AwayLineupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mio-Cu-0fz">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKv-U5-atd">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AwaySubmit:" destination="xfc-1x-IHv" eventType="touchUpInside" id="AJm-X6-7vs"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iJP-n8-lzm">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="0Cn-M1-Vt3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xfc-1x-IHv" id="UFo-od-spf"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iJP-n8-lzm" firstAttribute="centerX" secondItem="pKv-U5-atd" secondAttribute="centerX" type="default" id="2B3-MD-b6g"/>
+                            <constraint firstItem="pKv-U5-atd" firstAttribute="top" secondItem="Mio-Cu-0fz" secondAttribute="top" constant="130" id="99Q-97-PuF"/>
+                            <constraint firstItem="iJP-n8-lzm" firstAttribute="top" secondItem="Mio-Cu-0fz" secondAttribute="top" constant="52" id="UYc-ne-yVk"/>
+                            <constraint firstItem="iJP-n8-lzm" firstAttribute="centerX" secondItem="Mio-Cu-0fz" secondAttribute="centerX" type="default" id="WEx-ec-zHj"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AwayLineup" id="bNi-Mb-y56"/>
+                    <connections>
+                        <outlet property="FirstFirstName" destination="iJP-n8-lzm" id="mMp-Mg-hnR"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-297" y="883"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AwayLineupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AwayLineupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="BaseballViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseballViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="HitBall:"/>
-                <relationship kind="action" name="HitDouble:"/>
-                <relationship kind="action" name="HitHomeRun:"/>
-                <relationship kind="action" name="HitOut:"/>
-                <relationship kind="action" name="HitSingle:"/>
-                <relationship kind="action" name="HitTriple:"/>
-                <relationship kind="action" name="PitchedBall:"/>
-                <relationship kind="action" name="PitchedStrike:"/>
-                <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="BallButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitDoubleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitHomeRunOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitOutOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitSingleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitTripleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NumInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedBallLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedStrikeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RecordedOutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="SideInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="StrikeButtonOutlet" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

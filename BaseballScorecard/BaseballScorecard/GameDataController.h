@@ -37,6 +37,8 @@
 @property Player *EighthSpot;
 @property Player *NinthSpot;
 
+@property NSString *temp;
+
 -(id)init;
 -(void)PitchedBall;
 -(void)PitchedStrike;
