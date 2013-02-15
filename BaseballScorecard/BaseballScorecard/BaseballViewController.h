@@ -20,6 +20,11 @@
 - (IBAction)HitTriple:(id)sender;
 - (IBAction)HitHomeRun:(id)sender;
 - (IBAction)HitOut:(id)sender;
+- (IBAction)RunnerToSecond:(id)sender;
+- (IBAction)RunnerToThird:(id)sender;
+- (IBAction)RunnerScores:(id)sender;
+- (IBAction)RunnerOut:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitchedStrikeLabel;
@@ -36,12 +41,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *HitOutOutlet;
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RunnerToSecondLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RunnerToThirdLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RunnerScoresLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RunnerOutLabel;
 
-//@property (strong, nonatomic) GameTabViewController *game;
-
+-(void)RunnerAdvancing;
 
 -(void)ShowMainMenu;
 -(void)ShowSubMenu;
+-(void)ShowBaseRunnerMenu;
 -(void)Refresh;
 
 -(void) CallLog;

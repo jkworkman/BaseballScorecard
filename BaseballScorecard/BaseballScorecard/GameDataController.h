@@ -27,6 +27,10 @@
 @property (nonatomic) int HomeScore;
 @property (nonatomic) int AwayScore;
 
+@property (nonatomic) Player *tempFirst;
+@property (nonatomic) Player *tempSecond;
+@property (nonatomic) Player *tempThird;
+@property (nonatomic) Player *tempBase;
 
 + (id)sharedInstance;
 
@@ -38,6 +42,7 @@
 -(void)HitTriple;
 -(void)HitHomeRun;
 -(void)HitOut;
+-(void)ThirdOut;
 
 -(void)HomePlayerLineup;
 -(void)AwayPlayerLineup;

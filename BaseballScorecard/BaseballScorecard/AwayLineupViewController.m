@@ -45,25 +45,25 @@
 
 
 - (IBAction)AwaySubmit:(id)sender {
-    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    GameDataController* s = [GameDataController sharedInstance];
 
     Player *Leadoff = [[Player alloc] initWithName:_FirstFirstName.text LastName:_FirstLastName.text Position:_FirstPosition.text];
-    [sharedSingleton.AwayTeam addObject:Leadoff];
+    [s.AwayTeam addObject:Leadoff];
     Player *SecondSpot = [[Player alloc] initWithName:_SecondFirstName.text LastName:_SecondLastName.text Position:_SecondPosition.text];
-    [sharedSingleton.AwayTeam addObject:SecondSpot];
+    [s.AwayTeam addObject:SecondSpot];
     Player *ThirdSpot = [[Player alloc] initWithName:_ThirdFirstName.text LastName:_ThirdLastName.text Position:_ThirdPosition.text];
-    [sharedSingleton.AwayTeam addObject:ThirdSpot];
+    [s.AwayTeam addObject:ThirdSpot];
     Player *FourthSpot = [[Player alloc] initWithName:_FourthFirstName.text LastName:_FourthLastName.text Position:_FourthPosition.text];
-    [sharedSingleton.AwayTeam addObject:FourthSpot];
+    [s.AwayTeam addObject:FourthSpot];
     Player *FifthSpot = [[Player alloc] initWithName:_FifthFirstName.text LastName:_FifthLastName.text Position:_FifthPosition.text];
-    [sharedSingleton.AwayTeam addObject:FifthSpot];
+    [s.AwayTeam addObject:FifthSpot];
     Player *SixthSpot = [[Player alloc] initWithName:_SixthFirstName.text LastName:_SixthLastName.text Position:_SixthPosition.text];
-    [sharedSingleton.AwayTeam addObject:SixthSpot];
+    [s.AwayTeam addObject:SixthSpot];
     Player *SeventhSpot = [[Player alloc] initWithName:_SeventhFirstName.text LastName:_SeventhLastName.text Position:_SeventhPosition.text];
-    [sharedSingleton.AwayTeam addObject:SeventhSpot];
+    [s.AwayTeam addObject:SeventhSpot];
     Player *EighthSpot = [[Player alloc] initWithName:_EighthFirstName.text LastName:_EighthLastName.text Position:_EighthPosition.text];
-    [sharedSingleton.AwayTeam addObject:EighthSpot];
+    [s.AwayTeam addObject:EighthSpot];
     Player *NinthSpot = [[Player alloc] initWithName:_NinthFirstName.text LastName:_NinthLastName.text Position:_NinthPosition.text];
-    [sharedSingleton.AwayTeam addObject:NinthSpot];
+    [s.AwayTeam addObject:NinthSpot];
 }
 @end

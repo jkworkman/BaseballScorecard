@@ -95,29 +95,25 @@ static GameDataController *sharedInstance = nil;
     }
     if(_outs == 3)
     {
+        [self ThirdOut];
+        /*
         _outs = 0;
         if(_isBottomInning)
         {
             _sideInning = @"Top";
             _numInning += 1;
-        }
-        else
-        {
-            _sideInning = @"Bottom";
-        }
-        
-        if(_isBottomInning)
-        {
             _isBottomInning = false;
         }
         else
         {
+            _sideInning = @"Bottom";
             _isBottomInning = true;
         }
+
         _FirstBase = 0;
         _SecondBase = 0;
         _ThirdBase = 0;
-        
+        */
     }
 }
 
@@ -336,6 +332,8 @@ static GameDataController *sharedInstance = nil;
     _outs += 1;
     if(_outs == 3)
     {
+        [self ThirdOut];
+        /*
         _outs = 0;
         if(_isBottomInning)
         {
@@ -354,21 +352,37 @@ static GameDataController *sharedInstance = nil;
             _sideInning = @"Bottom";
             _isBottomInning = true;
         }
-        /*
-        if(_isBottomInning)
-        {
-            _isBottomInning = false;
-        }
-        else
-        {
-            _isBottomInning = true;
-        }
-         */
+        
         _FirstBase = 0;
         _SecondBase = 0;
         _ThirdBase = 0;
+         */
     }
+}
 
+-(void)ThirdOut {
+    _outs = 0;
+    if(_isBottomInning)
+    {
+        _AwayTeamLineupIndex += 1;
+        if(_AwayTeamLineupIndex == 9)
+            _AwayTeamLineupIndex = 0;
+        _sideInning = @"Top";
+        _numInning += 1;
+        _isBottomInning = false;
+    }
+    else
+    {
+        _HomeTeamLineupIndex += 1;
+        if(_HomeTeamLineupIndex == 9)
+            _HomeTeamLineupIndex = 0;
+        _sideInning = @"Bottom";
+        _isBottomInning = true;
+    }
+        
+    _FirstBase = 0;
+    _SecondBase = 0;
+    _ThirdBase = 0;
 }
 
 -(void)HomePlayerLineup {
