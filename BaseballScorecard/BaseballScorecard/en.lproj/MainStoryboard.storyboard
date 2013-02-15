@@ -249,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="215"/>
+            <point key="canvasLocation" x="-297" y="-177"/>
         </scene>
         <!--Game Tab View Controller-->
         <scene sceneID="Pcc-83-iro">
@@ -264,6 +264,7 @@
                     <connections>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="x4j-uT-xx1"/>
                         <segue destination="xfc-1x-IHv" kind="relationship" relationship="viewControllers" id="ZUG-CL-l3F"/>
+                        <segue destination="Dxg-Dw-Sx6" kind="relationship" relationship="viewControllers" id="RL3-1L-Qxh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8b-ke-QKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,7 +281,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKv-U5-atd">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -607,9 +608,456 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kl-4n-73n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="883"/>
+            <point key="canvasLocation" x="-297" y="543"/>
+        </scene>
+        <!--Home Lineup View Controller - Home Lineup-->
+        <scene sceneID="axr-xY-par">
+            <objects>
+                <viewController id="Dxg-Dw-Sx6" customClass="HomeLineupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3v2-Fa-LeT">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UKJ-UA-8Mv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="ph2-VB-CUR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="FHI-db-a5u"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5y9-Jb-0lq">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="LLm-sS-D32"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="rhD-82-3vb"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GaL-vd-FIG">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="CTe-oy-BW1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="wCO-rV-dSo"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vH4-MZ-oPv">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="oNW-hS-KfJ"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzM-ZO-ofY">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="2IT-Kq-fga"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGI-Wz-HJ3">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="ahz-08-75n"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TEx-ZG-ZBG">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="ZVN-Fo-kGo"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8UV-wW-3IY">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="sDF-he-bsr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="vXg-Aj-Efj"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ck-Gi-tno">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="JWD-CD-qbB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="YsT-g1-Zkq"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ctu-fJ-hut">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="pyI-7C-YFe"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJj-IC-7Aj">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="FPR-Kb-ses"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-5F-lvr">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="exN-tD-aFl"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OIp-cb-J85">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="BFB-cF-ui7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="Xit-Qf-ijC"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBD-4m-VbN">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="VqU-2W-7Tg"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sbW-65-uvI">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="xpT-w7-Pre"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONW-3A-3Oo">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="bP9-Dm-t3e"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BCh-kI-GYj">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="Yf4-kD-7LM"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-7e-YJg">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="IsI-zG-haQ"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dO-rZ-Hac">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="yk6-3N-Nvu"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QzZ-rA-bxs">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="zjc-tj-akP"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ryf-w6-7Qk">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="TFh-6i-FKn"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nyv-5d-ukQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="PWV-dY-0KU"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxa-i3-hH4">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="JsQ-G5-ERb"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="maN-7f-TtG">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="Ycw-QV-olQ"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGa-cJ-hOi">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="j9X-8n-UI9"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdp-m9-Rgb">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="aG6-aJ-KCF"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBj-DT-dc8">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Dxg-Dw-Sx6" id="FGH-jt-dJz"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzh-Ww-lZ3">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SubmitButton:" destination="Dxg-Dw-Sx6" eventType="touchUpInside" id="OhS-5r-cxQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NBj-DT-dc8" firstAttribute="baseline" secondItem="Xdp-m9-Rgb" secondAttribute="baseline" type="default" id="162-hd-7Us"/>
+                            <constraint firstItem="HJj-IC-7Aj" firstAttribute="leading" secondItem="8UV-wW-3IY" secondAttribute="leading" type="default" id="1CN-0M-1c1"/>
+                            <constraint firstItem="Ctu-fJ-hut" firstAttribute="leading" secondItem="TEx-ZG-ZBG" secondAttribute="leading" type="default" id="23a-kS-O5h"/>
+                            <constraint firstAttribute="trailing" secondItem="OIp-cb-J85" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="3Jd-Yb-isQ"/>
+                            <constraint firstItem="maN-7f-TtG" firstAttribute="trailing" secondItem="Ryf-w6-7Qk" secondAttribute="trailing" type="default" id="3bM-tz-CqO"/>
+                            <constraint firstItem="MZO-7e-YJg" firstAttribute="trailing" secondItem="dKZ-5F-lvr" secondAttribute="trailing" type="default" id="4TV-eP-YYU"/>
+                            <constraint firstItem="fGI-Wz-HJ3" firstAttribute="top" secondItem="GaL-vd-FIG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4un-1b-df9"/>
+                            <constraint firstAttribute="trailing" secondItem="vH4-MZ-oPv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="54R-TR-iEJ"/>
+                            <constraint firstItem="Ctu-fJ-hut" firstAttribute="baseline" secondItem="HJj-IC-7Aj" secondAttribute="baseline" type="default" id="5ct-LP-Nev"/>
+                            <constraint firstItem="8dO-rZ-Hac" firstAttribute="leading" secondItem="QzZ-rA-bxs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="6Vl-Nx-ymE"/>
+                            <constraint firstItem="dKZ-5F-lvr" firstAttribute="top" secondItem="3Ck-Gi-tno" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="71B-XC-SO7"/>
+                            <constraint firstItem="fGI-Wz-HJ3" firstAttribute="leading" secondItem="GaL-vd-FIG" secondAttribute="leading" type="default" id="7lF-qW-Kuq"/>
+                            <constraint firstItem="TEx-ZG-ZBG" firstAttribute="leading" secondItem="8UV-wW-3IY" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="8Xk-4Y-Trk"/>
+                            <constraint firstItem="nyv-5d-ukQ" firstAttribute="baseline" secondItem="zxa-i3-hH4" secondAttribute="baseline" type="default" id="8dG-Hg-yA4"/>
+                            <constraint firstAttribute="trailing" secondItem="ONW-3A-3Oo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="9T7-96-UJ4"/>
+                            <constraint firstItem="NBj-DT-dc8" firstAttribute="top" secondItem="maN-7f-TtG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9vw-8P-Z3L"/>
+                            <constraint firstItem="nyv-5d-ukQ" firstAttribute="leading" secondItem="zxa-i3-hH4" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="BPv-Qz-dRc"/>
+                            <constraint firstItem="OIp-cb-J85" firstAttribute="leading" secondItem="Ctu-fJ-hut" secondAttribute="leading" type="default" id="BVY-iS-ke6"/>
+                            <constraint firstAttribute="bottom" secondItem="rzh-Ww-lZ3" secondAttribute="bottom" constant="7" id="BcO-th-jLC"/>
+                            <constraint firstAttribute="trailing" secondItem="8dO-rZ-Hac" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Fw9-US-76g"/>
+                            <constraint firstItem="BzM-ZO-ofY" firstAttribute="baseline" secondItem="vH4-MZ-oPv" secondAttribute="baseline" type="default" id="Gyq-cP-VuL"/>
+                            <constraint firstItem="fGI-Wz-HJ3" firstAttribute="trailing" secondItem="GaL-vd-FIG" secondAttribute="trailing" type="default" id="HIF-Sr-4be"/>
+                            <constraint firstItem="ZBD-4m-VbN" firstAttribute="baseline" secondItem="sbW-65-uvI" secondAttribute="baseline" type="default" id="IDR-Cz-hEC"/>
+                            <constraint firstItem="UKJ-UA-8Mv" firstAttribute="top" secondItem="3v2-Fa-LeT" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Iji-hB-w9h"/>
+                            <constraint firstItem="Xdp-m9-Rgb" firstAttribute="leading" secondItem="zxa-i3-hH4" secondAttribute="leading" type="default" id="JQp-cp-iC0"/>
+                            <constraint firstItem="Ryf-w6-7Qk" firstAttribute="leading" secondItem="MZO-7e-YJg" secondAttribute="leading" type="default" id="LiB-rI-ofR"/>
+                            <constraint firstItem="BzM-ZO-ofY" firstAttribute="leading" secondItem="5y9-Jb-0lq" secondAttribute="leading" type="default" id="Mxc-sz-OEb"/>
+                            <constraint firstItem="vH4-MZ-oPv" firstAttribute="leading" secondItem="TEx-ZG-ZBG" secondAttribute="leading" type="default" id="NCG-Ha-Pot"/>
+                            <constraint firstItem="MZO-7e-YJg" firstAttribute="top" secondItem="sbW-65-uvI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OhX-uu-2Zg"/>
+                            <constraint firstAttribute="trailing" secondItem="TEx-ZG-ZBG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PRP-mU-nHc"/>
+                            <constraint firstItem="XGa-cJ-hOi" firstAttribute="leading" secondItem="Xdp-m9-Rgb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QFv-K4-TTm"/>
+                            <constraint firstItem="sbW-65-uvI" firstAttribute="leading" secondItem="fGI-Wz-HJ3" secondAttribute="leading" type="default" id="QnV-KO-xuC"/>
+                            <constraint firstItem="QzZ-rA-bxs" firstAttribute="leading" secondItem="BCh-kI-GYj" secondAttribute="leading" type="default" id="QqK-mX-PSU"/>
+                            <constraint firstItem="UKJ-UA-8Mv" firstAttribute="leading" secondItem="5y9-Jb-0lq" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="RAG-oC-og0"/>
+                            <constraint firstItem="XGa-cJ-hOi" firstAttribute="baseline" secondItem="Xdp-m9-Rgb" secondAttribute="baseline" type="default" id="SUI-oj-D9S"/>
+                            <constraint firstAttribute="trailing" secondItem="XGa-cJ-hOi" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="UeB-cC-7zY"/>
+                            <constraint firstItem="ZBD-4m-VbN" firstAttribute="leading" secondItem="BzM-ZO-ofY" secondAttribute="leading" type="default" id="Uh2-ji-36N"/>
+                            <constraint firstItem="3Ck-Gi-tno" firstAttribute="top" secondItem="fGI-Wz-HJ3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Xgk-Dt-AhW"/>
+                            <constraint firstItem="sbW-65-uvI" firstAttribute="trailing" secondItem="fGI-Wz-HJ3" secondAttribute="trailing" type="default" id="Y5h-hV-xij"/>
+                            <constraint firstItem="ZBD-4m-VbN" firstAttribute="trailing" secondItem="BzM-ZO-ofY" secondAttribute="trailing" type="default" id="YFD-Ve-CRp"/>
+                            <constraint firstItem="BCh-kI-GYj" firstAttribute="baseline" secondItem="MZO-7e-YJg" secondAttribute="baseline" type="default" id="Ywp-hE-Ogp"/>
+                            <constraint firstItem="8dO-rZ-Hac" firstAttribute="leading" secondItem="ONW-3A-3Oo" secondAttribute="leading" type="default" id="Zj4-rt-K4p"/>
+                            <constraint firstItem="maN-7f-TtG" firstAttribute="leading" secondItem="Ryf-w6-7Qk" secondAttribute="leading" type="default" id="Zvd-hG-5vN"/>
+                            <constraint firstItem="3Ck-Gi-tno" firstAttribute="leading" secondItem="3v2-Fa-LeT" secondAttribute="leading" constant="45" id="aGF-ld-rvN"/>
+                            <constraint firstItem="ONW-3A-3Oo" firstAttribute="baseline" secondItem="BCh-kI-GYj" secondAttribute="baseline" type="default" id="d7a-SN-LWK"/>
+                            <constraint firstItem="GaL-vd-FIG" firstAttribute="top" secondItem="3v2-Fa-LeT" secondAttribute="top" constant="20" symbolic="YES" type="default" id="dSR-So-fGf"/>
+                            <constraint firstItem="NBj-DT-dc8" firstAttribute="leading" secondItem="maN-7f-TtG" secondAttribute="leading" type="default" id="dgo-Qx-cFe"/>
+                            <constraint firstItem="zxa-i3-hH4" firstAttribute="leading" secondItem="QzZ-rA-bxs" secondAttribute="leading" type="default" id="dgv-Xh-c8V"/>
+                            <constraint firstAttribute="trailing" secondItem="Ctu-fJ-hut" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eJB-em-2dc"/>
+                            <constraint firstItem="TEx-ZG-ZBG" firstAttribute="baseline" secondItem="8UV-wW-3IY" secondAttribute="baseline" type="default" id="ee3-0r-V9L"/>
+                            <constraint firstItem="Ryf-w6-7Qk" firstAttribute="baseline" secondItem="QzZ-rA-bxs" secondAttribute="baseline" type="default" id="em4-65-NIM"/>
+                            <constraint firstItem="dKZ-5F-lvr" firstAttribute="leading" secondItem="3Ck-Gi-tno" secondAttribute="leading" type="default" id="fZT-Qq-4vf"/>
+                            <constraint firstItem="dKZ-5F-lvr" firstAttribute="trailing" secondItem="3Ck-Gi-tno" secondAttribute="trailing" type="default" id="fxD-uk-eU4"/>
+                            <constraint firstItem="maN-7f-TtG" firstAttribute="top" secondItem="Ryf-w6-7Qk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="g09-a1-tti"/>
+                            <constraint firstItem="BzM-ZO-ofY" firstAttribute="baseline" secondItem="fGI-Wz-HJ3" secondAttribute="baseline" type="default" id="ggp-em-XY5"/>
+                            <constraint firstItem="OIp-cb-J85" firstAttribute="baseline" secondItem="ZBD-4m-VbN" secondAttribute="baseline" type="default" id="gt8-b1-7Is"/>
+                            <constraint firstItem="5y9-Jb-0lq" firstAttribute="leading" secondItem="3v2-Fa-LeT" secondAttribute="leading" constant="152" id="hZQ-tB-Q5w"/>
+                            <constraint firstItem="QzZ-rA-bxs" firstAttribute="baseline" secondItem="8dO-rZ-Hac" secondAttribute="baseline" type="default" id="jJf-8Y-Ot3"/>
+                            <constraint firstAttribute="trailing" secondItem="rzh-Ww-lZ3" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="jmw-ha-3F9"/>
+                            <constraint firstItem="Ryf-w6-7Qk" firstAttribute="trailing" secondItem="MZO-7e-YJg" secondAttribute="trailing" type="default" id="m9F-nM-Orh"/>
+                            <constraint firstItem="OIp-cb-J85" firstAttribute="leading" secondItem="ONW-3A-3Oo" secondAttribute="leading" type="default" id="nFq-b4-zaF"/>
+                            <constraint firstItem="XGa-cJ-hOi" firstAttribute="leading" secondItem="nyv-5d-ukQ" secondAttribute="leading" type="default" id="nMM-ld-pqU"/>
+                            <constraint firstItem="BCh-kI-GYj" firstAttribute="leading" secondItem="HJj-IC-7Aj" secondAttribute="leading" type="default" id="qNo-YG-lhg"/>
+                            <constraint firstAttribute="trailing" secondItem="nyv-5d-ukQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="rGT-My-2i1"/>
+                            <constraint firstItem="maN-7f-TtG" firstAttribute="baseline" secondItem="zxa-i3-hH4" secondAttribute="baseline" type="default" id="rSt-F0-gse"/>
+                            <constraint firstItem="GaL-vd-FIG" firstAttribute="leading" secondItem="3v2-Fa-LeT" secondAttribute="leading" constant="46" id="rhU-St-tQK"/>
+                            <constraint firstItem="HJj-IC-7Aj" firstAttribute="baseline" secondItem="dKZ-5F-lvr" secondAttribute="baseline" type="default" id="rm0-dq-18c"/>
+                            <constraint firstItem="8UV-wW-3IY" firstAttribute="baseline" secondItem="3Ck-Gi-tno" secondAttribute="baseline" type="default" id="ryY-mX-XUe"/>
+                            <constraint firstItem="5y9-Jb-0lq" firstAttribute="trailing" secondItem="BzM-ZO-ofY" secondAttribute="trailing" type="default" id="sSd-ID-zgo"/>
+                            <constraint firstItem="NBj-DT-dc8" firstAttribute="trailing" secondItem="maN-7f-TtG" secondAttribute="trailing" type="default" id="t9n-hz-EC8"/>
+                            <constraint firstItem="Ryf-w6-7Qk" firstAttribute="top" secondItem="MZO-7e-YJg" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tja-3e-ZUV"/>
+                            <constraint firstItem="MZO-7e-YJg" firstAttribute="leading" secondItem="dKZ-5F-lvr" secondAttribute="leading" type="default" id="vyY-Fe-MdA"/>
+                            <constraint firstItem="5y9-Jb-0lq" firstAttribute="top" secondItem="3v2-Fa-LeT" secondAttribute="top" constant="20" symbolic="YES" type="default" id="wKk-ng-7eW"/>
+                            <constraint firstItem="sbW-65-uvI" firstAttribute="top" secondItem="dKZ-5F-lvr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="y1C-tn-5fd"/>
+                            <constraint firstItem="nyv-5d-ukQ" firstAttribute="leading" secondItem="8dO-rZ-Hac" secondAttribute="leading" type="default" id="yAf-sI-5d2"/>
+                            <constraint firstItem="Ctu-fJ-hut" firstAttribute="leading" secondItem="HJj-IC-7Aj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="yTj-SZ-cLY"/>
+                            <constraint firstItem="ONW-3A-3Oo" firstAttribute="leading" secondItem="BCh-kI-GYj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="yuT-nC-cMN"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home Lineup" id="4jb-9L-erJ"/>
+                    <connections>
+                        <outlet property="EighthFirstName" destination="maN-7f-TtG" id="sNd-5m-0EU"/>
+                        <outlet property="EighthLastName" destination="zxa-i3-hH4" id="kdG-S4-fV3"/>
+                        <outlet property="EighthPosition" destination="nyv-5d-ukQ" id="H6h-BP-Li3"/>
+                        <outlet property="FifthFirstName" destination="sbW-65-uvI" id="yGp-CC-0gK"/>
+                        <outlet property="FifthLastName" destination="ZBD-4m-VbN" id="xYz-7r-QLV"/>
+                        <outlet property="FifthPosition" destination="OIp-cb-J85" id="IDS-JI-w1T"/>
+                        <outlet property="FirstFirstName" destination="GaL-vd-FIG" id="7OI-Il-yOk"/>
+                        <outlet property="FirstLastName" destination="5y9-Jb-0lq" id="Ycz-az-Xxh"/>
+                        <outlet property="FirstPosition" destination="UKJ-UA-8Mv" id="FDo-CB-jjn"/>
+                        <outlet property="FourthFirstName" destination="dKZ-5F-lvr" id="D9K-8w-WWG"/>
+                        <outlet property="FourthLastName" destination="HJj-IC-7Aj" id="eHC-oP-7y0"/>
+                        <outlet property="FourthPosition" destination="Ctu-fJ-hut" id="sww-1O-y8o"/>
+                        <outlet property="NinthFirstName" destination="NBj-DT-dc8" id="0UQ-jk-Eqc"/>
+                        <outlet property="NinthLastName" destination="Xdp-m9-Rgb" id="P2G-4V-6hn"/>
+                        <outlet property="NinthPosition" destination="XGa-cJ-hOi" id="KrM-UD-y2p"/>
+                        <outlet property="SecondFirstName" destination="fGI-Wz-HJ3" id="lUS-82-gVs"/>
+                        <outlet property="SecondLastName" destination="BzM-ZO-ofY" id="nAt-Dd-gBE"/>
+                        <outlet property="SecondPosition" destination="vH4-MZ-oPv" id="hD7-P4-cAT"/>
+                        <outlet property="SeventhFirstName" destination="Ryf-w6-7Qk" id="9cD-pi-XYZ"/>
+                        <outlet property="SeventhLastName" destination="QzZ-rA-bxs" id="5rA-SX-Yq6"/>
+                        <outlet property="SeventhPosition" destination="8dO-rZ-Hac" id="UHn-k5-na7"/>
+                        <outlet property="SixthFirstName" destination="MZO-7e-YJg" id="TqQ-Q6-5DA"/>
+                        <outlet property="SixthLastName" destination="BCh-kI-GYj" id="6LZ-q0-cdb"/>
+                        <outlet property="SixthPosition" destination="ONW-3A-3Oo" id="uSz-DS-tKL"/>
+                        <outlet property="ThirdFirstName" destination="3Ck-Gi-tno" id="XQo-Qt-OLs"/>
+                        <outlet property="ThirdLastName" destination="8UV-wW-3IY" id="EBp-0t-7sr"/>
+                        <outlet property="ThirdPosition" destination="TEx-ZG-ZBG" id="k0z-Wo-Ylb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tKh-oK-psG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-297" y="1248"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AwayLineupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AwayLineupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="AwaySubmit:"/>
+                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="BaseballViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseballViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="HitBall:"/>
+                <relationship kind="action" name="HitDouble:"/>
+                <relationship kind="action" name="HitHomeRun:"/>
+                <relationship kind="action" name="HitOut:"/>
+                <relationship kind="action" name="HitSingle:"/>
+                <relationship kind="action" name="HitTriple:"/>
+                <relationship kind="action" name="PitchedBall:"/>
+                <relationship kind="action" name="PitchedStrike:"/>
+                <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="BallButtonOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitButtonOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitDoubleOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitHomeRunOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitOutOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitSingleOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HitTripleOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="NumInningLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PitchedBallLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PitchedStrikeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="RecordedOutLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="SideInningLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="StrikeButtonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameTabViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameTabViewController.h"/>
+        </class>
+        <class className="HomeLineupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeLineupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="SubmitButton:"/>
+                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

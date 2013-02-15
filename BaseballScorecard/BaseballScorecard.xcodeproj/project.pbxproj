@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C1BCE2116CC762800E0216B /* AwayLineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1BCE2016CC762800E0216B /* AwayLineupViewController.m */; };
+		1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6411A616CE91B10074876E /* HomeLineupViewController.m */; };
 		1CAAFE6E16C6D87F00F0C44C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAAFE6D16C6D87F00F0C44C /* UIKit.framework */; };
 		1CAAFE7016C6D87F00F0C44C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAAFE6F16C6D87F00F0C44C /* Foundation.framework */; };
 		1CAAFE7216C6D87F00F0C44C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAAFE7116C6D87F00F0C44C /* CoreGraphics.framework */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		1C1BCE1F16CC762800E0216B /* AwayLineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwayLineupViewController.h; sourceTree = "<group>"; };
 		1C1BCE2016CC762800E0216B /* AwayLineupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwayLineupViewController.m; sourceTree = "<group>"; };
+		1C6411A516CE91B10074876E /* HomeLineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLineupViewController.h; sourceTree = "<group>"; };
+		1C6411A616CE91B10074876E /* HomeLineupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLineupViewController.m; sourceTree = "<group>"; };
 		1CAAFE6916C6D87F00F0C44C /* BaseballScorecard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseballScorecard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CAAFE6D16C6D87F00F0C44C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1CAAFE6F16C6D87F00F0C44C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +105,8 @@
 				1CD6B4C216C974AA00584EDE /* Player.m */,
 				1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */,
 				1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */,
+				1C6411A516CE91B10074876E /* HomeLineupViewController.h */,
+				1C6411A616CE91B10074876E /* HomeLineupViewController.m */,
 				1C1BCE1F16CC762800E0216B /* AwayLineupViewController.h */,
 				1C1BCE2016CC762800E0216B /* AwayLineupViewController.m */,
 				1CAAFE8816C6D87F00F0C44C /* BaseballViewController.h */,
@@ -201,6 +206,7 @@
 				1CD6B4C316C974AA00584EDE /* Player.m in Sources */,
 				1C1BCE2116CC762800E0216B /* AwayLineupViewController.m in Sources */,
 				1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */,
+				1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

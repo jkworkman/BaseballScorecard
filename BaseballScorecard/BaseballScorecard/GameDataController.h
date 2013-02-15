@@ -27,15 +27,6 @@
 @property (nonatomic) int HomeScore;
 @property (nonatomic) int AwayScore;
 
-@property Player *Leadoff;
-@property Player *SecondSpot;
-@property Player *ThirdSpot;
-@property Player *FourthSpot;
-@property Player *FifthSpot;
-@property Player *SixthSpot;
-@property Player *SeventhSpot;
-@property Player *EighthSpot;
-@property Player *NinthSpot;
 
 + (id)sharedInstance;
 
