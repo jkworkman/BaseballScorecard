@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _dataController = [[GameDataController alloc] init];
+
     }
     return self;
 }

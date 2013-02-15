@@ -22,10 +22,9 @@
 
 - (void)viewDidLoad
 {
-        NSLog(@"Temp Variable: %@" , _game.dataController.temp);
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-        _game = [[GameTabViewController alloc] init];
+
     [self ShowMainMenu];
 }
 
@@ -36,16 +35,16 @@
 }
 
 - (IBAction)PitchedBall:(id)sender {
-    [_game.dataController PitchedBall];
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton PitchedBall];
     [self Refresh];
-    NSLog(@"Temp Variable: %@" , _game.dataController.temp);
     [self CallLog];
     }
 
 - (IBAction)PitchedStrike:(id)sender {
-    [_game.dataController PitchedStrike];
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton PitchedStrike];
     [self Refresh];
-
     [self CallLog];
 }
 
@@ -54,42 +53,42 @@
 }
 
 - (IBAction)HitSingle:(id)sender {
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton HitSingle];
     [self ShowMainMenu];
-    [_game.dataController HitSingle];
     [self Refresh];
-    
     [self CallLog];
 }
 
 - (IBAction)HitDouble:(id)sender {
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton HitDouble];
     [self ShowMainMenu];
-    [_game.dataController HitDouble];
     [self Refresh];
-    
     [self CallLog];
 }
 
 - (IBAction)HitTriple:(id)sender {
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton HitTriple];
     [self ShowMainMenu];
-    [_game.dataController HitTriple];
     [self Refresh];
-    
     [self CallLog];
 }
 
 - (IBAction)HitHomeRun:(id)sender {
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton HitHomeRun];
     [self ShowMainMenu];
-    [_game.dataController HitHomeRun];
     [self Refresh];
-    
     [self CallLog];
 }
 
 - (IBAction)HitOut:(id)sender {
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    [sharedSingleton HitOut];
     [self ShowMainMenu];
-    [_game.dataController HitOut];
     [self Refresh];
-    
     [self CallLog];
 }
 
@@ -116,17 +115,21 @@
 }
 
 -(void)Refresh {
-    _PitchedBallLabel.text = IntToString(_game.dataController.balls);
-    _PitchedStrikeLabel.text = IntToString(_game.dataController.strikes);
-    _RecordedOutLabel.text = IntToString(_game.dataController.outs);
-    _SideInningLabel.text = _game.dataController.sideInning;
-    _NumInningLabel.text = IntToString(_game.dataController.numInning);
-    _HomeScoreLabel.text = IntToString(_game.dataController.HomeScore);
-    _AwayScoreLabel.text = IntToString(_game.dataController.AwayScore);
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    
+    _PitchedBallLabel.text = IntToString(sharedSingleton.balls);
+    _PitchedStrikeLabel.text = IntToString(sharedSingleton.strikes);
+    _RecordedOutLabel.text = IntToString(sharedSingleton.outs);
+    _SideInningLabel.text = sharedSingleton.sideInning;
+    _NumInningLabel.text = IntToString(sharedSingleton.numInning);
+    _HomeScoreLabel.text = IntToString(sharedSingleton.HomeScore);
+    _AwayScoreLabel.text = IntToString(sharedSingleton.AwayScore);
 }
 
 -(void) CallLog {
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", _game.dataController.strikes, _game.dataController.balls, _game.dataController.outs, _game.dataController.FirstBase.LastName, _game.dataController.SecondBase.LastName, _game.dataController.ThirdBase.LastName);
+    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    
+    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", sharedSingleton.strikes, sharedSingleton.balls, sharedSingleton.outs, sharedSingleton.FirstBase.LastName, sharedSingleton.SecondBase.LastName, sharedSingleton.ThirdBase.LastName);
 }
 
 NSString *IntToString(int p)

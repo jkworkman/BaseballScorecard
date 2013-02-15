@@ -37,7 +37,7 @@
 @property Player *EighthSpot;
 @property Player *NinthSpot;
 
-@property NSString *temp;
++ (id)sharedInstance;
 
 -(id)init;
 -(void)PitchedBall;

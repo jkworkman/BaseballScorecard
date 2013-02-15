@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GameDataController.h"
 
 @interface GameTabViewController : UITabBarController
-
-@property (strong, nonatomic) GameDataController *dataController;
 
 @end

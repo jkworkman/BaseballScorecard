@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "GameDataController.h"
-#import "GameTabViewController.h"
 
 @class GameDataController;
 
@@ -38,7 +37,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 
-@property (strong, nonatomic) GameTabViewController *game;
+//@property (strong, nonatomic) GameTabViewController *game;
 
 
 -(void)ShowMainMenu;

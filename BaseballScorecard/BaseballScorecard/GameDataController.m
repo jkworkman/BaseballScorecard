@@ -13,6 +13,23 @@
 
 @implementation GameDataController
 
+
+static GameDataController *sharedInstance = nil;
+
+// Get the shared instance and create it if necessary.
++ (GameDataController *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[super allocWithZone:NULL] init];
+    }
+    
+    return sharedInstance;
+}
+
+// Equally, we don't want to generate multiple copies of the singleton.
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
 -(id)init {
     self = [super init];
     if (self) {
@@ -27,16 +44,10 @@
         _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         _HomeTeamLineupIndex = 0;
         _AwayTeamLineupIndex = 0;
-        [self AwayPlayerLineup];
-        [self HomePlayerLineup];
-        _temp = @"This";
         /*
-        for(int i = 0; i < 9; i++)
-        {
-            [_HomeTeam addObject:[NSNumber numberWithInt:i]];
-            [_AwayTeam addObject:[NSNumber numberWithInt:i]];
-        }
+        [self AwayPlayerLineup];
          */
+        [self HomePlayerLineup];
     }
     return self;
 }
@@ -113,10 +124,6 @@
 -(void)HitSingle {
     if(!_isBottomInning)
     {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
-        
         if(_FirstBase == 0)
         {
             _FirstBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
@@ -146,13 +153,12 @@
                 }
             }
         }
+        _AwayTeamLineupIndex += 1;
+        if(_AwayTeamLineupIndex == 9)
+            _AwayTeamLineupIndex = 0;
     }
     else
     {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        
         if(_FirstBase == 0)
         {
             _FirstBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
@@ -182,17 +188,15 @@
                 }
             }
         }
+        _HomeTeamLineupIndex += 1;
+        if(_HomeTeamLineupIndex == 9)
+            _HomeTeamLineupIndex = 0;
     }
 }
 
 -(void)HitDouble {
     if(!_isBottomInning)
     {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
-        
-        
         if(_SecondBase == 0)
         {
             _SecondBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
@@ -214,13 +218,12 @@
                 _SecondBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
             }
         }
+        _AwayTeamLineupIndex += 1;
+        if(_AwayTeamLineupIndex == 9)
+            _AwayTeamLineupIndex = 0;
     }
     else
     {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        
         if(_SecondBase == 0)
         {
             _SecondBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
@@ -242,18 +245,15 @@
                 _SecondBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
             }
         }
+        _HomeTeamLineupIndex += 1;
+        if(_HomeTeamLineupIndex == 9)
+            _HomeTeamLineupIndex = 0;
     }
 
 }
 -(void)HitTriple {
     if(!_isBottomInning)
     {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
-        
-        
-        
         if(_ThirdBase == 0)
         {
             _ThirdBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
@@ -268,19 +268,12 @@
                 _AwayScore += 1;
             _ThirdBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
         }
+        _AwayTeamLineupIndex += 1;
+        if(_AwayTeamLineupIndex == 9)
+            _AwayTeamLineupIndex = 0;
     }
     else
     {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        
-        
-        
         if(_ThirdBase == 0)
         {
             _ThirdBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
@@ -295,6 +288,9 @@
                 _HomeScore += 1;
             _ThirdBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
         }
+        _HomeTeamLineupIndex += 1;
+        if(_HomeTeamLineupIndex == 9)
+            _HomeTeamLineupIndex = 0;
     }
 
     
@@ -348,6 +344,7 @@
                 _AwayTeamLineupIndex = 0;
             _sideInning = @"Top";
             _numInning += 1;
+            _isBottomInning = false;
         }
         else
         {
@@ -355,8 +352,9 @@
             if(_HomeTeamLineupIndex == 9)
                 _HomeTeamLineupIndex = 0;
             _sideInning = @"Bottom";
+            _isBottomInning = true;
         }
-        
+        /*
         if(_isBottomInning)
         {
             _isBottomInning = false;
@@ -365,6 +363,7 @@
         {
             _isBottomInning = true;
         }
+         */
         _FirstBase = 0;
         _SecondBase = 0;
         _ThirdBase = 0;
