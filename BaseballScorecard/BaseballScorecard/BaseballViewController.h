@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameDataController.h"
+#import "Quartz2D.h"
 
 @class GameDataController;
 
@@ -47,9 +48,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *RunnerScoresLabel;
 @property (weak, nonatomic) IBOutlet UIButton *RunnerOutLabel;
 @property (weak, nonatomic) IBOutlet UIButton *RunnerStaysOnBaseLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *RunnerAdvancingLabel;
-
 
 -(void)RunnerAdvancing;
 
@@ -58,6 +57,7 @@
 -(void)ShowBaseRunnerMenu;
 -(void)HideAllMenu;
 -(void)Refresh;
+-(void)SetLabels;
 
 -(void) CallLog;
 

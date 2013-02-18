@@ -26,6 +26,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    [self SetLabels];
     [self ShowMainMenu];
 }
 
@@ -255,15 +256,20 @@
 }
 
 -(void)Refresh {
-    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    GameDataController* s = [GameDataController sharedInstance];
     
-    _PitchedBallLabel.text = IntToString(sharedSingleton.balls);
-    _PitchedStrikeLabel.text = IntToString(sharedSingleton.strikes);
-    _RecordedOutLabel.text = IntToString(sharedSingleton.outs);
-    _SideInningLabel.text = sharedSingleton.sideInning;
-    _NumInningLabel.text = IntToString(sharedSingleton.numInning);
-    _HomeScoreLabel.text = IntToString(sharedSingleton.HomeScore);
-    _AwayScoreLabel.text = IntToString(sharedSingleton.AwayScore);
+    _PitchedBallLabel.text = [NSString stringWithFormat:@"Balls: %@ Strikes: %@ Outs: %@", IntToString(s.balls), IntToString(s.strikes), IntToString(s.outs)];
+    _NumInningLabel.text = [NSString stringWithFormat:@"%@ %@", s.sideInning, IntToString(s.numInning)];
+    _HomeScoreLabel.text = [NSString stringWithFormat:@"Home: %@",IntToString(s.HomeScore)];
+    _AwayScoreLabel.text = [NSString stringWithFormat:@"Away: %@",IntToString(s.AwayScore)];
+}
+-(void)SetLabels {
+    _PitchedBallLabel.layer.backgroundColor = (__bridge CGColorRef)([UIColor grayColor]);
+    _PitchedBallLabel.layer.shadowColor = (__bridge CGColorRef)([UIColor blackColor]);
+    _PitchedBallLabel.layer.cornerRadius = 10;
+    _NumInningLabel.layer.cornerRadius = 10;
+    _HomeScoreLabel.layer.cornerRadius = 10;
+    _AwayScoreLabel.layer.cornerRadius = 10;
 }
 
 -(void) CallLog {

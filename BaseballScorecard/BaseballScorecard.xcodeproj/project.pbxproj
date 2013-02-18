@@ -22,6 +22,7 @@
 		1CAAFE8716C6D87F00F0C44C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */; };
 		1CAAFE8A16C6D87F00F0C44C /* BaseballViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */; };
 		1CAAFE9D16C6DBC000F0C44C /* GameDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */; };
+		1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */; };
 		1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */; };
 		1CD6B4C316C974AA00584EDE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6B4C216C974AA00584EDE /* Player.m */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,8 @@
 		1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseballViewController.m; sourceTree = "<group>"; };
 		1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataController.h; sourceTree = "<group>"; };
 		1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataController.m; sourceTree = "<group>"; };
+		1CD32DBA16D2A35600EB0BA2 /* Quartz2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quartz2D.h; sourceTree = "<group>"; };
+		1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quartz2D.m; sourceTree = "<group>"; };
 		1CD5A02D16CDB0D500B5BA81 /* GameTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTabViewController.h; sourceTree = "<group>"; };
 		1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTabViewController.m; sourceTree = "<group>"; };
 		1CD6B4C116C974AA00584EDE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				1CAAFE7C16C6D87F00F0C44C /* BaseballAppDelegate.h */,
 				1CAAFE7D16C6D87F00F0C44C /* BaseballAppDelegate.m */,
 				1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */,
+				1CD32DBA16D2A35600EB0BA2 /* Quartz2D.h */,
+				1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */,
 				1CD6B4C116C974AA00584EDE /* Player.h */,
 				1CD6B4C216C974AA00584EDE /* Player.m */,
 				1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */,
@@ -211,6 +216,7 @@
 				1C1BCE2116CC762800E0216B /* AwayLineupViewController.m in Sources */,
 				1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */,
 				1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */,
+				1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
