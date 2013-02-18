@@ -8,6 +8,7 @@
 
 #import "BaseballViewController.h"
 #import "GameDataController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation BaseballViewController
 
@@ -156,9 +157,7 @@
         {
             _RunnerToThirdLabel.hidden = false; 
             if(s.TypeofHit == 1)
-                {
                     _RunnerToSecondLabel.hidden = false; 
-                }
         }
     }
     else
