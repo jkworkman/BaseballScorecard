@@ -56,26 +56,29 @@
     GameDataController* s = [GameDataController sharedInstance];
     
     [s HitSingle];
-    [self ShowBaseRunnerMenu];
+    [self HideAllMenu];
     [self Refresh];
     [self CallLog];
+    [self RunnerAdvancing];
 }
 
 - (IBAction)HitDouble:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
     
     [s HitDouble];
-    [self ShowBaseRunnerMenu];
+    [self HideAllMenu];
     [self Refresh];
     [self CallLog];
+    [self RunnerAdvancing];
 }
 
 - (IBAction)HitTriple:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
     [s HitTriple];
-    [self ShowBaseRunnerMenu];
+    [self HideAllMenu];
     [self Refresh];
     [self CallLog];
+    [self RunnerAdvancing];
 }
 
 - (IBAction)HitHomeRun:(id)sender {
@@ -96,77 +99,29 @@
 
 - (IBAction)RunnerToSecond:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
-    
-    if(s.tempSecond != 0)
-    {
-        s.tempSecond = s.tempFirst;
-        s.FirstBase = 0;
-        s.tempFirst = 0;
-    }
+    [s RunnerToSecond];
     [self RunnerAdvancing];
 }
 
 - (IBAction)RunnerToThird:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
-    
-    if(s.tempSecond != 0)
-    {
-        s.tempThird = s.tempSecond;
-        s.SecondBase = 0;
-        s.tempSecond = 0;
-    }
-    else if(s.tempFirst != 0)
-    {
-        s.tempThird = s.tempFirst;
-        s.FirstBase = 0;
-    }
+    [s RunnerToThird];
     [self RunnerAdvancing];
 }
 
 - (IBAction)RunnerScores:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
-    
-    if(!s.isBottomInning)
-    {
-        s.AwayScore += 1;
-        if(s.tempThird != 0)
-        {
-            s.ThirdBase = 0;
-            s.tempThird = 0;
-        }
-        else if(s.tempSecond != 0)
-        {
-            s.SecondBase = 0;
-            s.tempSecond = 0;
-        }
-        else if(s.tempFirst != 0)
-        {
-            s.FirstBase = 0;
-            s.tempFirst = 0;
-        }
-    }
-    else{
-        s.HomeScore += 1;
-        if(s.tempThird != 0)
-        {
-            s.ThirdBase = 0;
-            s.tempThird = 0;
-        }
-        else if(s.tempSecond != 0)
-        {
-            s.SecondBase = 0;
-            s.tempSecond = 0;
-        }
-        else if(s.tempFirst != 0)
-        {
-            s.FirstBase = 0;
-            s.tempFirst = 0;
-        }
-    }
+    [s RunnerScores];
+    [self RunnerAdvancing];
 }
 
 - (IBAction)RunnerOut:(id)sender {
+    GameDataController* s = [GameDataController sharedInstance];
+    [s RunnerOut];
+    [self RunnerAdvancing];
+}
 
+- (IBAction)RunnerStaysOnBase:(id)sender {
 }
 
 -(void)RunnerAdvancing {
@@ -175,30 +130,61 @@
     if(s.ThirdBase != 0)
     {
         s.tempThird = s.ThirdBase;
+        _RunnerAdvancingLabel.text = @"Runner On Third";
+        _RunnerAdvancingLabel.hidden = false;
         _RunnerOutLabel.hidden = false;
         _RunnerScoresLabel.hidden = false;
     }
     else if(s.SecondBase != 0)
     {
         s.tempSecond = s.SecondBase;
+        _RunnerAdvancingLabel.text = @"Runner On Second";
+        _RunnerAdvancingLabel.hidden = false;
         _RunnerOutLabel.hidden = false;
         _RunnerScoresLabel.hidden = false;
-        _RunnerToThirdLabel.hidden = false;
+        if(s.TypeofHit != 3)
+            _RunnerToThirdLabel.hidden = false;
     }
     else if(s.FirstBase != 0)
     {
         s.tempFirst = s.FirstBase;
+        _RunnerAdvancingLabel.text = @"Runner On First";
+        _RunnerAdvancingLabel.hidden = false;
         _RunnerOutLabel.hidden = false;
         _RunnerScoresLabel.hidden = false;
-        _RunnerToThirdLabel.hidden = false;
-        _RunnerToSecondLabel.hidden = false;
+        if(s.TypeofHit != 3)
+        {
+            _RunnerToThirdLabel.hidden = false; 
+            if(s.TypeofHit == 1)
+                {
+                    _RunnerToSecondLabel.hidden = false; 
+                }
+        }
     }
     else
     {
-        s.ThirdBase = s.tempThird;
-        s.SecondBase = s.tempSecond;
-        s.FirstBase = s.tempBase;
+        if(s.TypeofHit == 1)
+        {
+            s.ThirdBase = s.tempThird;
+            s.SecondBase = s.tempSecond;
+            s.FirstBase = s.tempBase;
+        }
+        else if(s.TypeofHit == 2)
+        {
+            s.ThirdBase = s.tempThird;
+            s.SecondBase = s.tempBase;
+        }
+        else
+        {
+            s.ThirdBase = s.tempBase;
+        }
+        s.tempBase = s.tempFirst = s.tempSecond = s.tempThird = 0;
+        s.TypeofHit = 0;
+        [self ShowMainMenu];
     }
+    
+    [self Refresh];
+    [self CallLog];
 }
 
 -(void)ShowMainMenu {
@@ -214,6 +200,8 @@
     _RunnerToThirdLabel.hidden = true;
     _RunnerScoresLabel.hidden = true;
     _RunnerOutLabel.hidden = true;
+    _RunnerAdvancingLabel.hidden = true;
+    _RunnerStaysOnBaseLabel.hidden = true;
 }
 
 -(void)ShowSubMenu {
@@ -229,6 +217,8 @@
     _RunnerToThirdLabel.hidden = true;
     _RunnerScoresLabel.hidden = true;
     _RunnerOutLabel.hidden = true;
+    _RunnerAdvancingLabel.hidden = true;
+    _RunnerStaysOnBaseLabel.hidden = true;
 }
 
 -(void)ShowBaseRunnerMenu {
@@ -244,6 +234,25 @@
     _RunnerToThirdLabel.hidden = false;
     _RunnerScoresLabel.hidden = false;
     _RunnerOutLabel.hidden = false;
+    _RunnerAdvancingLabel.hidden = true;
+    _RunnerStaysOnBaseLabel.hidden = true;
+}
+
+-(void)HideAllMenu {
+    _HitSingleOutlet.hidden = true;
+    _HitDoubleOutlet.hidden = true;
+    _HitTripleOutlet.hidden = true;
+    _HitHomeRunOutlet.hidden = true;
+    _BallButtonOutlet.hidden = true;
+    _StrikeButtonOutlet.hidden = true;
+    _HitButtonOutlet.hidden = true;
+    _HitOutOutlet.hidden = true;;
+    _RunnerToSecondLabel.hidden = true;
+    _RunnerToThirdLabel.hidden = true;
+    _RunnerScoresLabel.hidden = true;
+    _RunnerOutLabel.hidden = true;
+    _RunnerAdvancingLabel.hidden = true;
+    _RunnerStaysOnBaseLabel.hidden = true;
 }
 
 -(void)Refresh {

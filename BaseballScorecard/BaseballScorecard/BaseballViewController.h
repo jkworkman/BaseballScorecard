@@ -24,6 +24,7 @@
 - (IBAction)RunnerToThird:(id)sender;
 - (IBAction)RunnerScores:(id)sender;
 - (IBAction)RunnerOut:(id)sender;
+- (IBAction)RunnerStaysOnBase:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
@@ -45,12 +46,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *RunnerToThirdLabel;
 @property (weak, nonatomic) IBOutlet UIButton *RunnerScoresLabel;
 @property (weak, nonatomic) IBOutlet UIButton *RunnerOutLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RunnerStaysOnBaseLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *RunnerAdvancingLabel;
+
 
 -(void)RunnerAdvancing;
 
 -(void)ShowMainMenu;
 -(void)ShowSubMenu;
 -(void)ShowBaseRunnerMenu;
+-(void)HideAllMenu;
 -(void)Refresh;
 
 -(void) CallLog;

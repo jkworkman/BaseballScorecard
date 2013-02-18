@@ -71,7 +71,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bottom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Y8-UU-x1X">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Top" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Y8-UU-x1X">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -234,6 +234,24 @@
                                     <action selector="RunnerOut:" destination="2" eventType="touchUpInside" id="gm7-gG-iOO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nME-Xx-H5I">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMW-8d-U9e">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Stays At Base">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="RunnerStaysOnBase:" destination="2" eventType="touchUpInside" id="SVG-0C-g3b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -254,18 +272,17 @@
                             <constraint firstItem="Ywx-iy-FsH" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="51" id="BHH-ou-xgo"/>
                             <constraint firstItem="1PN-vx-JCv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="BgU-G3-FOw"/>
                             <constraint firstItem="Pln-V1-MED" firstAttribute="leading" secondItem="XkP-Pj-J4q" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Bxa-8P-7Hc"/>
-                            <constraint firstItem="iJD-ab-dPv" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="CDS-dT-zuo"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="trailing" secondItem="hGb-vf-4o5" secondAttribute="trailing" type="default" id="DLu-yT-Wtp"/>
                             <constraint firstItem="xxR-PD-7It" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="46" id="Eqh-2Q-q41"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="FyR-Rq-Noq"/>
                             <constraint firstItem="Pln-V1-MED" firstAttribute="baseline" secondItem="XkP-Pj-J4q" secondAttribute="baseline" type="default" id="G3m-ai-uxr"/>
                             <constraint firstItem="XkP-Pj-J4q" firstAttribute="leading" secondItem="ecY-Xe-i3F" secondAttribute="leading" type="default" id="GFy-iQ-nhC"/>
                             <constraint firstItem="UrD-BO-0Ri" firstAttribute="baseline" secondItem="ecY-Xe-i3F" secondAttribute="baseline" type="default" id="NuE-fY-a5f"/>
+                            <constraint firstItem="nME-Xx-H5I" firstAttribute="centerX" secondItem="2yx-ce-HTe" secondAttribute="centerX" type="default" id="O3C-Wo-11R"/>
                             <constraint firstItem="ecY-Xe-i3F" firstAttribute="top" secondItem="3" secondAttribute="top" constant="71" id="OlU-lm-VQC"/>
                             <constraint firstItem="AWq-21-qmj" firstAttribute="leading" secondItem="5Y8-UU-x1X" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="SKe-zQ-3of"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="trailing" secondItem="Pln-V1-MED" secondAttribute="trailing" type="default" id="VjR-sC-NWe"/>
                             <constraint firstAttribute="trailing" secondItem="hGb-vf-4o5" secondAttribute="trailing" constant="55" id="Y2R-BT-fqT"/>
-                            <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="2yx-ce-HTe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="a5Z-hi-ot3"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="trailing" secondItem="iJD-ab-dPv" secondAttribute="trailing" type="default" id="aQv-ih-XXG"/>
                             <constraint firstItem="Vmi-va-CS0" firstAttribute="leading" secondItem="ecY-Xe-i3F" secondAttribute="leading" type="default" id="bFs-j8-KTF"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="baseline" secondItem="Eus-c7-Mgh" secondAttribute="baseline" type="default" id="bpG-gw-MUH"/>
@@ -273,13 +290,17 @@
                             <constraint firstAttribute="trailing" secondItem="6gV-TK-fO8" secondAttribute="trailing" constant="37" id="j0C-NK-ZEo"/>
                             <constraint firstItem="5Y8-UU-x1X" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="jN1-tf-lRl"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="leading" secondItem="iJD-ab-dPv" secondAttribute="leading" type="default" id="kbn-Ja-Noo"/>
+                            <constraint firstItem="nME-Xx-H5I" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="kt0-IZ-Mhu"/>
                             <constraint firstItem="2RE-DQ-uvk" firstAttribute="baseline" secondItem="Hh1-iV-SLO" secondAttribute="baseline" type="default" id="law-aV-Rg1"/>
+                            <constraint firstItem="nME-Xx-H5I" firstAttribute="top" secondItem="Vmi-va-CS0" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="mm0-zD-2xn"/>
                             <constraint firstItem="K6Z-V9-Vea" firstAttribute="baseline" secondItem="Vmi-va-CS0" secondAttribute="baseline" type="default" id="nkF-na-RV2"/>
                             <constraint firstAttribute="bottom" secondItem="6gV-TK-fO8" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oMa-oh-99a"/>
                             <constraint firstItem="K6Z-V9-Vea" firstAttribute="leading" secondItem="Vmi-va-CS0" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pOG-aO-eSH"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="top" secondItem="3" secondAttribute="top" constant="205" id="pt9-Lm-nXw"/>
+                            <constraint firstItem="oMW-8d-U9e" firstAttribute="top" secondItem="Hh1-iV-SLO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qYe-Ko-8zS"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="baseline" secondItem="hGb-vf-4o5" secondAttribute="baseline" type="default" id="qZn-Zh-xfQ"/>
                             <constraint firstItem="jtj-eQ-s1d" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qeX-Rf-V4T"/>
+                            <constraint firstItem="oMW-8d-U9e" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qj4-A0-wTG"/>
                             <constraint firstItem="irU-rr-Lg4" firstAttribute="leading" secondItem="AWq-21-qmj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rGo-tF-7hw"/>
                             <constraint firstItem="Nlo-RS-TD7" firstAttribute="leading" secondItem="2RH-3U-ZpX" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rVp-NS-BcC"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="baseline" secondItem="Ywx-iy-FsH" secondAttribute="baseline" type="default" id="utk-3K-VKP"/>
@@ -304,8 +325,10 @@
                         <outlet property="PitchedBallLabel" destination="Pln-V1-MED" id="OK6-Ty-4oU"/>
                         <outlet property="PitchedStrikeLabel" destination="UrD-BO-0Ri" id="cFP-Dw-PR2"/>
                         <outlet property="RecordedOutLabel" destination="K6Z-V9-Vea" id="JNb-Oj-Xnv"/>
+                        <outlet property="RunnerAdvancingLabel" destination="nME-Xx-H5I" id="5fN-5I-wpw"/>
                         <outlet property="RunnerOutLabel" destination="2RE-DQ-uvk" id="VfH-CS-tIg"/>
                         <outlet property="RunnerScoresLabel" destination="IMy-L6-Ykg" id="xxU-dD-v8G"/>
+                        <outlet property="RunnerStaysOnBaseLabel" destination="oMW-8d-U9e" id="Ibg-sH-LTj"/>
                         <outlet property="RunnerToSecondLabel" destination="1PN-vx-JCv" id="xwT-Qi-SlJ"/>
                         <outlet property="RunnerToThirdLabel" destination="Hh1-iV-SLO" id="4R0-Ep-XvK"/>
                         <outlet property="SideInningLabel" destination="5Y8-UU-x1X" id="heJ-ax-jyI"/>

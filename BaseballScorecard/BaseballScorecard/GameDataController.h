@@ -31,6 +31,7 @@
 @property (nonatomic) Player *tempSecond;
 @property (nonatomic) Player *tempThird;
 @property (nonatomic) Player *tempBase;
+@property (nonatomic) int TypeofHit; // 0=empty 1=single 2=double 3=triple
 
 + (id)sharedInstance;
 
@@ -44,7 +45,15 @@
 -(void)HitOut;
 -(void)ThirdOut;
 
+-(void)RunnerScores;
+-(void)RunnerToThird;
+-(void)RunnerToSecond;
+-(void)RunnerOut;
+-(void)RunnerStaysOnBase;
+
 -(void)HomePlayerLineup;
 -(void)AwayPlayerLineup;
+
+-(void)BatterHit;
 
 @end
