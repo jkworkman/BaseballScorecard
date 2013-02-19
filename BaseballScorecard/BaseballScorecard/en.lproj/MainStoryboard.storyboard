@@ -8,7 +8,7 @@
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="BaseballViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3">
+                    <view key="view" contentMode="scaleToFill" id="3" customClass="Quartz2D">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -227,6 +227,19 @@
                                     <action selector="RunnerStaysOnBase:" destination="2" eventType="touchUpInside" id="SVG-0C-g3b"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWx-qY-154">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="ShowActionSheet">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShowActionSheet:" destination="2" eventType="touchUpInside" id="Kmd-DB-zMI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
@@ -243,8 +256,10 @@
                             <constraint firstItem="Pln-V1-MED" firstAttribute="top" secondItem="jtj-eQ-s1d" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="CYN-wL-yry"/>
                             <constraint firstItem="jtj-eQ-s1d" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="DHN-Am-Tm0"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="trailing" secondItem="hGb-vf-4o5" secondAttribute="trailing" type="default" id="DLu-yT-Wtp"/>
+                            <constraint firstItem="hWx-qY-154" firstAttribute="centerX" secondItem="Hh1-iV-SLO" secondAttribute="centerX" type="default" id="EMf-k1-rwi"/>
                             <constraint firstItem="xxR-PD-7It" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="46" id="Eqh-2Q-q41"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="FyR-Rq-Noq"/>
+                            <constraint firstItem="hWx-qY-154" firstAttribute="top" secondItem="Pln-V1-MED" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GJQ-7a-nRw"/>
                             <constraint firstItem="AWq-21-qmj" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="KU3-ij-9ZT"/>
                             <constraint firstItem="nME-Xx-H5I" firstAttribute="centerX" secondItem="2yx-ce-HTe" secondAttribute="centerX" type="default" id="O3C-Wo-11R"/>
                             <constraint firstItem="Nlo-RS-TD7" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Oeq-JQ-pwT"/>
@@ -312,7 +327,6 @@
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="x4j-uT-xx1"/>
                         <segue destination="xfc-1x-IHv" kind="relationship" relationship="viewControllers" id="ZUG-CL-l3F"/>
                         <segue destination="Dxg-Dw-Sx6" kind="relationship" relationship="viewControllers" id="RL3-1L-Qxh"/>
-                        <segue destination="UIf-Sb-BZp" kind="relationship" relationship="viewControllers" id="0sk-rR-kji"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8b-ke-QKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -657,74 +671,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kl-4n-73n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-297" y="543"/>
-        </scene>
-        <!--View Controller - Item-->
-        <scene sceneID="f7G-Cz-daJ">
-            <objects>
-                <viewController id="UIf-Sb-BZp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JvZ-Yr-JG9" customClass="Quartz2D">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Balls: 0 Strikes: 0 Outs: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-Gl-Bmb">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="LXW-vh-Htm"/>
-                                    <constraint firstAttribute="width" constant="201" id="oqt-fQ-usX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Top 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ku-Fq-BFR">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="71" id="4IW-Er-Zqa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Home: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPz-V8-Meo">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="T85-cy-yFN"/>
-                                    <constraint firstAttribute="height" constant="41" id="dhy-Jm-MOn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Away: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Da-bX-3xq">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="Adn-WZ-S1Z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7Ku-Fq-BFR" firstAttribute="centerX" secondItem="PHV-Gl-Bmb" secondAttribute="centerX" type="default" id="08l-5v-DR6"/>
-                            <constraint firstItem="PHV-Gl-Bmb" firstAttribute="top" secondItem="kPz-V8-Meo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0KB-rr-axc"/>
-                            <constraint firstItem="PHV-Gl-Bmb" firstAttribute="centerX" secondItem="JvZ-Yr-JG9" secondAttribute="centerX" type="default" id="CCX-pB-8hI"/>
-                            <constraint firstItem="kPz-V8-Meo" firstAttribute="top" secondItem="JvZ-Yr-JG9" secondAttribute="top" type="default" id="E6q-rU-hLC"/>
-                            <constraint firstItem="PHV-Gl-Bmb" firstAttribute="top" secondItem="7Ku-Fq-BFR" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NAx-7x-jUk"/>
-                            <constraint firstItem="PHV-Gl-Bmb" firstAttribute="top" secondItem="5Da-bX-3xq" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="aKN-9H-Vwo"/>
-                            <constraint firstItem="7Ku-Fq-BFR" firstAttribute="top" secondItem="JvZ-Yr-JG9" secondAttribute="top" type="default" id="evr-BK-6yn"/>
-                            <constraint firstItem="5Da-bX-3xq" firstAttribute="trailing" secondItem="JvZ-Yr-JG9" secondAttribute="trailing" type="default" id="jYl-WC-4Ti"/>
-                            <constraint firstItem="5Da-bX-3xq" firstAttribute="top" secondItem="JvZ-Yr-JG9" secondAttribute="top" type="default" id="oKV-hc-9dm"/>
-                            <constraint firstItem="kPz-V8-Meo" firstAttribute="leading" secondItem="JvZ-Yr-JG9" secondAttribute="leading" type="default" id="ydL-dq-1fr"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="63a-C0-L0S"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RsC-I5-9S0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-837" y="-214"/>
         </scene>
         <!--Home Lineup View Controller - Home Lineup-->
         <scene sceneID="axr-xY-par">
@@ -1072,122 +1018,6 @@
             <point key="canvasLocation" x="-297" y="1248"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AwayLineupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AwayLineupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="AwaySubmit:"/>
-                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="BaseballViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseballViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="HitBall:"/>
-                <relationship kind="action" name="HitDouble:"/>
-                <relationship kind="action" name="HitHomeRun:"/>
-                <relationship kind="action" name="HitOut:"/>
-                <relationship kind="action" name="HitSingle:"/>
-                <relationship kind="action" name="HitTriple:"/>
-                <relationship kind="action" name="PitchedBall:"/>
-                <relationship kind="action" name="PitchedStrike:"/>
-                <relationship kind="action" name="RunnerOut:"/>
-                <relationship kind="action" name="RunnerScores:"/>
-                <relationship kind="action" name="RunnerStaysOnBase:"/>
-                <relationship kind="action" name="RunnerToSecond:"/>
-                <relationship kind="action" name="RunnerToThird:"/>
-                <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="BallButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitDoubleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitHomeRunOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitOutOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitSingleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitTripleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NumInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedBallLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedStrikeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RecordedOutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RunnerAdvancingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RunnerOutLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerScoresLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerStaysOnBaseLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerToSecondLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerToThirdLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="SideInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="StrikeButtonOutlet" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="GameTabViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameTabViewController.h"/>
-        </class>
-        <class className="HomeLineupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeLineupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="SubmitButton:"/>
-                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="Quartz2D" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Quartz2D.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
