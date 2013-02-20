@@ -12,7 +12,7 @@
 
 @class GameDataController;
 
-@interface BaseballViewController : UIViewController <UIActionSheetDelegate>
+@interface BaseballViewController : UIViewController
 - (IBAction)PitchedBall:(id)sender;
 - (IBAction)PitchedStrike:(id)sender;
 - (IBAction)HitBall:(id)sender;
@@ -26,8 +26,6 @@
 - (IBAction)RunnerScores:(id)sender;
 - (IBAction)RunnerOut:(id)sender;
 - (IBAction)RunnerStaysOnBase:(id)sender;
-- (IBAction)ShowActionSheet:(id)sender;
-@property (weak, nonatomic) UIActionSheet *actionSheet;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;

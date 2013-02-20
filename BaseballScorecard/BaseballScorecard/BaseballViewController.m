@@ -9,10 +9,11 @@
 #import "BaseballViewController.h"
 #import "GameDataController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FPPopoverController.h"
+#import "FPPopoverView.h"
+#import "FPTouchView.h"
 
 @implementation BaseballViewController
-
-@synthesize actionSheet = _actionSheet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,21 +127,6 @@
 }
 
 - (IBAction)RunnerStaysOnBase:(id)sender {
-}
-
-- (IBAction)ShowActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"PitchCount" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Ball", @"Strike", @"Hit", nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:self.view];
-}
-
--(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if(buttonIndex == 0) {
-        //An Action
-    } else if(buttonIndex == 1) {
-        //Another Action
-    }
 }
 
 -(void)RunnerAdvancing {

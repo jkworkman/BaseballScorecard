@@ -31,7 +31,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     int x = 160;
-    int y = 400;
+    int y = 375;
     [self DrawField:context :x :y];
 
 }
@@ -44,8 +44,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     CGContextMoveToPoint(context, x,y);
     CGContextAddLineToPoint(context, x-145,y-150);
-    CGContextAddLineToPoint(context, x-145,y-345);
-    CGContextAddLineToPoint(context, x+145,y-345);
+    CGContextAddLineToPoint(context, x-145,y-300);
+    CGContextAddLineToPoint(context, x+145,y-300);
     CGContextAddLineToPoint(context, x+145,y-150);
     CGContextClosePath(context);
     CGContextSetRGBFillColor (context, 0, .5, 0, 1);
