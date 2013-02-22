@@ -9,9 +9,6 @@
 #import "BaseballViewController.h"
 #import "GameDataController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FPPopoverController.h"
-#import "FPPopoverView.h"
-#import "FPTouchView.h"
 
 @implementation BaseballViewController
 
@@ -31,6 +28,7 @@
 
     [self SetLabels];
     [self ShowMainMenu];
+    [self CallLog];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +71,7 @@
     [s HitDouble];
     [self HideAllMenu];
     [self Refresh];
-    [self CallLog];
+    //[self CallLog];
     [self RunnerAdvancing];
 }
 
@@ -82,7 +80,7 @@
     [s HitTriple];
     [self HideAllMenu];
     [self Refresh];
-    [self CallLog];
+    //[self CallLog];
     [self RunnerAdvancing];
 }
 
@@ -181,8 +179,9 @@
         {
             s.ThirdBase = s.tempBase;
         }
-        s.tempBase = s.tempFirst = s.tempSecond = s.tempThird = 0;
+        s.tempFirst = s.tempSecond = s.tempThird = 0;
         s.TypeofHit = 0;
+        [s BatterHit];
         [self ShowMainMenu];
     }
     
@@ -276,9 +275,12 @@
 }
 
 -(void) CallLog {
-    GameDataController* sharedSingleton = [GameDataController sharedInstance];
+    GameDataController* s = [GameDataController sharedInstance];
     
-    NSLog(@"Strikes: %d, Balls: %d, Outs: %d, FirstBase: %@, SecondBase: %@, ThirdBase: %@", sharedSingleton.strikes, sharedSingleton.balls, sharedSingleton.outs, sharedSingleton.FirstBase.LastName, sharedSingleton.SecondBase.LastName, sharedSingleton.ThirdBase.LastName);
+    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %.3f", s.balls, s.strikes, s.outs, s.tempBase.FirstName, s.tempBase.LastName, s.tempBase.Position, s.tempBase.Hits, s.tempBase.PlateAppearances, s.tempBase.RunsScored, s.tempBase.RBI, s.tempBase.BattingAverage);
+    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.FirstBase.FirstName, s.FirstBase.LastName, s.FirstBase.Position, s.FirstBase.Hits, s.FirstBase.PlateAppearances, s.FirstBase.RunsScored, s.FirstBase.RBI, s.FirstBase.BattingAverage);
+    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.SecondBase.FirstName, s.SecondBase.LastName, s.SecondBase.Position, s.SecondBase.Hits, s.SecondBase.PlateAppearances, s.SecondBase.RunsScored, s.SecondBase.RBI, s.SecondBase.BattingAverage);
+    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.ThirdBase.FirstName, s.ThirdBase.LastName, s.ThirdBase.Position, s.ThirdBase.Hits, s.ThirdBase.PlateAppearances, s.ThirdBase.RunsScored, s.ThirdBase.RBI, s.ThirdBase.BattingAverage);
 }
 
 NSString *IntToString(int p)

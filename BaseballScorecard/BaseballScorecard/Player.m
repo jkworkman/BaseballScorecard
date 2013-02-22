@@ -17,6 +17,11 @@
         _FirstName = fname;
         _LastName = lname;
         _Position = position;
+        _PlateAppearances = 0;
+        _Hits = 0;
+        _RunsScored = 0;
+        _RBI = 0;
+        _BattingAverage = 0.0;
         return self;
     }
     return nil;

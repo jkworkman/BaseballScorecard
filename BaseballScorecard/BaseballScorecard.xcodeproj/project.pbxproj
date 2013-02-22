@@ -22,9 +22,6 @@
 		1CAAFE8716C6D87F00F0C44C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */; };
 		1CAAFE8A16C6D87F00F0C44C /* BaseballViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */; };
 		1CAAFE9D16C6DBC000F0C44C /* GameDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */; };
-		1CB8675516D53A970012E585 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB8675016D53A970012E585 /* FPPopoverController.m */; };
-		1CB8675616D53A970012E585 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB8675216D53A970012E585 /* FPPopoverView.m */; };
-		1CB8675716D53A970012E585 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB8675416D53A970012E585 /* FPTouchView.m */; };
 		1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */; };
 		1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */; };
 		1CD6B4C316C974AA00584EDE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6B4C216C974AA00584EDE /* Player.m */; };
@@ -54,12 +51,6 @@
 		1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseballViewController.m; sourceTree = "<group>"; };
 		1CAAFE9B16C6DBC000F0C44C /* GameDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataController.h; sourceTree = "<group>"; };
 		1CAAFE9C16C6DBC000F0C44C /* GameDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataController.m; sourceTree = "<group>"; };
-		1CB8674F16D53A970012E585 /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverController.h; path = ../../../FPPopover/FPPopoverController.h; sourceTree = "<group>"; };
-		1CB8675016D53A970012E585 /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverController.m; path = ../../../FPPopover/FPPopoverController.m; sourceTree = "<group>"; };
-		1CB8675116D53A970012E585 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverView.h; path = ../../../FPPopover/FPPopoverView.h; sourceTree = "<group>"; };
-		1CB8675216D53A970012E585 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverView.m; path = ../../../FPPopover/FPPopoverView.m; sourceTree = "<group>"; };
-		1CB8675316D53A970012E585 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPTouchView.h; path = ../../../FPPopover/FPTouchView.h; sourceTree = "<group>"; };
-		1CB8675416D53A970012E585 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPTouchView.m; path = ../../../FPPopover/FPTouchView.m; sourceTree = "<group>"; };
 		1CD32DBA16D2A35600EB0BA2 /* Quartz2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quartz2D.h; sourceTree = "<group>"; };
 		1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quartz2D.m; sourceTree = "<group>"; };
 		1CD5A02D16CDB0D500B5BA81 /* GameTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTabViewController.h; sourceTree = "<group>"; };
@@ -129,12 +120,6 @@
 				1C1BCE2016CC762800E0216B /* AwayLineupViewController.m */,
 				1CAAFE8816C6D87F00F0C44C /* BaseballViewController.h */,
 				1CAAFE8916C6D87F00F0C44C /* BaseballViewController.m */,
-				1CB8674F16D53A970012E585 /* FPPopoverController.h */,
-				1CB8675016D53A970012E585 /* FPPopoverController.m */,
-				1CB8675116D53A970012E585 /* FPPopoverView.h */,
-				1CB8675216D53A970012E585 /* FPPopoverView.m */,
-				1CB8675316D53A970012E585 /* FPTouchView.h */,
-				1CB8675416D53A970012E585 /* FPTouchView.m */,
 				1CD5A02D16CDB0D500B5BA81 /* GameTabViewController.h */,
 				1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */,
 				1CAAFE7416C6D87F00F0C44C /* Supporting Files */,
@@ -232,9 +217,6 @@
 				1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */,
 				1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */,
 				1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */,
-				1CB8675516D53A970012E585 /* FPPopoverController.m in Sources */,
-				1CB8675616D53A970012E585 /* FPPopoverView.m in Sources */,
-				1CB8675716D53A970012E585 /* FPTouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

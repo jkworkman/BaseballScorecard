@@ -43,13 +43,11 @@
 -(void)HitTriple;
 -(void)HitHomeRun;
 -(void)HitOut;
--(void)ThirdOut;
 
 -(void)RunnerScores;
 -(void)RunnerToThird;
 -(void)RunnerToSecond;
 -(void)RunnerOut;
--(void)RunnerStaysOnBase;
 
 -(void)HomePlayerLineup;
 -(void)AwayPlayerLineup;

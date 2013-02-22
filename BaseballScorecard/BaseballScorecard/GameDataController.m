@@ -34,17 +34,23 @@ static GameDataController *sharedInstance = nil;
     self = [super init];
     if (self) {
         
-        _balls = _strikes = _outs = 0;
+        _balls = 0;
+        _strikes = 0;
+        _outs = 0;
         _numInning = 1;
         _isBottomInning = false;
         _sideInning = @"Top";
-        _HomeTeam = _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        _HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        
         _HomeTeamLineupIndex = _AwayTeamLineupIndex = _TypeofHit = 0;
         _FirstBase = _SecondBase = _ThirdBase = _tempBase = _tempFirst = _tempSecond = _tempThird = 0;
         
         [self AwayPlayerLineup];
         [self HomePlayerLineup];
-         
+        
+        _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+        
     }
     return self;
 }
@@ -55,7 +61,6 @@ static GameDataController *sharedInstance = nil;
     {
         _balls = 0;
         _strikes = 0;
-        
         if(!_isBottomInning)
         {
             if(_ThirdBase != 0)
@@ -67,6 +72,8 @@ static GameDataController *sharedInstance = nil;
             _AwayTeamLineupIndex += 1;
             if(_AwayTeamLineupIndex == 9)
                 _AwayTeamLineupIndex = 0;
+            _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+             
         }
         else
         {
@@ -74,11 +81,13 @@ static GameDataController *sharedInstance = nil;
                 _HomeScore += 1;
             _ThirdBase = _SecondBase;
             _SecondBase = _FirstBase;
-            _FirstBase = [_HomeTeam objectAtIndex:_AwayTeamLineupIndex];
+            _FirstBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
             
             _HomeTeamLineupIndex += 1;
             if(_HomeTeamLineupIndex == 9)
                 _HomeTeamLineupIndex = 0;
+            _tempBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+             
         }
     }
 }
@@ -90,64 +99,76 @@ static GameDataController *sharedInstance = nil;
         _outs += 1;
         _strikes = 0;
         _balls = 0;
+        _tempBase.PlateAppearances += 1;
+        [self BatterHit];
+        /*
         if(!_isBottomInning)
         {
             _AwayTeamLineupIndex += 1;
             if(_AwayTeamLineupIndex == 9)
                 _AwayTeamLineupIndex = 0;
+            _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
         }
         else
         {
             _HomeTeamLineupIndex += 1;
             if(_HomeTeamLineupIndex == 9)
                 _HomeTeamLineupIndex = 0;
+            _tempBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
         }
+         */
     }
     if(_outs == 3)
     {
-        [self ThirdOut];
-        /*
         _outs = 0;
         if(_isBottomInning)
         {
             _sideInning = @"Top";
             _numInning += 1;
-            _isBottomInning = false;
+            _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
         }
         else
         {
             _sideInning = @"Bottom";
+            _tempBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+        }
+        
+        if(_isBottomInning)
+        {
+            _isBottomInning = false;
+        }
+        else
+        {
             _isBottomInning = true;
         }
-
         _FirstBase = 0;
         _SecondBase = 0;
         _ThirdBase = 0;
-        */
+        
     }
 }
 
 -(void)HitSingle {
+    _tempBase.PlateAppearances += 1;
+    _tempBase.Hits += 1;
     _TypeofHit = 1;
-    [self BatterHit];
 }
 
 -(void)HitDouble {
+    _tempBase.PlateAppearances += 1;
+    _tempBase.Hits += 1;
     _TypeofHit = 2;
-    [self BatterHit];
 }
 -(void)HitTriple {
+    _tempBase.PlateAppearances += 1;
+    _tempBase.Hits += 1;
     _TypeofHit = 3;
-    [self BatterHit];
 }
-
 -(void)HitHomeRun {
+    _tempBase.PlateAppearances += 1;
+    _tempBase.Hits += 1;
     if(!_isBottomInning)
     {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
-        
         _AwayScore += 1;
         if(_ThirdBase != 0)
             _AwayScore += 1;
@@ -158,10 +179,6 @@ static GameDataController *sharedInstance = nil;
     }
     else
     {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        
         _HomeScore += 1;
         if(_ThirdBase != 0)
             _HomeScore += 1;
@@ -174,6 +191,8 @@ static GameDataController *sharedInstance = nil;
     _SecondBase = 0;
     _ThirdBase = 0;
     
+    [self BatterHit];
+    
 }
 
 -(void)HitOut {
@@ -182,74 +201,47 @@ static GameDataController *sharedInstance = nil;
     _outs += 1;
     if(_outs == 3)
     {
-        [self ThirdOut];
-        /*
         _outs = 0;
         if(_isBottomInning)
         {
-            _AwayTeamLineupIndex += 1;
-            if(_AwayTeamLineupIndex == 9)
-                _AwayTeamLineupIndex = 0;
             _sideInning = @"Top";
             _numInning += 1;
             _isBottomInning = false;
         }
         else
         {
-            _HomeTeamLineupIndex += 1;
-            if(_HomeTeamLineupIndex == 9)
-                _HomeTeamLineupIndex = 0;
             _sideInning = @"Bottom";
             _isBottomInning = true;
         }
-        
         _FirstBase = 0;
         _SecondBase = 0;
         _ThirdBase = 0;
-         */
     }
+    [self BatterHit];
 }
 
--(void)ThirdOut {
-    _outs = 0;
-    if(_isBottomInning)
-    {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
-        _sideInning = @"Top";
-        _numInning += 1;
-        _isBottomInning = false;
-    }
-    else
-    {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
-        _sideInning = @"Bottom";
-        _isBottomInning = true;
-    }
-        
-    _FirstBase = 0;
-    _SecondBase = 0;
-    _ThirdBase = 0;
-}
 -(void)RunnerScores {
     if(!_isBottomInning)
     {
         _AwayScore += 1;
         if(_tempThird != 0)
         {
+            _ThirdBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _ThirdBase = 0;
             _tempThird = 0;
         }
         else if(_tempSecond != 0)
         {
+            _SecondBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _SecondBase = 0;
             _tempSecond = 0;
         }
         else if(_tempFirst != 0)
         {
+            _FirstBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _FirstBase = 0;
             _tempFirst = 0;
         }
@@ -258,16 +250,22 @@ static GameDataController *sharedInstance = nil;
         _HomeScore += 1;
         if(_tempThird != 0)
         {
+            _ThirdBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _ThirdBase = 0;
             _tempThird = 0;
         }
         else if(_tempSecond != 0)
         {
+            _SecondBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _SecondBase = 0;
             _tempSecond = 0;
         }
         else if(_tempFirst != 0)
         {
+            _FirstBase.RunsScored += 1;
+            _tempBase.RBI += 1;
             _FirstBase = 0;
             _tempFirst = 0;
         }
@@ -311,7 +309,7 @@ static GameDataController *sharedInstance = nil;
             _sideInning = @"Bottom";
             _isBottomInning = true;
         }
-    
+        
         _FirstBase = _SecondBase = _ThirdBase = _tempThird = _tempSecond = _tempFirst = _tempBase = 0;
     }
     else
@@ -334,27 +332,25 @@ static GameDataController *sharedInstance = nil;
     }
 }
 
+
+
 -(void)BatterHit {
     if(!_isBottomInning)
     {
-        _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
-        
         _AwayTeamLineupIndex += 1;
         if(_AwayTeamLineupIndex == 9)
             _AwayTeamLineupIndex = 0;
+        
+        _tempBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
     }
     else
     {
-        _tempBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
-        
         _HomeTeamLineupIndex += 1;
         if(_HomeTeamLineupIndex == 9)
             _HomeTeamLineupIndex = 0;
+        
+        _tempBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
     }
-}
-
--(void)RunnerStaysOnBase {
-    
 }
 
 -(void)HomePlayerLineup {
