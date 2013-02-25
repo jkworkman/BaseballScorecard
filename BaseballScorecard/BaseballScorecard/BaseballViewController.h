@@ -12,7 +12,8 @@
 
 @class GameDataController;
 
-@interface BaseballViewController : UIViewController
+@interface BaseballViewController : UIViewController <UIActionSheetDelegate>
+
 - (IBAction)PitchedBall:(id)sender;
 - (IBAction)PitchedStrike:(id)sender;
 - (IBAction)HitBall:(id)sender;
@@ -26,6 +27,7 @@
 - (IBAction)RunnerScores:(id)sender;
 - (IBAction)RunnerOut:(id)sender;
 - (IBAction)RunnerStaysOnBase:(id)sender;
+- (IBAction)ThrowPitch:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
@@ -50,6 +52,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *RunnerStaysOnBaseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RunnerAdvancingLabel;
 
+
+
 -(void)RunnerAdvancing;
 
 -(void)ShowMainMenu;
@@ -58,6 +62,10 @@
 -(void)HideAllMenu;
 -(void)Refresh;
 -(void)SetLabels;
+
+-(void)RunnerFirst;
+-(void)RunnerSecond;
+-(void)RunnerThird;
 
 -(void) CallLog;
 

@@ -29,6 +29,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJD-ab-dPv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="AZi-kW-eiN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Strike">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -254,19 +257,35 @@
                                     <action selector="RunnerStaysOnBase:" destination="2" eventType="touchUpInside" id="SVG-0C-g3b"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWm-gN-y3c">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Pitch">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ThrowPitch:" destination="2" eventType="touchUpInside" id="pRs-vi-AcS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IMy-L6-Ykg" firstAttribute="baseline" secondItem="Eus-c7-Mgh" secondAttribute="baseline" type="default" id="05s-fm-Wes"/>
                             <constraint firstItem="Eus-c7-Mgh" firstAttribute="baseline" secondItem="iJD-ab-dPv" secondAttribute="baseline" type="default" id="0cc-MG-aUK"/>
-                            <constraint firstItem="AWq-21-qmj" firstAttribute="leading" secondItem="Eus-c7-Mgh" secondAttribute="leading" type="default" id="0sA-G4-YYX"/>
+                            <constraint firstItem="oMW-8d-U9e" firstAttribute="top" secondItem="3" secondAttribute="top" constant="197" id="3ER-zK-cfR"/>
+                            <constraint firstItem="1PN-vx-JCv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="8" id="3nA-F4-apA"/>
                             <constraint firstItem="Nlo-RS-TD7" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="7dr-wp-WD1"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="baseline" secondItem="Ywx-iy-FsH" secondAttribute="baseline" type="default" id="7rf-yZ-w32"/>
                             <constraint firstItem="2RE-DQ-uvk" firstAttribute="top" secondItem="6gV-TK-fO8" secondAttribute="top" type="default" id="86G-9j-ECd"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="top" secondItem="hGb-vf-4o5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9FA-pn-3zf"/>
                             <constraint firstItem="nME-Xx-H5I" firstAttribute="top" secondItem="e6H-Br-r7q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9Z0-YK-gW3"/>
-                            <constraint firstAttribute="bottom" secondItem="oMW-8d-U9e" secondAttribute="bottom" constant="62" id="AgD-k5-g4E"/>
+                            <constraint firstItem="iJD-ab-dPv" firstAttribute="leading" secondItem="AWq-21-qmj" secondAttribute="leading" type="default" id="Bnf-Xe-Q8r"/>
                             <constraint firstItem="AWq-21-qmj" firstAttribute="trailing" secondItem="Eus-c7-Mgh" secondAttribute="trailing" type="default" id="D2r-19-y17"/>
                             <constraint firstItem="Eus-c7-Mgh" firstAttribute="baseline" secondItem="e6H-Br-r7q" secondAttribute="baseline" type="default" id="EAP-BD-wap"/>
+                            <constraint firstItem="wWm-gN-y3c" firstAttribute="centerX" secondItem="jtj-eQ-s1d" secondAttribute="centerX" type="default" id="F7o-9I-MvR"/>
                             <constraint firstItem="AWq-21-qmj" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="FHG-4R-WgZ"/>
                             <constraint firstItem="2RE-DQ-uvk" firstAttribute="baseline" secondItem="6gV-TK-fO8" secondAttribute="baseline" type="default" id="FgP-Ss-kB4"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="1PN-vx-JCv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GIP-XP-tRN"/>
@@ -277,17 +296,17 @@
                             <constraint firstItem="iJD-ab-dPv" firstAttribute="leading" secondItem="Ywx-iy-FsH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Kpg-Af-4t9"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="Eus-c7-Mgh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="LT5-hg-y1d"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="xxR-PD-7It" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Lb7-2e-Frf"/>
+                            <constraint firstAttribute="bottom" secondItem="wWm-gN-y3c" secondAttribute="bottom" constant="59" id="Mfi-Kd-vBx"/>
                             <constraint firstItem="Nlo-RS-TD7" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="O2J-Lf-X3B"/>
                             <constraint firstItem="Ywx-iy-FsH" firstAttribute="baseline" secondItem="xxR-PD-7It" secondAttribute="baseline" type="default" id="O2u-7d-Waz"/>
                             <constraint firstAttribute="trailing" secondItem="6gV-TK-fO8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Q4g-6M-puC"/>
                             <constraint firstItem="2RE-DQ-uvk" firstAttribute="bottom" secondItem="6gV-TK-fO8" secondAttribute="bottom" type="default" id="QwS-41-07z"/>
-                            <constraint firstItem="e6H-Br-r7q" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="70" id="SHP-Uh-hTA"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="top" secondItem="6gV-TK-fO8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Sq0-TH-g3P"/>
                             <constraint firstItem="IMy-L6-Ykg" firstAttribute="leading" secondItem="Hh1-iV-SLO" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Sst-qO-Dv4"/>
                             <constraint firstItem="jtj-eQ-s1d" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="TlM-UL-29Q"/>
-                            <constraint firstItem="Ywx-iy-FsH" firstAttribute="centerX" secondItem="oMW-8d-U9e" secondAttribute="centerX" type="default" id="Ubo-qK-1Sb"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="top" secondItem="Ywx-iy-FsH" secondAttribute="top" type="default" id="Udd-zQ-4yh"/>
                             <constraint firstItem="jtj-eQ-s1d" firstAttribute="top" secondItem="Nlo-RS-TD7" secondAttribute="top" type="default" id="V3w-7i-gdr"/>
+                            <constraint firstItem="Eus-c7-Mgh" firstAttribute="centerX" secondItem="Pln-V1-MED" secondAttribute="centerX" type="default" id="VmW-mi-A19"/>
                             <constraint firstItem="1PN-vx-JCv" firstAttribute="top" secondItem="xxR-PD-7It" secondAttribute="top" type="default" id="Vqu-zu-rP3"/>
                             <constraint firstItem="hGb-vf-4o5" firstAttribute="top" secondItem="6gV-TK-fO8" secondAttribute="top" type="default" id="ZVl-nx-xkM"/>
                             <constraint firstItem="jtj-eQ-s1d" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="ZXw-zR-qPu"/>
@@ -298,24 +317,22 @@
                             <constraint firstItem="Ywx-iy-FsH" firstAttribute="top" secondItem="xxR-PD-7It" secondAttribute="top" type="default" id="dmY-8b-Y1P"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="Hh1-iV-SLO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eYq-SB-Iup"/>
                             <constraint firstItem="e6H-Br-r7q" firstAttribute="top" secondItem="Ywx-iy-FsH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eko-0r-rPX"/>
-                            <constraint firstItem="Hh1-iV-SLO" firstAttribute="top" secondItem="iJD-ab-dPv" secondAttribute="top" type="default" id="gC0-gb-Y0D"/>
+                            <constraint firstItem="Hh1-iV-SLO" firstAttribute="top" secondItem="Eus-c7-Mgh" secondAttribute="top" type="default" id="g3G-q5-z0z"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="top" secondItem="IMy-L6-Ykg" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gxs-Zs-8L7"/>
-                            <constraint firstItem="1PN-vx-JCv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="8" id="hkT-5G-Kmp"/>
+                            <constraint firstItem="oMW-8d-U9e" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="hT8-rv-xb7"/>
                             <constraint firstItem="AWq-21-qmj" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="ijm-Gr-1FB"/>
                             <constraint firstItem="IMy-L6-Ykg" firstAttribute="top" secondItem="Eus-c7-Mgh" secondAttribute="top" type="default" id="k8j-fT-KaZ"/>
                             <constraint firstItem="nME-Xx-H5I" firstAttribute="centerX" secondItem="iJD-ab-dPv" secondAttribute="centerX" type="default" id="mP9-44-916"/>
+                            <constraint firstItem="oMW-8d-U9e" firstAttribute="trailing" secondItem="e6H-Br-r7q" secondAttribute="trailing" type="default" id="mam-fg-oEP"/>
                             <constraint firstItem="1PN-vx-JCv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="28" id="ozl-Ba-kFD"/>
                             <constraint firstItem="IMy-L6-Ykg" firstAttribute="top" secondItem="hGb-vf-4o5" secondAttribute="top" type="default" id="paQ-Im-nk7"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="baseline" secondItem="hGb-vf-4o5" secondAttribute="baseline" type="default" id="qZn-Zh-xfQ"/>
-                            <constraint firstItem="oMW-8d-U9e" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qj4-A0-wTG"/>
-                            <constraint firstItem="IMy-L6-Ykg" firstAttribute="baseline" secondItem="iJD-ab-dPv" secondAttribute="baseline" type="default" id="t5h-9Q-5En"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="top" secondItem="iJD-ab-dPv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tGX-gb-74t"/>
                             <constraint firstItem="Hh1-iV-SLO" firstAttribute="leading" secondItem="1PN-vx-JCv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="uYA-zT-CF2"/>
                             <constraint firstItem="2yx-ce-HTe" firstAttribute="baseline" secondItem="Ywx-iy-FsH" secondAttribute="baseline" type="default" id="utk-3K-VKP"/>
                             <constraint firstItem="Eus-c7-Mgh" firstAttribute="leading" secondItem="Ywx-iy-FsH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="v6N-ju-NoI"/>
                             <constraint firstItem="Eus-c7-Mgh" firstAttribute="top" secondItem="iJD-ab-dPv" secondAttribute="top" type="default" id="vUZ-uT-f9d"/>
                             <constraint firstItem="hGb-vf-4o5" firstAttribute="leading" secondItem="Eus-c7-Mgh" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="vVe-sE-PaV"/>
-                            <constraint firstItem="Pln-V1-MED" firstAttribute="centerX" secondItem="iJD-ab-dPv" secondAttribute="centerX" type="default" id="vbl-wc-USv"/>
                             <constraint firstItem="hGb-vf-4o5" firstAttribute="baseline" secondItem="6gV-TK-fO8" secondAttribute="baseline" type="default" id="x6g-FM-2hX"/>
                         </constraints>
                     </view>
@@ -1050,122 +1067,6 @@
             <point key="canvasLocation" x="-297" y="1248"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AwayLineupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AwayLineupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="AwaySubmit:"/>
-                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="BaseballViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseballViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="HitBall:"/>
-                <relationship kind="action" name="HitDouble:"/>
-                <relationship kind="action" name="HitHomeRun:"/>
-                <relationship kind="action" name="HitOut:"/>
-                <relationship kind="action" name="HitSingle:"/>
-                <relationship kind="action" name="HitTriple:"/>
-                <relationship kind="action" name="PitchedBall:"/>
-                <relationship kind="action" name="PitchedStrike:"/>
-                <relationship kind="action" name="RunnerOut:"/>
-                <relationship kind="action" name="RunnerScores:"/>
-                <relationship kind="action" name="RunnerStaysOnBase:"/>
-                <relationship kind="action" name="RunnerToSecond:"/>
-                <relationship kind="action" name="RunnerToThird:"/>
-                <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="BallButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitButtonOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitDoubleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitHomeRunOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitOutOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitSingleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HitTripleOutlet" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="NumInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedBallLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="PitchedStrikeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RecordedOutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RunnerAdvancingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="RunnerOutLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerScoresLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerStaysOnBaseLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerToSecondLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="RunnerToThirdLabel" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="SideInningLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="StrikeButtonOutlet" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="GameTabViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameTabViewController.h"/>
-        </class>
-        <class className="HomeLineupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeLineupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="SubmitButton:"/>
-                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="Quartz2D" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Quartz2D.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
