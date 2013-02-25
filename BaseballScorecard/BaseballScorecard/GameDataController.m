@@ -222,53 +222,31 @@ static GameDataController *sharedInstance = nil;
 
 -(void)RunnerScores {
     if(!_isBottomInning)
-    {
         _AwayScore += 1;
-        if(_tempThird != 0)
-        {
-            _ThirdBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _ThirdBase = 0;
-            _tempThird = 0;
-        }
-        else if(_tempSecond != 0)
-        {
-            _SecondBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _SecondBase = 0;
-            _tempSecond = 0;
-        }
-        else if(_tempFirst != 0)
-        {
-            _FirstBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _FirstBase = 0;
-            _tempFirst = 0;
-        }
-    }
-    else{
+
+    else
         _HomeScore += 1;
-        if(_tempThird != 0)
-        {
-            _ThirdBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _ThirdBase = 0;
-            _tempThird = 0;
-        }
-        else if(_tempSecond != 0)
-        {
-            _SecondBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _SecondBase = 0;
-            _tempSecond = 0;
-        }
-        else if(_tempFirst != 0)
-        {
-            _FirstBase.RunsScored += 1;
-            _tempBase.RBI += 1;
-            _FirstBase = 0;
-            _tempFirst = 0;
-        }
+    
+    if(_tempThird != 0)
+    {
+        _ThirdBase.RunsScored += 1;
+        _tempBase.RBI += 1;
+        _ThirdBase = 0;
+        _tempThird = 0;
+    }
+    else if(_tempSecond != 0)
+    {
+        _SecondBase.RunsScored += 1;
+        _tempBase.RBI += 1;
+        _SecondBase = 0;
+        _tempSecond = 0;
+    }
+    else if(_tempFirst != 0)
+    {
+        _FirstBase.RunsScored += 1;
+        _tempBase.RBI += 1;
+        _FirstBase = 0;
+        _tempFirst = 0;
     }
 }
 
