@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "Bases.h"
 
 @interface GameDataController : NSObject
 
@@ -21,17 +22,24 @@
 @property (nonatomic) NSMutableArray *AwayTeam;
 @property (nonatomic) int HomeTeamLineupIndex;
 @property (nonatomic) int AwayTeamLineupIndex;
-@property (nonatomic) Player *FirstBase;
-@property (nonatomic) Player *SecondBase;
-@property (nonatomic) Player *ThirdBase;
 @property (nonatomic) int HomeScore;
 @property (nonatomic) int AwayScore;
 
 @property (nonatomic) Player *tempFirst;
 @property (nonatomic) Player *tempSecond;
 @property (nonatomic) Player *tempThird;
-@property (nonatomic) Player *tempBase;
+@property (nonatomic) Player *Batter;
+@property (nonatomic) Player *FirstBase;
+@property (nonatomic) Player *SecondBase;
+@property (nonatomic) Player *ThirdBase;
+@property (nonatomic) bool checkedfirst;
+@property (nonatomic) bool checkedsecond;
+@property (nonatomic) bool checkedthird;
+
+
 @property (nonatomic) int TypeofHit; // 0=empty 1=single 2=double 3=triple
+
+
 
 + (id)sharedInstance;
 
@@ -48,6 +56,7 @@
 -(void)RunnerToThird;
 -(void)RunnerToSecond;
 -(void)RunnerOut;
+-(void)RunnerStaysOnBase;
 
 -(void)HomePlayerLineup;
 -(void)AwayPlayerLineup;
