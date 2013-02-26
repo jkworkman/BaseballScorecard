@@ -10,6 +10,7 @@
 
 @interface Quartz2D : UIView
 
--(void)DrawField:(CGContextRef)context :(int)x :(int)y;
+-(void)DrawField:(int)x :(int)y;
+-(void)DrawBaseRunners:(int)x :(int)y;
 
 @end

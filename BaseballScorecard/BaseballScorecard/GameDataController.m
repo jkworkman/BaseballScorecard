@@ -173,6 +173,7 @@ static GameDataController *sharedInstance = nil;
         _HomeScore += x;
     
     _FirstBase = _SecondBase = _ThirdBase = NULL;
+    _balls = _strikes = 0;
     [self BatterHit];
     
 }
