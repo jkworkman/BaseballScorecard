@@ -17,6 +17,7 @@
         _base = NULL;
         _temp = NULL;
         _checked = false;
+        _animateposition = 0;
         return self;
     }
     return nil;

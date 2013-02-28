@@ -11,6 +11,16 @@
 @interface Quartz2D : UIView
 
 -(void)DrawField:(int)x :(int)y;
--(void)DrawBaseRunners:(int)x :(int)y;
+-(void)DrawHomeRun:(int)x :(int)y;
+-(void)DrawSingle:(int)x :(int)y;
+-(void)DrawDouble:(int)x :(int)y;
+-(void)DrawTriple:(int)x :(int)y;
+-(void)DrawFirstToHome:(int)x :(int)y;
+-(void)DrawFirstToThird:(int)x :(int)y;
+-(void)DrawFirstToSecond:(int)x :(int)y;
+-(void)DrawSecondToHome:(int)x :(int)y;
+-(void)DrawSecondToThird:(int)x :(int)y;
+-(void)DrawThirdToHome:(int)x :(int)y;
+
 
 @end

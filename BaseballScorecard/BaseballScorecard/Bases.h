@@ -14,5 +14,6 @@
 @property (nonatomic) Player *base;
 @property (nonatomic) Player *temp;
 @property (nonatomic) bool checked;
+@property (nonatomic) int animateposition;
 
 @end
