@@ -25,7 +25,35 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                              NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"GameDataPlist.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"GameDataPlist" ofType:@"plist"];
+    }
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
+                                          propertyListFromData:plistXML
+                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                          format:&format
+                                          errorDescription:&errorDesc];
+    if (!temp) {
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    }
+    
+    s.outs = [[temp objectForKey:@"Outs"] integerValue];
+    s.strikes = [[temp objectForKey:@"Strikes"] integerValue];
+    s.balls = [[temp objectForKey:@"Balls"] integerValue];
+    s.numInning = [[temp objectForKey:@"NumInning"] integerValue];
+    
+    [self Refresh];
 }
+
 /*--------------------------------------------------------------------------------*/
 - (void)didReceiveMemoryWarning
 {

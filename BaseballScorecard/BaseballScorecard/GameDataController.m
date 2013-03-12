@@ -33,12 +33,9 @@ static GameDataController *sharedInstance = nil;
 -(id)init {
     self = [super init];
     if (self) {
-        
-        _balls = 0;
-        _strikes = 0;
-        _outs = 0;
-        _numInning = 1;
-        _isBottomInning = false;
+
+        //_numInning = 1;
+        //_isBottomInning = false;
         _sideInning = @"Top";
         _HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];

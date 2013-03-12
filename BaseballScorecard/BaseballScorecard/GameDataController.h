@@ -12,18 +12,18 @@
 
 @interface GameDataController : NSObject
 
-@property (nonatomic) int balls;
-@property (nonatomic) int strikes;
-@property (nonatomic) int outs;
+@property (nonatomic) NSInteger balls;
+@property (nonatomic) NSInteger strikes;
+@property (nonatomic) NSInteger outs;
 @property (nonatomic) NSString *sideInning;
-@property (nonatomic) int numInning;
+@property (nonatomic) NSInteger numInning;
 @property (nonatomic) BOOL isBottomInning;
 @property (nonatomic) NSMutableArray *HomeTeam;
 @property (nonatomic) NSMutableArray *AwayTeam;
-@property (nonatomic) int HomeTeamLineupIndex;
-@property (nonatomic) int AwayTeamLineupIndex;
-@property (nonatomic) int HomeScore;
-@property (nonatomic) int AwayScore;
+@property (nonatomic) NSInteger HomeTeamLineupIndex;
+@property (nonatomic) NSInteger AwayTeamLineupIndex;
+@property (nonatomic) NSInteger HomeScore;
+@property (nonatomic) NSInteger AwayScore;
 
 @property (nonatomic) Player *tempFirst;
 @property (nonatomic) Player *tempSecond;
@@ -39,7 +39,6 @@
 @property (nonatomic) int SecondBaseAdvance;
 @property (nonatomic) int ThirdBaseAdvance;
 @property (nonatomic) int BatterAdvance;
-
 
 
 @property (nonatomic) int TypeofHit; // 0=empty 1=single 2=double 3=triple

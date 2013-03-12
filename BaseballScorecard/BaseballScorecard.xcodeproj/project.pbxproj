@@ -26,6 +26,7 @@
 		1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */; };
 		1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */; };
 		1CD6B4C316C974AA00584EDE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6B4C216C974AA00584EDE /* Player.m */; };
+		1CE77A0216EFE04600AE9175 /* GameDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTabViewController.m; sourceTree = "<group>"; };
 		1CD6B4C116C974AA00584EDE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1CD6B4C216C974AA00584EDE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameDataPlist.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				1CAAFE7F16C6D87F00F0C44C /* Default.png */,
 				1CAAFE8116C6D87F00F0C44C /* Default@2x.png */,
 				1CAAFE8316C6D87F00F0C44C /* Default-568h@2x.png */,
+				1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				1CAAFE8216C6D87F00F0C44C /* Default@2x.png in Resources */,
 				1CAAFE8416C6D87F00F0C44C /* Default-568h@2x.png in Resources */,
 				1CAAFE8716C6D87F00F0C44C /* MainStoryboard.storyboard in Resources */,
+				1CE77A0216EFE04600AE9175 /* GameDataPlist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
