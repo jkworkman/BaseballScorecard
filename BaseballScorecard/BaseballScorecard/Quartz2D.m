@@ -7,6 +7,7 @@
 //
 
 #import "Quartz2D.h"
+#import "GameDataController.h"
 #import <QuartzCore/QuartzCore.h>
 #include <math.h>
 
@@ -23,15 +24,52 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     return self;
 }
 
+-(void)redraw {
+    [self setNeedsDisplay];
+}
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    //GameDataController* s = [GameDataController sharedInstance];
     
     int x = 160;
     int y = 375;
     [self DrawField:x :y];
+    /*
+    if(s.Batter != 0)
+    {
+        if(s.BatterAdvance == 1)
+            [self DrawSingle:x :y];
+        else if(s.BatterAdvance == 2)
+            [self DrawDouble:x :y];
+        else if(s.BatterAdvance == 3)
+            [self DrawTriple:x :y];
+        else
+            [self DrawHomeRun:x :y];
+    }
+    if(s.FirstBase != 0)
+    {
+        if(s.FirstBaseAdvance == 1)
+            [self DrawFirstToSecond:x :y];
+        else if(s.FirstBaseAdvance == 2)
+            [self DrawFirstToThird:x :y];
+        else
+            [self DrawFirstToHome:x :y];
+    }
+    if(s.SecondBase != 0)
+    {
+        if(s.SecondBaseAdvance == 1)
+            [self DrawSecondToThird:x :y];
+        else
+            [self DrawSecondToHome:x :y];
+    }
+    if(s.ThirdBase != 0)
+        [self DrawThirdToHome:x :y];
+    */
+    /*
     [self DrawHomeRun:x :y];
     [self DrawSingle:x :y];
     [self DrawDouble:x :y];
@@ -42,7 +80,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self DrawSecondToHome:x :y];
     [self DrawSecondToThird:x :y];
     [self DrawThirdToHome:x :y];
-
+     */
 }
 
 -(void)DrawHomeRun:(int)x :(int)y {

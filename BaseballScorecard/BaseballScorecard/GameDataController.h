@@ -35,6 +35,11 @@
 @property (nonatomic) bool checkedfirst;
 @property (nonatomic) bool checkedsecond;
 @property (nonatomic) bool checkedthird;
+@property (nonatomic) int FirstBaseAdvance;
+@property (nonatomic) int SecondBaseAdvance;
+@property (nonatomic) int ThirdBaseAdvance;
+@property (nonatomic) int BatterAdvance;
+
 
 
 @property (nonatomic) int TypeofHit; // 0=empty 1=single 2=double 3=triple

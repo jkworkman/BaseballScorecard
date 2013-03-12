@@ -10,14 +10,18 @@
 
 @implementation Bases
 
+@synthesize base;
+@synthesize temp;
+
 -(id)init
 {
     self = [super init];
     if (self) {
+        /*
         _base = NULL;
         _temp = NULL;
+         */
         _checked = false;
-        _animateposition = 0;
         return self;
     }
     return nil;

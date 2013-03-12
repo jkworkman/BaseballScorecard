@@ -8,7 +8,7 @@
 
 #import "BaseballViewController.h"
 #import "GameDataController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "Quartz2D.h"
 
 @implementation BaseballViewController
 
@@ -65,14 +65,17 @@
             {
                 case 0: /* Single button*/
                     [s HitSingle];
+                    //s.BatterAdvance = 1;
                     [self RunnerAdvancing];
                     break;
                 case 1: /* Double button */
                     [s HitDouble];
+                    //s.BatterAdvance = 2;
                     [self RunnerAdvancing];
                     break;
                 case 2: /* Triple button */
                     [s HitTriple];
+                    //s.BatterAdvance = 3;
                     [self RunnerAdvancing];
                     break;
                 case 3: /* HomeRun button */
@@ -92,6 +95,7 @@
                     break;
                 case 1: /* Score button */
                     [s RunnerScores];
+                    //s.ThirdBaseAdvance = 1;
                     [self RunnerAdvancing];
                     break;
                 case 2: /* StayOnBase button */
@@ -113,10 +117,12 @@
                 break;
             case 2: /* AdvanceToThird button */
                 [s RunnerToThird];
+                //s.SecondBaseAdvance = 1;
                 [self RunnerAdvancing];
                 break;
             case 3: /* StayOnBase button */
                 [s RunnerStaysOnBase];
+                //s.SecondBaseAdvance = 2;
                 [self RunnerAdvancing];
                 break;
             }
@@ -130,14 +136,17 @@
                 break;
             case 1: /* Score button */
                 [s RunnerScores];
+                //s.FirstBaseAdvance = 3;
                 [self RunnerAdvancing];
                 break;
             case 2: /* AdvanceToThird button */
                 [s RunnerToThird];
+                //s.FirstBaseAdvance = 2;
                 [self RunnerAdvancing];
                 break;
             case 3: /* AdvanceToSecond button */
                 [s RunnerToSecond];
+                //s.FirstBaseAdvance = 1;
                 [self RunnerAdvancing];
                 break;
         }
@@ -150,6 +159,7 @@
 -(void)RunnerAdvancing {
     
     GameDataController* s = [GameDataController sharedInstance];
+    //Quartz2D* r;
     
     if(s.FirstBase != NULL && s.checkedfirst == false)
         [self RunnerOnFirstMenu];
@@ -162,9 +172,10 @@
         s.FirstBase = s.tempFirst;
         s.SecondBase = s.tempSecond;
         s.ThirdBase = s.tempThird;
+        //[r redraw];
         s.checkedfirst = s.checkedsecond = s.checkedthird = false;
         s.tempFirst = s.tempSecond = s.tempThird = s.Batter = NULL;
-        s.TypeofHit = 0;
+        s.TypeofHit = s.BatterAdvance = s.FirstBaseAdvance = s.SecondBaseAdvance = s.ThirdBaseAdvance = 0;
         [s BatterHit];
     }
 }

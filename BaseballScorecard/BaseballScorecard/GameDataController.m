@@ -43,7 +43,7 @@ static GameDataController *sharedInstance = nil;
         _HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
-        _HomeTeamLineupIndex = _AwayTeamLineupIndex = _TypeofHit = 0;
+        _HomeTeamLineupIndex = _AwayTeamLineupIndex = _TypeofHit = _FirstBaseAdvance = _SecondBaseAdvance = _ThirdBaseAdvance = _BatterAdvance = 0;
         _FirstBase = _SecondBase = _ThirdBase = _Batter = _tempFirst = _tempSecond = _tempThird = NULL;
         _checkedfirst = _checkedsecond = _checkedthird = false;
         

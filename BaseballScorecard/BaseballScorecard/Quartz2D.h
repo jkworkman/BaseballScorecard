@@ -10,6 +10,8 @@
 
 @interface Quartz2D : UIView
 
+-(void)redraw;
+
 -(void)DrawField:(int)x :(int)y;
 -(void)DrawHomeRun:(int)x :(int)y;
 -(void)DrawSingle:(int)x :(int)y;
