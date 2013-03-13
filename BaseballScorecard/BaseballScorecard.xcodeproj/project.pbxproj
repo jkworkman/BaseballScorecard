@@ -10,6 +10,8 @@
 		1C1BCE2116CC762800E0216B /* AwayLineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1BCE2016CC762800E0216B /* AwayLineupViewController.m */; };
 		1C4081A416D1D9290024CB7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4081A316D1D9280024CB7B /* QuartzCore.framework */; };
 		1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6411A616CE91B10074876E /* HomeLineupViewController.m */; };
+		1C7F0D2516F1312500441C47 /* BoxScoreMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F0D2416F1312500441C47 /* BoxScoreMasterViewController.m */; };
+		1C7F0D2916F1327E00441C47 /* BoxScoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7F0D2816F1327E00441C47 /* BoxScoreDetailViewController.m */; };
 		1CAA500216DBDF48005E2DE8 /* Bases.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA500116DBDF48005E2DE8 /* Bases.m */; };
 		1CAAFE6E16C6D87F00F0C44C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAAFE6D16C6D87F00F0C44C /* UIKit.framework */; };
 		1CAAFE7016C6D87F00F0C44C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAAFE6F16C6D87F00F0C44C /* Foundation.framework */; };
@@ -35,6 +37,10 @@
 		1C4081A316D1D9280024CB7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1C6411A516CE91B10074876E /* HomeLineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeLineupViewController.h; sourceTree = "<group>"; };
 		1C6411A616CE91B10074876E /* HomeLineupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLineupViewController.m; sourceTree = "<group>"; };
+		1C7F0D2316F1312500441C47 /* BoxScoreMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreMasterViewController.h; sourceTree = "<group>"; };
+		1C7F0D2416F1312500441C47 /* BoxScoreMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreMasterViewController.m; sourceTree = "<group>"; };
+		1C7F0D2716F1327E00441C47 /* BoxScoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreDetailViewController.h; sourceTree = "<group>"; };
+		1C7F0D2816F1327E00441C47 /* BoxScoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreDetailViewController.m; sourceTree = "<group>"; };
 		1CAA500016DBDF48005E2DE8 /* Bases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bases.h; sourceTree = "<group>"; };
 		1CAA500116DBDF48005E2DE8 /* Bases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bases.m; sourceTree = "<group>"; };
 		1CAAFE6916C6D87F00F0C44C /* BaseballScorecard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseballScorecard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +119,10 @@
 				1CAAFE7C16C6D87F00F0C44C /* BaseballAppDelegate.h */,
 				1CAAFE7D16C6D87F00F0C44C /* BaseballAppDelegate.m */,
 				1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */,
+				1C7F0D2316F1312500441C47 /* BoxScoreMasterViewController.h */,
+				1C7F0D2416F1312500441C47 /* BoxScoreMasterViewController.m */,
+				1C7F0D2716F1327E00441C47 /* BoxScoreDetailViewController.h */,
+				1C7F0D2816F1327E00441C47 /* BoxScoreDetailViewController.m */,
 				1CD32DBA16D2A35600EB0BA2 /* Quartz2D.h */,
 				1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */,
 				1CD6B4C116C974AA00584EDE /* Player.h */,
@@ -227,6 +237,8 @@
 				1C6411A716CE91B10074876E /* HomeLineupViewController.m in Sources */,
 				1CD32DBC16D2A35600EB0BA2 /* Quartz2D.m in Sources */,
 				1CAA500216DBDF48005E2DE8 /* Bases.m in Sources */,
+				1C7F0D2516F1312500441C47 /* BoxScoreMasterViewController.m in Sources */,
+				1C7F0D2916F1327E00441C47 /* BoxScoreDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
