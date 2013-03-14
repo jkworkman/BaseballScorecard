@@ -26,6 +26,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    UIApplication *app = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
+    
+    
     GameDataController* s = [GameDataController sharedInstance];
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -54,6 +58,29 @@
     [self Refresh];
 }
 
+- (void)applicationDidEnterBackground:(NSNotification *)notification {
+    NSLog(@"Entering Background");
+    // get paths from root direcory
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    NSNumber *inning = [NSNumber numberWithInt:s.numInning];
+    NSNumber *ball = [NSNumber numberWithInt:s.balls];
+    NSNumber *strike = [NSNumber numberWithInt:s.strikes];
+    NSNumber *outs = [NSNumber numberWithInt:s.outs];
+    
+    NSString *error;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameDataPlist.plist"];
+    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:
+                               [NSArray arrayWithObjects: inning, outs, strike, ball, nil]
+                                                          forKeys:[NSArray arrayWithObjects: @"NumInning", @"Outs", @"Strikes", @"Balls", nil]];
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict
+                                                                   format:NSPropertyListXMLFormat_v1_0
+                                                         errorDescription:&error];
+    if(plistData) {
+        [plistData writeToFile:plistPath atomically:YES];
+    }
+}
 /*--------------------------------------------------------------------------------*/
 - (void)didReceiveMemoryWarning
 {

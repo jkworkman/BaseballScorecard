@@ -27,27 +27,6 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
-    // get paths from root direcory
-    GameDataController* s = [GameDataController sharedInstance];
-    
-    NSNumber *inning = [NSNumber numberWithInt:s.numInning];
-    NSNumber *ball = [NSNumber numberWithInt:s.balls];
-    NSNumber *strike = [NSNumber numberWithInt:s.strikes];
-    NSNumber *outs = [NSNumber numberWithInt:s.outs];
-    
-    NSString *error;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
-    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:
-                               [NSArray arrayWithObjects: inning, outs, strike, ball, nil]
-                                                          forKeys:[NSArray arrayWithObjects: @"NumInning", @"Outs", @"Strikes", @"Balls", nil]];
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict
-                                                                   format:NSPropertyListXMLFormat_v1_0
-                                                         errorDescription:&error];
-    if(plistData) {
-        [plistData writeToFile:plistPath atomically:YES];
-    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

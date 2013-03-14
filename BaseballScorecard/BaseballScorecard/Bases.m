@@ -12,19 +12,31 @@
 
 @synthesize base;
 @synthesize temp;
+@synthesize checked;
 
--(id)init
-{
+
+-(id)initWithName:(Player *)b temp:(Player *)t checked:(bool *)c {
     self = [super init];
     if (self) {
-        /*
-        _base = NULL;
-        _temp = NULL;
-         */
-        _checked = false;
+        base = b;
+        temp = t;
+        checked = c;
         return self;
     }
     return nil;
 }
 
+/*
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        _base = NULL;
+        _temp = NULL;
+        _checked = false;
+        return self;
+    }
+    return nil;
+}
+*/
 @end

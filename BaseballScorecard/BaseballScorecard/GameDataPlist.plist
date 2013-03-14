@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>NumInning</key>
-	<integer>4</integer>
-	<key>Outs</key>
-	<integer>2</integer>
-	<key>Strikes</key>
-	<integer>2</integer>
-	<key>Balls</key>
 	<integer>1</integer>
+	<key>Outs</key>
+	<integer>0</integer>
+	<key>Strikes</key>
+	<integer>0</integer>
+	<key>Balls</key>
+	<integer>0</integer>
 </dict>
 </plist>

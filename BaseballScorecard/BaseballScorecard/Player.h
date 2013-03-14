@@ -13,11 +13,11 @@
 @property (nonatomic) NSString *FirstName;
 @property (nonatomic) NSString *LastName;
 @property (nonatomic) NSString *Position;
-@property (nonatomic) int PlateAppearances;
-@property (nonatomic) int Hits;
-@property (nonatomic) int RunsScored;
-@property (nonatomic) int RBI;
-@property (nonatomic) float BattingAverage;
+@property (nonatomic) NSInteger PlateAppearances;
+@property (nonatomic) NSInteger Hits;
+@property (nonatomic) NSInteger RunsScored;
+@property (nonatomic) NSInteger RBI;
+@property (nonatomic) CGFloat BattingAverage;
 
 -(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position;
 

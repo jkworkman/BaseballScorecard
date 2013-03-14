@@ -13,6 +13,33 @@
 
 @implementation GameDataController
 
+@synthesize balls;
+@synthesize strikes;
+@synthesize outs;
+@synthesize numInning;
+@synthesize sideInning;
+@synthesize isBottomInning;
+@synthesize HomeTeam;
+@synthesize AwayTeam;
+@synthesize HomeScore;
+@synthesize AwayScore;
+@synthesize HomeTeamLineupIndex;
+@synthesize AwayTeamLineupIndex;
+@synthesize TypeofHit;
+@synthesize tempFirst;
+@synthesize tempSecond;
+@synthesize tempThird;
+@synthesize Batter;
+@synthesize FirstBase;
+@synthesize SecondBase;
+@synthesize ThirdBase;
+@synthesize FirstBaseAdvance;
+@synthesize SecondBaseAdvance;
+@synthesize ThirdBaseAdvance;
+@synthesize BatterAdvance;
+@synthesize checkedfirst;
+@synthesize checkedsecond;
+@synthesize checkedthird;
 
 static GameDataController *sharedInstance = nil;
 
@@ -34,305 +61,310 @@ static GameDataController *sharedInstance = nil;
     self = [super init];
     if (self) {
 
-        //_numInning = 1;
-        //_isBottomInning = false;
-        _sideInning = @"Top";
-        _HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-        _AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        //numInning = 1;
+        isBottomInning = false;
+        sideInning = @"Top";
+        HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
-        _HomeTeamLineupIndex = _AwayTeamLineupIndex = _TypeofHit = _FirstBaseAdvance = _SecondBaseAdvance = _ThirdBaseAdvance = _BatterAdvance = 0;
-        _FirstBase = _SecondBase = _ThirdBase = _Batter = _tempFirst = _tempSecond = _tempThird = NULL;
-        _checkedfirst = _checkedsecond = _checkedthird = false;
+        HomeTeamLineupIndex = AwayTeamLineupIndex = TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
+        FirstBase = SecondBase = ThirdBase = Batter = tempFirst = tempSecond = tempThird = NULL;
+        checkedfirst = checkedsecond = checkedthird = false;
         
         [self AwayPlayerLineup];
         [self HomePlayerLineup];
         
-        _Batter = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+        Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
     }
     return self;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedBall {
-    _balls += 1;
-    if(_balls == 4)
+    balls += 1;
+    if(balls == 4)
     {
-        _balls = 0;
-        _strikes = 0;
-        if(!_isBottomInning)
+        balls = 0;
+        strikes = 0;
+        if(!isBottomInning)
         {
-            if(_ThirdBase != NULL)
-                _AwayScore += 1;
-            _ThirdBase = _SecondBase;
-            _SecondBase = _FirstBase;
-            _FirstBase = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+            if(ThirdBase != NULL)
+                AwayScore += 1;
+            ThirdBase = SecondBase;
+            SecondBase = FirstBase;
+            FirstBase = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
             
-            _AwayTeamLineupIndex += 1;
-            if(_AwayTeamLineupIndex == 9)
-                _AwayTeamLineupIndex = 0;
-            _Batter = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+            AwayTeamLineupIndex += 1;
+            if(AwayTeamLineupIndex == 9)
+                AwayTeamLineupIndex = 0;
+            Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
              
         }
         else
         {
-            if(_ThirdBase != NULL)
-                _HomeScore += 1;
-            _ThirdBase = _SecondBase;
-            _SecondBase = _FirstBase;
-            _FirstBase = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+            if(ThirdBase != NULL)
+                HomeScore += 1;
+            ThirdBase = SecondBase;
+            SecondBase = FirstBase;
+            FirstBase = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
             
-            _HomeTeamLineupIndex += 1;
-            if(_HomeTeamLineupIndex == 9)
-                _HomeTeamLineupIndex = 0;
-            _Batter = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+            HomeTeamLineupIndex += 1;
+            if(HomeTeamLineupIndex == 9)
+                HomeTeamLineupIndex = 0;
+            Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
              
         }
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedStrike {
-    _strikes += 1;
-    if(_strikes == 3)
+    strikes += 1;
+    if(strikes == 3)
     {
-        _outs += 1;
-        _strikes = 0;
-        _balls = 0;
-        _Batter.PlateAppearances += 1;
+        outs += 1;
+        strikes = 0;
+        balls = 0;
+        Batter.PlateAppearances += 1;
         [self BatterHit];
     }
-    if(_outs == 3)
+    if(outs == 3)
     {
-        _outs = 0;
-        if(_isBottomInning)
+        outs = 0;
+        if(isBottomInning)
         {
-            _sideInning = @"Top";
-            _numInning += 1;
-            _Batter = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+            sideInning = @"Top";
+            numInning += 1;
+            Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         }
         else
         {
-            _sideInning = @"Bottom";
-            _Batter = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+            sideInning = @"Bottom";
+            Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
         }
         
-        if(_isBottomInning)
+        if(isBottomInning)
         {
-            _isBottomInning = false;
+            isBottomInning = false;
         }
         else
         {
-            _isBottomInning = true;
+            isBottomInning = true;
         }
-        _FirstBase = _SecondBase = _ThirdBase = NULL;
+        FirstBase = SecondBase = ThirdBase = NULL;
         
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitSingle {
-    _Batter.PlateAppearances += 1;
-    _Batter.Hits += 1;
-    _TypeofHit = 1;
-    _tempFirst = _Batter;
+    Batter.PlateAppearances += 1;
+    Batter.Hits += 1;
+    TypeofHit = 1;
+    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
+    tempFirst = Batter;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitDouble {
-    _Batter.PlateAppearances += 1;
-    _Batter.Hits += 1;
-    _TypeofHit = 2;
-    _tempSecond = _Batter;
+    Batter.PlateAppearances += 1;
+    Batter.Hits += 1;
+    TypeofHit = 2;
+    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
+    tempSecond = Batter;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitTriple {
-    _Batter.PlateAppearances += 1;
-    _Batter.Hits += 1;
-    _TypeofHit = 3;
-    _tempThird = _Batter;
+    Batter.PlateAppearances += 1;
+    Batter.Hits += 1;
+    TypeofHit = 3;
+    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
+    tempThird = Batter;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitHomeRun {
     
     int x = 0;
     
-    if(_ThirdBase != 0)
+    if(ThirdBase != 0)
         x += 1;
-    if(_SecondBase != 0)
+    if(SecondBase != 0)
         x += 1;
-    if(_FirstBase != 0)
+    if(FirstBase != 0)
         x += 1;
     
-    _Batter.RBI += x;
-    _Batter.PlateAppearances += 1;
-    _Batter.Hits += 1;
+    Batter.RBI += x;
+    Batter.PlateAppearances += 1;
+    Batter.Hits += 1;
+    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
     x += 1; //the run for the batter
     
-    if(!_isBottomInning)
-        _AwayScore += x;
+    if(!isBottomInning)
+        AwayScore += x;
     else
-        _HomeScore += x;
+        HomeScore += x;
     
-    _FirstBase = _SecondBase = _ThirdBase = NULL;
-    _balls = _strikes = 0;
+    FirstBase = SecondBase = ThirdBase = NULL;
+    balls = strikes = 0;
     [self BatterHit];
     
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitOut {
-    _strikes = 0;
-    _balls = 0;
-    _outs += 1;
-    if(_outs == 3)
+    strikes = 0;
+    balls = 0;
+    outs += 1;
+    Batter.PlateAppearances += 1;
+    if(outs == 3)
     {
-        _outs = 0;
-        if(_isBottomInning)
+        outs = 0;
+        if(isBottomInning)
         {
-            _sideInning = @"Top";
-            _numInning += 1;
-            _isBottomInning = false;
+            sideInning = @"Top";
+            numInning += 1;
+            isBottomInning = false;
         }
         else
         {
-            _sideInning = @"Bottom";
-            _isBottomInning = true;
+            sideInning = @"Bottom";
+            isBottomInning = true;
         }
-        _FirstBase = _SecondBase = _ThirdBase = NULL;
+        FirstBase = SecondBase = ThirdBase = NULL;
     }
     [self BatterHit];
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerScores {
-    if(!_isBottomInning)
-        _AwayScore += 1;
+    if(!isBottomInning)
+        AwayScore += 1;
     
     else
-        _HomeScore += 1;
+        HomeScore += 1;
     
-    if(_FirstBase != NULL && _checkedfirst == false)
+    if(FirstBase != NULL && checkedfirst == false)
     {
-        _checkedfirst = true;
-        _FirstBase.RunsScored += 1;
-        _Batter.RBI += 1;
+        checkedfirst = true;
+        FirstBase.RunsScored += 1;
+        Batter.RBI += 1;
     }
-    else if(_SecondBase != NULL && _checkedsecond == false)
+    else if(SecondBase != NULL && checkedsecond == false)
     {
-        _checkedsecond = true;
-        _SecondBase.RunsScored += 1;
-        _Batter.RBI += 1;
+        checkedsecond = true;
+        SecondBase.RunsScored += 1;
+        Batter.RBI += 1;
     }
-    else if(_ThirdBase != NULL && _checkedthird == false)
+    else if(ThirdBase != NULL && checkedthird == false)
     {
-        _checkedthird = true;
-        _ThirdBase.RunsScored += 1;
-        _Batter.RBI += 1;
+        checkedthird = true;
+        ThirdBase.RunsScored += 1;
+        Batter.RBI += 1;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerToThird {
     
-    if(_FirstBase != NULL && _checkedfirst == false)
+    if(FirstBase != NULL && checkedfirst == false)
     {
-        _tempThird = _FirstBase;
-        _checkedfirst = true;
+        tempThird = FirstBase;
+        checkedfirst = true;
     }
-    else if(_SecondBase != NULL && _checkedsecond == false)
+    else if(SecondBase != NULL && checkedsecond == false)
     {
-        _tempThird = _SecondBase;
-        _checkedsecond = true;
+        tempThird = SecondBase;
+        checkedsecond = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerToSecond {
     
-    _tempSecond = _FirstBase;
-    _checkedfirst = true;
+    tempSecond = FirstBase;
+    checkedfirst = true;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerOut {
     
-    _outs += 1;
-    if(_outs == 3)
+    outs += 1;
+    if(outs == 3)
     {
-        _outs = 0;
-        if(_isBottomInning)
+        outs = 0;
+        if(isBottomInning)
         {
-            _sideInning = @"Top";
-            _numInning += 1;
-            _isBottomInning = false;
+            sideInning = @"Top";
+            numInning += 1;
+            isBottomInning = false;
         }
         else
         {
-            _sideInning = @"Bottom";
-            _isBottomInning = true;
+            sideInning = @"Bottom";
+            isBottomInning = true;
         }
         
-        _FirstBase = _tempFirst = _SecondBase = _tempSecond = _ThirdBase = _tempThird = _Batter = NULL;
-        _checkedfirst = _checkedsecond = _checkedthird = false;
+        FirstBase = tempFirst = SecondBase = tempSecond = ThirdBase = tempThird = Batter = NULL;
+        checkedfirst = checkedsecond = checkedthird = false;
     }
     else
     {
-        if(_FirstBase != 0 && _checkedfirst == false)
-            _checkedfirst = true;
-        else if(_SecondBase != 0 && _checkedsecond == false)
-            _checkedsecond = true;
-        else if(_ThirdBase != 0 && _checkedthird == false)
-            _checkedthird = true;
+        if(FirstBase != 0 && checkedfirst == false)
+            checkedfirst = true;
+        else if(SecondBase != 0 && checkedsecond == false)
+            checkedsecond = true;
+        else if(ThirdBase != 0 && checkedthird == false)
+            checkedthird = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerStaysOnBase {
-    if(_SecondBase != NULL && _checkedsecond == false)
+    if(SecondBase != NULL && checkedsecond == false)
     {
-        _tempSecond = _SecondBase;
-        _checkedsecond = true;
+        tempSecond = SecondBase;
+        checkedsecond = true;
     }
-    else if(_ThirdBase != NULL && _checkedthird == false)
+    else if(ThirdBase != NULL && checkedthird == false)
     {
-        _tempThird = _ThirdBase;
-        _checkedthird = true;
+        tempThird = ThirdBase;
+        checkedthird = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)BatterHit {
-    if(!_isBottomInning)
+    if(!isBottomInning)
     {
-        _AwayTeamLineupIndex += 1;
-        if(_AwayTeamLineupIndex == 9)
-            _AwayTeamLineupIndex = 0;
+        AwayTeamLineupIndex += 1;
+        if(AwayTeamLineupIndex == 9)
+            AwayTeamLineupIndex = 0;
         
-        _Batter = [_AwayTeam objectAtIndex:_AwayTeamLineupIndex];
+        Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
          
     }
     else
     {
-        _HomeTeamLineupIndex += 1;
-        if(_HomeTeamLineupIndex == 9)
-            _HomeTeamLineupIndex = 0;
+        HomeTeamLineupIndex += 1;
+        if(HomeTeamLineupIndex == 9)
+            HomeTeamLineupIndex = 0;
         
-        _Batter = [_HomeTeam objectAtIndex:_HomeTeamLineupIndex];
+        Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
          
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HomePlayerLineup {
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P"]];
-    [_HomeTeam addObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P"]];
+    [HomeTeam addObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C"]];
 }
 /*--------------------------------------------------------------------------------*/
 -(void)AwayPlayerLineup {
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF"]];
-    [_AwayTeam addObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF"]];
+    [AwayTeam addObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P"]];
 }
 
 @end

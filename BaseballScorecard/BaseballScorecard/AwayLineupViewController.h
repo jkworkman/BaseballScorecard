@@ -38,12 +38,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *NinthLastName;
 @property (weak, nonatomic) IBOutlet UITextField *NinthPosition;
 
-
-
-
-
-
 - (IBAction)AwaySubmit:(id)sender;
-
 
 @end

@@ -15,4 +15,5 @@
 @property (nonatomic) Player *temp;
 @property (nonatomic) bool checked;
 
+-(id)initWithName:(Player *)b temp:(Player *)t checked:(bool *)c;
 @end
