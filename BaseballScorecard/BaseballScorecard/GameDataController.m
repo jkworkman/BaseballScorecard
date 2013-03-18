@@ -60,14 +60,16 @@ static GameDataController *sharedInstance = nil;
 -(id)init {
     self = [super init];
     if (self) {
-
-        //numInning = 1;
+        /*
+        balls = strikes = outs = HomeScore = AwayScore = HomeTeamLineupIndex = AwayTeamLineupIndex = 0;
         isBottomInning = false;
+        numInning = 1;
         sideInning = @"Top";
+        */
         HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
-        HomeTeamLineupIndex = AwayTeamLineupIndex = TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
+        TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
         FirstBase = SecondBase = ThirdBase = Batter = tempFirst = tempSecond = tempThird = NULL;
         checkedfirst = checkedsecond = checkedthird = false;
         
@@ -192,6 +194,7 @@ static GameDataController *sharedInstance = nil;
     Batter.RBI += x;
     Batter.PlateAppearances += 1;
     Batter.Hits += 1;
+    Batter.HR += 1;
     Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
     x += 1; //the run for the batter
     

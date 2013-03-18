@@ -18,6 +18,7 @@
 @synthesize RunsScored;
 @synthesize RBI;
 @synthesize BattingAverage;
+@synthesize HR;
 
 -(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position
 {
@@ -31,6 +32,7 @@
         RunsScored = 0;
         RBI = 0;
         BattingAverage = 0.0;
+        HR = 0;
         return self;
     }
     return nil;

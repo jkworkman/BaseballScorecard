@@ -18,6 +18,7 @@
 @property (nonatomic) NSInteger RunsScored;
 @property (nonatomic) NSInteger RBI;
 @property (nonatomic) CGFloat BattingAverage;
+@property (nonatomic) NSInteger HR;
 
 -(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position;
 
