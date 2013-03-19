@@ -35,4 +35,6 @@
 -(void)Refresh;
 -(void) CallLog;
 
+-(void)LoadFromPlist;
+
 @end
