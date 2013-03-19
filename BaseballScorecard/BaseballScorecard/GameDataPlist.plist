@@ -2,168 +2,390 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>a1fname</key>
-	<string>Jeremy</string>
-	<key>a1lname</key>
-	<string>Sandcastle</string>
-	<key>a1pos</key>
-	<string>2B</string>
-	<key>a1pa</key>
-	<integer>0</integer>
-	<key>a1h</key>
-	<integer>0</integer>
-	<key>a1rs</key>
-	<integer>0</integer>
-	<key>a1rbi</key>
-	<integer>0</integer>
-	<key>a1ba</key>
-	<integer>0</integer>
-	<key>a1hr</key>
-	<integer>0</integer>
-	<key>a2fname</key>
-	<string>Myles</string>
-	<key>a2lname</key>
-	<string>Leonard</string>
-	<key>a2pos</key>
-	<string>1B</string>
-	<key>a2pa</key>
-	<integer>0</integer>
-	<key>a2h</key>
-	<integer>0</integer>
-	<key>a2rs</key>
-	<integer>0</integer>
-	<key>a2rbi</key>
-	<integer>0</integer>
-	<key>a2ba</key>
-	<integer>0</integer>
-	<key>a2hr</key>
-	<integer>0</integer>
-	<key>a3fname</key>
-	<string>Sabby</string>
-	<key>a3lname</key>
-	<string>Piscatelli</string>
-	<key>a3pos</key>
-	<string>3B</string>
-	<key>a3pa</key>
-	<integer>0</integer>
-	<key>a3h</key>
-	<integer>0</integer>
-	<key>a3rs</key>
-	<integer>0</integer>
-	<key>a3rbi</key>
-	<integer>0</integer>
-	<key>a3ba</key>
-	<integer>0</integer>
-	<key>a3hr</key>
-	<integer>0</integer>
-	<key>a4fname</key>
-	<string>Garvin</string>
-	<key>a4lname</key>
-	<string>Greene</string>
-	<key>a4pos</key>
-	<string>CF</string>
-	<key>a4pa</key>
-	<integer>0</integer>
-	<key>a4h</key>
-	<integer>0</integer>
-	<key>a4rs</key>
-	<integer>0</integer>
-	<key>a4rbi</key>
-	<integer>0</integer>
-	<key>a4ba</key>
-	<integer>0</integer>
-	<key>a4hr</key>
-	<integer>0</integer>
-	<key>a5fname</key>
-	<string>Gibralter</string>
-	<key>a5lname</key>
-	<string>Maker</string>
-	<key>a5pos</key>
-	<string>C</string>
-	<key>a5pa</key>
-	<integer>0</integer>
-	<key>a5h</key>
-	<integer>0</integer>
-	<key>a5rs</key>
-	<integer>0</integer>
-	<key>a5rbi</key>
-	<integer>0</integer>
-	<key>a5ba</key>
-	<integer>0</integer>
-	<key>a5hr</key>
-	<integer>0</integer>
-	<key>a6fname</key>
-	<string>Obtulla</string>
-	<key>a6lname</key>
-	<string>Muhammad</string>
-	<key>a6pos</key>
-	<string>LF</string>
-	<key>a6pa</key>
-	<integer>0</integer>
-	<key>a6h</key>
-	<integer>0</integer>
-	<key>a6rs</key>
-	<integer>0</integer>
-	<key>a6rbi</key>
-	<integer>0</integer>
-	<key>a6ba</key>
-	<integer>0</integer>
-	<key>a6hr</key>
-	<integer>0</integer>
-	<key>a7fname</key>
-	<string>Dekker</string>
-	<key>a7lname</key>
-	<string>Austin</string>
-	<key>a7pos</key>
-	<string>SS</string>
-	<key>a7pa</key>
-	<integer>0</integer>
-	<key>a7h</key>
-	<integer>0</integer>
-	<key>a7rs</key>
-	<integer>0</integer>
-	<key>a7rbi</key>
-	<integer>0</integer>
-	<key>a7ba</key>
-	<integer>0</integer>
-	<key>a7hr</key>
-	<integer>0</integer>
-	<key>a8fname</key>
-	<string>Grevious</string>
-	<key>a8lname</key>
-	<string>Clark</string>
-	<key>a8pos</key>
-	<string>RF</string>
-	<key>a8pa</key>
-	<integer>0</integer>
-	<key>a8h</key>
-	<integer>0</integer>
-	<key>a8rs</key>
-	<integer>0</integer>
-	<key>a8rbi</key>
-	<integer>0</integer>
-	<key>a8ba</key>
-	<integer>0</integer>
-	<key>a8hr</key>
-	<integer>0</integer>
-	<key>a9fname</key>
-	<string>Jim</string>
-	<key>a9lname</key>
-	<string>Plunkett</string>
-	<key>a9pos</key>
-	<string>P</string>
-	<key>a9pa</key>
-	<integer>0</integer>
-	<key>a9h</key>
-	<integer>0</integer>
-	<key>a9rs</key>
-	<integer>0</integer>
-	<key>a9rbi</key>
-	<integer>0</integer>
-	<key>a9ba</key>
-	<integer>0</integer>
-	<key>a9hr</key>
-	<integer>0</integer>
+	<key>AwayTeam</key>
+	<dict>
+		<key>a1</key>
+		<dict>
+			<key>fname</key>
+			<string>a1 fname</string>
+			<key>lname</key>
+			<string>a1 lname</string>
+			<key>position</key>
+			<string>a1 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a2</key>
+		<dict>
+			<key>fname</key>
+			<string>a2 fname</string>
+			<key>lname</key>
+			<string>a2 lname</string>
+			<key>position</key>
+			<string>a2 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a3</key>
+		<dict>
+			<key>fname</key>
+			<string>a3 fname</string>
+			<key>lname</key>
+			<string>a3 lname</string>
+			<key>position</key>
+			<string>a3 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a4</key>
+		<dict>
+			<key>fname</key>
+			<string>a4 fname</string>
+			<key>lname</key>
+			<string>a4 lname</string>
+			<key>position</key>
+			<string>a4 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a5</key>
+		<dict>
+			<key>fname</key>
+			<string>a5 fname</string>
+			<key>lname</key>
+			<string>a5 lname</string>
+			<key>position</key>
+			<string>a5 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a6</key>
+		<dict>
+			<key>fname</key>
+			<string>a6 fname</string>
+			<key>lname</key>
+			<string>a6 lname</string>
+			<key>position</key>
+			<string>a6 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a7</key>
+		<dict>
+			<key>fname</key>
+			<string>a7 fname</string>
+			<key>lname</key>
+			<string>a7 lname</string>
+			<key>position</key>
+			<string>a7 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a8</key>
+		<dict>
+			<key>fname</key>
+			<string>a8 fname</string>
+			<key>lname</key>
+			<string>a8 lname</string>
+			<key>position</key>
+			<string>a8 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>a9</key>
+		<dict>
+			<key>fname</key>
+			<string>a9 fname</string>
+			<key>lname</key>
+			<string>a9 lname</string>
+			<key>position</key>
+			<string>a9 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>HomeTeam</key>
+	<dict>
+		<key>h1</key>
+		<dict>
+			<key>fname</key>
+			<string>h1 fname</string>
+			<key>lname</key>
+			<string>h1 lname</string>
+			<key>position</key>
+			<string>h1 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h2</key>
+		<dict>
+			<key>fname</key>
+			<string>h2 fname</string>
+			<key>lname</key>
+			<string>h2 lname</string>
+			<key>position</key>
+			<string>h2 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h3</key>
+		<dict>
+			<key>fname</key>
+			<string>h3 fname</string>
+			<key>lname</key>
+			<string>h3 lname</string>
+			<key>position</key>
+			<string>h3 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h4</key>
+		<dict>
+			<key>fname</key>
+			<string>h4 fname</string>
+			<key>lname</key>
+			<string>h4 lname</string>
+			<key>position</key>
+			<string>h4 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h5</key>
+		<dict>
+			<key>fname</key>
+			<string>h5 fname</string>
+			<key>lname</key>
+			<string>h5 lname</string>
+			<key>position</key>
+			<string>h5 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h6</key>
+		<dict>
+			<key>fname</key>
+			<string>h6 fname</string>
+			<key>lname</key>
+			<string>h6 lname</string>
+			<key>position</key>
+			<string>h6 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h7</key>
+		<dict>
+			<key>fname</key>
+			<string>h7 fname</string>
+			<key>lname</key>
+			<string>h7 lname</string>
+			<key>position</key>
+			<string>h7 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h8</key>
+		<dict>
+			<key>fname</key>
+			<string>h8 fname</string>
+			<key>lname</key>
+			<string>h8 lname</string>
+			<key>position</key>
+			<string>h8 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+		<key>h9</key>
+		<dict>
+			<key>fname</key>
+			<string>h9 fname</string>
+			<key>lname</key>
+			<string>h9 lname</string>
+			<key>position</key>
+			<string>h9 pos</string>
+			<key>pa</key>
+			<integer>0</integer>
+			<key>hits</key>
+			<integer>0</integer>
+			<key>rs</key>
+			<integer>0</integer>
+			<key>rbi</key>
+			<integer>0</integer>
+			<key>ba</key>
+			<integer>0</integer>
+			<key>hr</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
 	<key>AwayTeamLineupIndex</key>
 	<integer>0</integer>
 	<key>HomeTeamLineupIndex</key>

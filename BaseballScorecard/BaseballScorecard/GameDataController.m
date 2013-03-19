@@ -66,15 +66,15 @@ static GameDataController *sharedInstance = nil;
         numInning = 1;
         sideInning = @"Top";
         */
-        HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-        //AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        //HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
         TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
         FirstBase = SecondBase = ThirdBase = Batter = tempFirst = tempSecond = tempThird = NULL;
         checkedfirst = checkedsecond = checkedthird = false;
         
-        //[self AwayPlayerLineup];
-        [self HomePlayerLineup];
+        [self AwayPlayerLineup];
+        //[self HomePlayerLineup];
         
         Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
     }
