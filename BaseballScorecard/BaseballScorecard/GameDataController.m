@@ -40,6 +40,7 @@
 @synthesize checkedfirst;
 @synthesize checkedsecond;
 @synthesize checkedthird;
+@synthesize first;
 
 static GameDataController *sharedInstance = nil;
 
@@ -66,7 +67,7 @@ static GameDataController *sharedInstance = nil;
         numInning = 1;
         sideInning = @"Top";
         */
-        //HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+        HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
         TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
@@ -74,12 +75,48 @@ static GameDataController *sharedInstance = nil;
         checkedfirst = checkedsecond = checkedthird = false;
         
         [self AwayPlayerLineup];
-        //[self HomePlayerLineup];
+        [self HomePlayerLineup];
         
         Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+        /*
+        NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
+        for(NSInteger i=0;i<9;i++){
+            
+            Player *tempPlayer = [HomeTeam objectAtIndex:i];
+            
+            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+            
+            [tempArray addObject:tempPlayer.FirstName];
+            [tempArray addObject:tempPlayer.LastName];
+            [tempArray addObject:tempPlayer.Position];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.PlateAppearances]];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.Hits]];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RunsScored]];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RBI]];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.BattingAverage]];
+            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.HR]];
+            
+            [[homeLineupArray addObject:tempArray];
+        ]
+        
+        NSLog(@"home: %@", homeLineupArray);
+        */
+        /*
+        Player *b = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
+        Player *c = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
+        */
+        Bases *n = [[Bases alloc] init];
+        n.base = [AwayTeam objectAtIndex:1];
+        NSLog(@"Name: %@ %@", n.base.FirstName, n.base.LastName);
+        
+        first.base = [AwayTeam objectAtIndex:1];
+        NSLog(@"Name: %@ %@", first.base.FirstName, first.base.LastName);
+        
     }
     return self;
 }
+
+
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedBall {
     balls += 1;
@@ -369,5 +406,6 @@ static GameDataController *sharedInstance = nil;
     [AwayTeam addObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
     [AwayTeam addObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
 }
+
 
 @end

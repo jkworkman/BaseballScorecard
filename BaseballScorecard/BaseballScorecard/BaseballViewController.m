@@ -26,6 +26,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    UIApplication *app = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
+    
     [self LoadFromPlist];
     
     [self Refresh];
@@ -371,9 +374,6 @@
 -(void)LoadFromPlist {
     GameDataController* s = [GameDataController sharedInstance];
     
-    UIApplication *app = [UIApplication sharedApplication];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
-    
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
@@ -402,9 +402,7 @@
     s.AwayScore = [[temp objectForKey:@"AwayScore"] integerValue];
     s.HomeTeamLineupIndex = [[temp objectForKey:@"HomeTeamLineupIndex"] integerValue];
     s.AwayTeamLineupIndex = [[temp objectForKey:@"AwayTeamLineupIndex"] integerValue];
-    
-    //s.HomeTeam = [NSMutableArray arrayWithArray:[temp objectForKey:@"HomeTeam"]];
-    //s.AwayTeam = [NSMutableArray arrayWithArray:[temp objectForKey:@"AwayTeam"]];
+
 }
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification {

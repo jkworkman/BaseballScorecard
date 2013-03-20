@@ -40,6 +40,8 @@
 @property (nonatomic) NSInteger ThirdBaseAdvance;
 @property (nonatomic) NSInteger BatterAdvance;
 
+@property (nonatomic) Bases *first;
+
 
 @property (nonatomic) NSInteger TypeofHit; // 0=empty 1=single 2=double 3=triple
 

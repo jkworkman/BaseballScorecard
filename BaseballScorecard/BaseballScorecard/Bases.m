@@ -14,7 +14,7 @@
 @synthesize temp;
 @synthesize checked;
 
-
+/*
 -(id)initWithName:(Player *)b temp:(Player *)t checked:(bool *)c {
     self = [super init];
     if (self) {
@@ -25,18 +25,16 @@
     }
     return nil;
 }
-
-/*
--(id)init
-{
+*/
+-(id)init {
     self = [super init];
     if (self) {
-        _base = NULL;
-        _temp = NULL;
-        _checked = false;
+        base = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
+        temp = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
+        checked = false;
         return self;
     }
     return nil;
 }
-*/
+
 @end
