@@ -26,21 +26,14 @@
 @synthesize HomeTeamLineupIndex;
 @synthesize AwayTeamLineupIndex;
 @synthesize TypeofHit;
-@synthesize tempFirst;
-@synthesize tempSecond;
-@synthesize tempThird;
-@synthesize Batter;
-@synthesize FirstBase;
-@synthesize SecondBase;
-@synthesize ThirdBase;
 @synthesize FirstBaseAdvance;
 @synthesize SecondBaseAdvance;
 @synthesize ThirdBaseAdvance;
 @synthesize BatterAdvance;
-@synthesize checkedfirst;
-@synthesize checkedsecond;
-@synthesize checkedthird;
-@synthesize first;
+@synthesize firstbase;
+@synthesize secondbase;
+@synthesize thirdbase;
+@synthesize atbat;
 
 static GameDataController *sharedInstance = nil;
 
@@ -61,23 +54,28 @@ static GameDataController *sharedInstance = nil;
 -(id)init {
     self = [super init];
     if (self) {
-        /*
+        
         balls = strikes = outs = HomeScore = AwayScore = HomeTeamLineupIndex = AwayTeamLineupIndex = 0;
         isBottomInning = false;
         numInning = 1;
         sideInning = @"Top";
-        */
+        
         HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
         AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
         
+        firstbase = [[Bases alloc] init];
+        secondbase = [[Bases alloc] init];
+        thirdbase = [[Bases alloc] init];
+        atbat = [[Bases alloc] init];
+        
         TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
-        FirstBase = SecondBase = ThirdBase = Batter = tempFirst = tempSecond = tempThird = NULL;
-        checkedfirst = checkedsecond = checkedthird = false;
+        firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = NULL;
+        firstbase.checked = secondbase.checked = thirdbase.checked = false;
         
         [self AwayPlayerLineup];
         [self HomePlayerLineup];
         
-        Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+        atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         /*
         NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
         for(NSInteger i=0;i<9;i++){
@@ -105,13 +103,6 @@ static GameDataController *sharedInstance = nil;
         Player *b = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
         Player *c = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
         */
-        Bases *n = [[Bases alloc] init];
-        n.base = [AwayTeam objectAtIndex:1];
-        NSLog(@"Name: %@ %@", n.base.FirstName, n.base.LastName);
-        
-        first.base = [AwayTeam objectAtIndex:1];
-        NSLog(@"Name: %@ %@", first.base.FirstName, first.base.LastName);
-        
     }
     return self;
 }
@@ -126,32 +117,18 @@ static GameDataController *sharedInstance = nil;
         strikes = 0;
         if(!isBottomInning)
         {
-            if(ThirdBase != NULL)
+            if(thirdbase.base != NULL)
                 AwayScore += 1;
-            ThirdBase = SecondBase;
-            SecondBase = FirstBase;
-            FirstBase = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
-            
-            AwayTeamLineupIndex += 1;
-            if(AwayTeamLineupIndex == 9)
-                AwayTeamLineupIndex = 0;
-            Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
-             
         }
         else
         {
-            if(ThirdBase != NULL)
+            if(thirdbase.base != NULL)
                 HomeScore += 1;
-            ThirdBase = SecondBase;
-            SecondBase = FirstBase;
-            FirstBase = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
-            
-            HomeTeamLineupIndex += 1;
-            if(HomeTeamLineupIndex == 9)
-                HomeTeamLineupIndex = 0;
-            Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
-             
         }
+        thirdbase.base = secondbase.base;
+        secondbase.base = firstbase.base;
+        firstbase.base = atbat.base;
+        [self BatterHit];
     }
 }
 /*--------------------------------------------------------------------------------*/
@@ -162,7 +139,7 @@ static GameDataController *sharedInstance = nil;
         outs += 1;
         strikes = 0;
         balls = 0;
-        Batter.PlateAppearances += 1;
+        atbat.base.PlateAppearances += 1;
         [self BatterHit];
     }
     if(outs == 3)
@@ -172,67 +149,61 @@ static GameDataController *sharedInstance = nil;
         {
             sideInning = @"Top";
             numInning += 1;
-            Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+            isBottomInning = false;
+            atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         }
         else
         {
             sideInning = @"Bottom";
-            Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
+            isBottomInning = true;
+            atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
         }
         
-        if(isBottomInning)
-        {
-            isBottomInning = false;
-        }
-        else
-        {
-            isBottomInning = true;
-        }
-        FirstBase = SecondBase = ThirdBase = NULL;
+        firstbase.base = secondbase.base = thirdbase.base = NULL;
         
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitSingle {
-    Batter.PlateAppearances += 1;
-    Batter.Hits += 1;
+    atbat.base.PlateAppearances += 1;
+    atbat.base.Hits += 1;
     TypeofHit = 1;
-    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
-    tempFirst = Batter;
+    atbat.base.BattingAverage = (float)atbat.base.Hits / (float)atbat.base.PlateAppearances;
+    firstbase.temp = atbat.base;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitDouble {
-    Batter.PlateAppearances += 1;
-    Batter.Hits += 1;
+    atbat.base.PlateAppearances += 1;
+    atbat.base.Hits += 1;
     TypeofHit = 2;
-    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
-    tempSecond = Batter;
+    atbat.base.BattingAverage = (float)atbat.base.Hits / (float)atbat.base.PlateAppearances;
+    secondbase.temp = atbat.base;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitTriple {
-    Batter.PlateAppearances += 1;
-    Batter.Hits += 1;
+    atbat.base.PlateAppearances += 1;
+    atbat.base.Hits += 1;
     TypeofHit = 3;
-    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
-    tempThird = Batter;
+    atbat.base.BattingAverage = (float)atbat.base.Hits / (float)atbat.base.PlateAppearances;
+    thirdbase.temp = atbat.base;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitHomeRun {
     
     int x = 0;
     
-    if(ThirdBase != 0)
+    if(thirdbase.base != 0)
         x += 1;
-    if(SecondBase != 0)
+    if(secondbase.base != 0)
         x += 1;
-    if(FirstBase != 0)
+    if(firstbase.base != 0)
         x += 1;
     
-    Batter.RBI += x;
-    Batter.PlateAppearances += 1;
-    Batter.Hits += 1;
-    Batter.HR += 1;
-    Batter.BattingAverage = (float)Batter.Hits / (float)Batter.PlateAppearances;
+    atbat.base.RBI += x;
+    atbat.base.PlateAppearances += 1;
+    atbat.base.Hits += 1;
+    atbat.base.HR += 1;
+    atbat.base.BattingAverage = (float)atbat.base.Hits / (float)atbat.base.PlateAppearances;
     x += 1; //the run for the batter
     
     if(!isBottomInning)
@@ -240,7 +211,7 @@ static GameDataController *sharedInstance = nil;
     else
         HomeScore += x;
     
-    FirstBase = SecondBase = ThirdBase = NULL;
+    firstbase.base = secondbase.base = thirdbase.base = NULL;
     balls = strikes = 0;
     [self BatterHit];
     
@@ -250,7 +221,7 @@ static GameDataController *sharedInstance = nil;
     strikes = 0;
     balls = 0;
     outs += 1;
-    Batter.PlateAppearances += 1;
+    atbat.base.PlateAppearances += 1;
     if(outs == 3)
     {
         outs = 0;
@@ -259,15 +230,18 @@ static GameDataController *sharedInstance = nil;
             sideInning = @"Top";
             numInning += 1;
             isBottomInning = false;
+            atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         }
         else
         {
             sideInning = @"Bottom";
             isBottomInning = true;
+            atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
         }
-        FirstBase = SecondBase = ThirdBase = NULL;
+        firstbase.base = secondbase.base = thirdbase.base = NULL;
     }
-    [self BatterHit];
+    else
+        [self BatterHit];
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerScores {
@@ -277,44 +251,44 @@ static GameDataController *sharedInstance = nil;
     else
         HomeScore += 1;
     
-    if(FirstBase != NULL && checkedfirst == false)
+    if(firstbase.base != NULL && firstbase.checked == false)
     {
-        checkedfirst = true;
-        FirstBase.RunsScored += 1;
-        Batter.RBI += 1;
+        firstbase.checked = true;
+        firstbase.base.RunsScored += 1;
+        atbat.base.RBI += 1;
     }
-    else if(SecondBase != NULL && checkedsecond == false)
+    else if(secondbase.base != NULL && secondbase.checked == false)
     {
-        checkedsecond = true;
-        SecondBase.RunsScored += 1;
-        Batter.RBI += 1;
+        secondbase.checked = true;
+        secondbase.base.RunsScored += 1;
+        atbat.base.RBI += 1;
     }
-    else if(ThirdBase != NULL && checkedthird == false)
+    else if(thirdbase.base != NULL && thirdbase.checked == false)
     {
-        checkedthird = true;
-        ThirdBase.RunsScored += 1;
-        Batter.RBI += 1;
+        thirdbase.checked = true;
+        thirdbase.base.RunsScored += 1;
+        atbat.base.RBI += 1;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerToThird {
     
-    if(FirstBase != NULL && checkedfirst == false)
+    if(firstbase.base != NULL && firstbase.checked == false)
     {
-        tempThird = FirstBase;
-        checkedfirst = true;
+        thirdbase.temp = firstbase.base;
+        firstbase.checked = true;
     }
-    else if(SecondBase != NULL && checkedsecond == false)
+    else if(secondbase.base != NULL && secondbase.checked == false)
     {
-        tempThird = SecondBase;
-        checkedsecond = true;
+        thirdbase.temp = secondbase.base;
+        secondbase.checked = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerToSecond {
     
-    tempSecond = FirstBase;
-    checkedfirst = true;
+    secondbase.temp = firstbase.base;
+    firstbase.checked = true;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerOut {
@@ -335,49 +309,53 @@ static GameDataController *sharedInstance = nil;
             isBottomInning = true;
         }
         
-        FirstBase = tempFirst = SecondBase = tempSecond = ThirdBase = tempThird = Batter = NULL;
-        checkedfirst = checkedsecond = checkedthird = false;
+        firstbase.base = firstbase.temp = secondbase.base = secondbase.temp = thirdbase.base = thirdbase.temp = atbat.base = atbat.temp = NULL;
+        firstbase.checked = secondbase.checked = thirdbase.checked = false;
     }
     else
     {
-        if(FirstBase != 0 && checkedfirst == false)
-            checkedfirst = true;
-        else if(SecondBase != 0 && checkedsecond == false)
-            checkedsecond = true;
-        else if(ThirdBase != 0 && checkedthird == false)
-            checkedthird = true;
+        if(firstbase.base != 0 && firstbase.checked == false)
+            firstbase.checked = true;
+        else if(secondbase.base != 0 && secondbase.checked == false)
+            secondbase.checked = true;
+        else if(thirdbase.base != 0 && thirdbase.checked == false)
+            thirdbase.checked = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerStaysOnBase {
-    if(SecondBase != NULL && checkedsecond == false)
+    if(secondbase.base != NULL && secondbase.checked == false)
     {
-        tempSecond = SecondBase;
-        checkedsecond = true;
+        secondbase.temp = secondbase.base;
+        secondbase.checked = true;
     }
-    else if(ThirdBase != NULL && checkedthird == false)
+    else if(thirdbase.base != NULL && thirdbase.checked == false)
     {
-        tempThird = ThirdBase;
-        checkedthird = true;
+        thirdbase.temp = thirdbase.base;
+        thirdbase.checked = true;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)BatterHit {
     if(!isBottomInning)
     {
-        Batter = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+
         
         AwayTeamLineupIndex += 1;
         if(AwayTeamLineupIndex == 9)
             AwayTeamLineupIndex = 0;
+        
+        atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
     }
     else
     {
-        Batter = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
+
         
         HomeTeamLineupIndex += 1;
         if(HomeTeamLineupIndex == 9)
             HomeTeamLineupIndex = 0;
+        
+        atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
     }
 }
 

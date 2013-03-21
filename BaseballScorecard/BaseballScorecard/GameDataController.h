@@ -25,22 +25,16 @@
 @property (nonatomic) NSInteger HomeScore;
 @property (nonatomic) NSInteger AwayScore;
 
-@property (nonatomic) Player *tempFirst;
-@property (nonatomic) Player *tempSecond;
-@property (nonatomic) Player *tempThird;
-@property (nonatomic) Player *Batter;
-@property (nonatomic) Player *FirstBase;
-@property (nonatomic) Player *SecondBase;
-@property (nonatomic) Player *ThirdBase;
-@property (nonatomic) BOOL checkedfirst;
-@property (nonatomic) BOOL checkedsecond;
-@property (nonatomic) BOOL checkedthird;
 @property (nonatomic) NSInteger FirstBaseAdvance;
 @property (nonatomic) NSInteger SecondBaseAdvance;
 @property (nonatomic) NSInteger ThirdBaseAdvance;
 @property (nonatomic) NSInteger BatterAdvance;
 
-@property (nonatomic) Bases *first;
+@property (nonatomic) Bases *firstbase;
+@property (nonatomic) Bases *secondbase;
+@property (nonatomic) Bases *thirdbase;
+@property (nonatomic) Bases *atbat;
+
 
 
 @property (nonatomic) NSInteger TypeofHit; // 0=empty 1=single 2=double 3=triple

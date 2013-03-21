@@ -25,12 +25,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    /*
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
     
     [self LoadFromPlist];
-    
+    */
     [self Refresh];
 }
 /*--------------------------------------------------------------------------------*/
@@ -168,19 +168,19 @@
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.FirstBase != NULL && s.checkedfirst == false)
+    if(s.firstbase.base != NULL && s.firstbase.checked == false)
         [self RunnerOnFirstMenu];
-    else if(s.SecondBase != NULL && s.checkedsecond == false)
+    else if(s.secondbase.base != NULL && s.secondbase.checked == false)
         [self RunnerOnSecondMenu];
-    else if(s.ThirdBase != NULL && s.checkedthird == false)
+    else if(s.thirdbase.base != NULL && s.thirdbase.checked == false)
         [self RunnerOnThirdMenu];
     else
     {
-        s.FirstBase = s.tempFirst;
-        s.SecondBase = s.tempSecond;
-        s.ThirdBase = s.tempThird;
-        s.checkedfirst = s.checkedsecond = s.checkedthird = false;
-        s.tempFirst = s.tempSecond = s.tempThird = s.Batter = NULL;
+        s.firstbase.base = s.firstbase.temp;
+        s.secondbase.base = s.secondbase.temp;
+        s.thirdbase.base = s.thirdbase.temp;
+        s.firstbase.checked = s.secondbase.checked = s.thirdbase.checked = false;
+        s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = NULL;
         s.TypeofHit = s.BatterAdvance = s.FirstBaseAdvance = s.SecondBaseAdvance = s.ThirdBaseAdvance = 0;
         [s BatterHit];
     }
@@ -213,7 +213,7 @@
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit != 3 && s.tempThird == 0)
+    if(s.TypeofHit != 3 && s.thirdbase.temp == 0)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Third"
@@ -251,7 +251,7 @@
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit == 1 && s.tempSecond == NULL && s.tempThird == NULL)
+    if(s.TypeofHit == 1 && s.secondbase.temp == NULL && s.thirdbase.temp == NULL)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
@@ -262,7 +262,7 @@
         actionSheet.tag = 3;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
-    else if(s.TypeofHit != 3 && s.tempThird == NULL)
+    else if(s.TypeofHit != 3 && s.thirdbase.temp == NULL)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
@@ -364,10 +364,10 @@
     NSLog(@"B:%d, S:%d, O:%d, Hscore:%d, Ascore:%d, NumInning:%d, SideInning:%@, IsBottomInning:%d, Hindex:%d, Aindex:%d", s.balls, s.strikes, s.outs, s.HomeScore, s.AwayScore, s.numInning, s.sideInning, s.isBottomInning, s.HomeTeamLineupIndex, s.AwayTeamLineupIndex);
     
     
-    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %.3f", s.balls, s.strikes, s.outs, s.Batter.FirstName, s.Batter.LastName, s.Batter.Position, s.Batter.Hits, s.Batter.PlateAppearances, s.Batter.RunsScored, s.Batter.RBI, s.Batter.BattingAverage);
-    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.FirstBase.FirstName, s.FirstBase.LastName, s.FirstBase.Position, s.FirstBase.Hits, s.FirstBase.PlateAppearances, s.FirstBase.RunsScored, s.FirstBase.RBI, s.FirstBase.BattingAverage);
-    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.SecondBase.FirstName, s.SecondBase.LastName, s.SecondBase.Position, s.SecondBase.Hits, s.SecondBase.PlateAppearances, s.SecondBase.RunsScored, s.SecondBase.RBI, s.SecondBase.BattingAverage);
-    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.ThirdBase.FirstName, s.ThirdBase.LastName, s.ThirdBase.Position, s.ThirdBase.Hits, s.ThirdBase.PlateAppearances, s.ThirdBase.RunsScored, s.ThirdBase.RBI, s.ThirdBase.BattingAverage);
+    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %.3f", s.balls, s.strikes, s.outs, s.atbat.base.FirstName, s.atbat.base.LastName, s.atbat.base.Position, s.atbat.base.Hits, s.atbat.base.PlateAppearances, s.atbat.base.RunsScored, s.atbat.base.RBI, s.atbat.base.BattingAverage);
+    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.firstbase.base.FirstName, s.firstbase.base.LastName, s.firstbase.base.Position, s.firstbase.base.Hits, s.firstbase.base.PlateAppearances, s.firstbase.base.RunsScored, s.firstbase.base.RBI, s.firstbase.base.BattingAverage);
+    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.secondbase.base.FirstName, s.secondbase.base.LastName, s.secondbase.base.Position, s.secondbase.base.Hits, s.secondbase.base.PlateAppearances, s.secondbase.base.RunsScored, s.secondbase.base.RBI, s.secondbase.base.BattingAverage);
+    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.thirdbase.base.FirstName, s.thirdbase.base.LastName, s.thirdbase.base.Position, s.thirdbase.base.Hits, s.thirdbase.base.PlateAppearances, s.thirdbase.base.RunsScored, s.thirdbase.base.RBI, s.thirdbase.base.BattingAverage);
      
 }
 
