@@ -24,19 +24,10 @@
 @property (nonatomic) NSInteger AwayTeamLineupIndex;
 @property (nonatomic) NSInteger HomeScore;
 @property (nonatomic) NSInteger AwayScore;
-
-@property (nonatomic) NSInteger FirstBaseAdvance;
-@property (nonatomic) NSInteger SecondBaseAdvance;
-@property (nonatomic) NSInteger ThirdBaseAdvance;
-@property (nonatomic) NSInteger BatterAdvance;
-
 @property (nonatomic) Bases *firstbase;
 @property (nonatomic) Bases *secondbase;
 @property (nonatomic) Bases *thirdbase;
 @property (nonatomic) Bases *atbat;
-
-
-
 @property (nonatomic) NSInteger TypeofHit; // 0=empty 1=single 2=double 3=triple
 
 

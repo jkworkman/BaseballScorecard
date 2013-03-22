@@ -26,10 +26,6 @@
 @synthesize HomeTeamLineupIndex;
 @synthesize AwayTeamLineupIndex;
 @synthesize TypeofHit;
-@synthesize FirstBaseAdvance;
-@synthesize SecondBaseAdvance;
-@synthesize ThirdBaseAdvance;
-@synthesize BatterAdvance;
 @synthesize firstbase;
 @synthesize secondbase;
 @synthesize thirdbase;
@@ -54,28 +50,6 @@ static GameDataController *sharedInstance = nil;
 -(id)init {
     self = [super init];
     if (self) {
-        
-        balls = strikes = outs = HomeScore = AwayScore = HomeTeamLineupIndex = AwayTeamLineupIndex = 0;
-        isBottomInning = false;
-        numInning = 1;
-        sideInning = @"Top";
-        
-        HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-        AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
-        
-        firstbase = [[Bases alloc] init];
-        secondbase = [[Bases alloc] init];
-        thirdbase = [[Bases alloc] init];
-        atbat = [[Bases alloc] init];
-        
-        TypeofHit = FirstBaseAdvance = SecondBaseAdvance = ThirdBaseAdvance = BatterAdvance = 0;
-        firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = NULL;
-        firstbase.checked = secondbase.checked = thirdbase.checked = false;
-        
-        [self AwayPlayerLineup];
-        [self HomePlayerLineup];
-        
-        atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         /*
         NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
         for(NSInteger i=0;i<9;i++){
@@ -98,10 +72,6 @@ static GameDataController *sharedInstance = nil;
         ]
         
         NSLog(@"home: %@", homeLineupArray);
-        */
-        /*
-        Player *b = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
-        Player *c = [[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
         */
     }
     return self;

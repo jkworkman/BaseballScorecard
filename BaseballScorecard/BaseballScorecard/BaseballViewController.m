@@ -24,7 +24,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self StartNewGame];
     /*
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
@@ -73,20 +75,21 @@
             {
                 case 0: /* Single button*/
                     [s HitSingle];
-                    //s.BatterAdvance = 1;
+                    s.atbat.runnerAdvance = 1;
                     [self RunnerAdvancing];
                     break;
                 case 1: /* Double button */
                     [s HitDouble];
-                    //s.BatterAdvance = 2;
+                    s.atbat.runnerAdvance = 2;
                     [self RunnerAdvancing];
                     break;
                 case 2: /* Triple button */
                     [s HitTriple];
-                    //s.BatterAdvance = 3;
+                    s.atbat.runnerAdvance = 3;
                     [self RunnerAdvancing];
                     break;
                 case 3: /* HomeRun button */
+                    s.atbat.runnerAdvance = 4;
                     [s HitHomeRun];
                     break;
                 case 4: /* HitOut button */
@@ -103,7 +106,7 @@
                     break;
                 case 1: /* Score button */
                     [s RunnerScores];
-                    //s.ThirdBaseAdvance = 1;
+                    s.thirdbase.runnerAdvance = 1;
                     [self RunnerAdvancing];
                     break;
                 case 2: /* StayOnBase button */
@@ -121,16 +124,16 @@
                 break;
             case 1: /* Score button */
                 [s RunnerScores];
+                s.secondbase.runnerAdvance = 2;
                 [self RunnerAdvancing];
                 break;
             case 2: /* AdvanceToThird button */
                 [s RunnerToThird];
-                //s.SecondBaseAdvance = 1;
+                s.secondbase.runnerAdvance = 1;
                 [self RunnerAdvancing];
                 break;
             case 3: /* StayOnBase button */
                 [s RunnerStaysOnBase];
-                //s.SecondBaseAdvance = 2;
                 [self RunnerAdvancing];
                 break;
             }
@@ -144,17 +147,17 @@
                 break;
             case 1: /* Score button */
                 [s RunnerScores];
-                //s.FirstBaseAdvance = 3;
+                s.firstbase.runnerAdvance = 3;
                 [self RunnerAdvancing];
                 break;
             case 2: /* AdvanceToThird button */
                 [s RunnerToThird];
-                //s.FirstBaseAdvance = 2;
+                s.firstbase.runnerAdvance = 2;
                 [self RunnerAdvancing];
                 break;
             case 3: /* AdvanceToSecond button */
                 [s RunnerToSecond];
-                //s.FirstBaseAdvance = 1;
+                s.firstbase.runnerAdvance = 1;
                 [self RunnerAdvancing];
                 break;
         }
@@ -181,7 +184,7 @@
         s.thirdbase.base = s.thirdbase.temp;
         s.firstbase.checked = s.secondbase.checked = s.thirdbase.checked = false;
         s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = NULL;
-        s.TypeofHit = s.BatterAdvance = s.FirstBaseAdvance = s.SecondBaseAdvance = s.ThirdBaseAdvance = 0;
+        s.TypeofHit = 0;
         [s BatterHit];
     }
 }
@@ -235,16 +238,6 @@
         actionSheet.tag = 2;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
-    /*
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Runner On Third"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Score", @"Out", nil];
-    actionSheet.tag = 2;
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-     */
 }
 /*--------------------------------------------------------------------------------*/
 -(void) RunnerOnSecondMenu {
@@ -284,19 +277,6 @@
         actionSheet.tag = 3;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
-    
-    
-    
-    /*
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Runner On Second"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Out", @"Advance To Third", @"Score", nil];
-    actionSheet.tag = 3;
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-*/
 }
 /*--------------------------------------------------------------------------------*/
 -(void) RunnerOnFirstMenu {
@@ -336,17 +316,6 @@
         actionSheet.tag = 4;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
-    
-    /*
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Runner On First"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Out", @"Advance To Second", @"Advance To Third", @"Score", nil];
-    actionSheet.tag = 4;
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-     */
 }
 /*--------------------------------------------------------------------------------*/
 -(void)Refresh {
@@ -369,6 +338,29 @@
     NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.secondbase.base.FirstName, s.secondbase.base.LastName, s.secondbase.base.Position, s.secondbase.base.Hits, s.secondbase.base.PlateAppearances, s.secondbase.base.RunsScored, s.secondbase.base.RBI, s.secondbase.base.BattingAverage);
     NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.thirdbase.base.FirstName, s.thirdbase.base.LastName, s.thirdbase.base.Position, s.thirdbase.base.Hits, s.thirdbase.base.PlateAppearances, s.thirdbase.base.RunsScored, s.thirdbase.base.RBI, s.thirdbase.base.BattingAverage);
      
+}
+
+-(void)StartNewGame {
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    s.firstbase = [[Bases alloc] init];
+    s.secondbase = [[Bases alloc] init];
+    s.thirdbase = [[Bases alloc] init];
+    s.atbat = [[Bases alloc] init];
+    
+    s.firstbase.base = s.secondbase.base = s.thirdbase.base = NULL;
+    
+    s.balls = s.strikes = s.outs = s.HomeScore = s.AwayScore = s.HomeTeamLineupIndex = s.AwayTeamLineupIndex = s.TypeofHit = 0;
+    s.isBottomInning = false;
+    s.numInning = 1;
+    s.sideInning = @"Top";
+    
+    [s AwayPlayerLineup];
+    [s HomePlayerLineup];
+    
+    s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
 }
 
 -(void)LoadFromPlist {
@@ -402,7 +394,29 @@
     s.AwayScore = [[temp objectForKey:@"AwayScore"] integerValue];
     s.HomeTeamLineupIndex = [[temp objectForKey:@"HomeTeamLineupIndex"] integerValue];
     s.AwayTeamLineupIndex = [[temp objectForKey:@"AwayTeamLineupIndex"] integerValue];
-
+    /*
+    NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
+    for(NSInteger i=0;i<9;i++){
+        
+        Player *tempPlayer = [HomeTeam objectAtIndex:i];
+        
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        
+        [tempArray addObject:tempPlayer.FirstName];
+        [tempArray addObject:tempPlayer.LastName];
+        [tempArray addObject:tempPlayer.Position];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.PlateAppearances]];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.Hits]];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RunsScored]];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RBI]];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.BattingAverage]];
+        [tempArray addObject:[NSNumber numberWithInt:tempPlayer.HR]];
+        
+        [[homeLineupArray addObject:tempArray];
+    }
+        
+    NSLog(@"home: %@", homeLineupArray);
+     */
 }
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification {

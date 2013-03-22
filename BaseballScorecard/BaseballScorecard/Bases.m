@@ -13,6 +13,7 @@
 @synthesize base;
 @synthesize temp;
 @synthesize checked;
+@synthesize runnerAdvance;
 
 /*
 -(id)initWithName:(Player *)b temp:(Player *)t checked:(bool *)c {
@@ -32,6 +33,7 @@
         base = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
         temp = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
         checked = false;
+        runnerAdvance = 0;
         return self;
     }
     return nil;

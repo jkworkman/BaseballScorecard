@@ -33,42 +33,43 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    //GameDataController* s = [GameDataController sharedInstance];
+    GameDataController* s = [GameDataController sharedInstance];
     
     int x = 160;
     int y = 375;
     [self DrawField:x :y];
-    /*
-    if(s.Batter != 0)
+    
+    if(s.atbat.base != 0)
     {
-        if(s.BatterAdvance == 1)
+        if(s.atbat.runnerAdvance == 1)
             [self DrawSingle:x :y];
-        else if(s.BatterAdvance == 2)
+        else if(s.atbat.runnerAdvance == 2)
             [self DrawDouble:x :y];
-        else if(s.BatterAdvance == 3)
+        else if(s.atbat.runnerAdvance == 3)
             [self DrawTriple:x :y];
-        else
+        else if(s.atbat.runnerAdvance == 4)
             [self DrawHomeRun:x :y];
     }
-    if(s.FirstBase != 0)
+    if(s.firstbase.base != 0)
     {
-        if(s.FirstBaseAdvance == 1)
+        if(s.firstbase.runnerAdvance == 1)
             [self DrawFirstToSecond:x :y];
-        else if(s.FirstBaseAdvance == 2)
+        else if(s.firstbase.runnerAdvance == 2)
             [self DrawFirstToThird:x :y];
-        else
+        else if(s.firstbase.runnerAdvance == 3)
             [self DrawFirstToHome:x :y];
     }
-    if(s.SecondBase != 0)
+    if(s.secondbase.base != 0)
     {
-        if(s.SecondBaseAdvance == 1)
+        if(s.secondbase.runnerAdvance == 1)
             [self DrawSecondToThird:x :y];
-        else
+        else if(s.secondbase.runnerAdvance == 2)
             [self DrawSecondToHome:x :y];
     }
-    if(s.ThirdBase != 0)
+    if(s.thirdbase.base != 0)
+        if(s.thirdbase.runnerAdvance == 1)
         [self DrawThirdToHome:x :y];
-    */
+    
     /*
     [self DrawHomeRun:x :y];
     [self DrawSingle:x :y];

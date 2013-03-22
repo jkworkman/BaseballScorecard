@@ -33,7 +33,8 @@
 -(void)RunnerOnThirdMenu;
 
 -(void)Refresh;
--(void) CallLog;
+-(void)CallLog;
+-(void)StartNewGame;
 
 -(void)LoadFromPlist;
 

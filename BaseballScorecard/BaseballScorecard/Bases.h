@@ -14,6 +14,7 @@
 @property (nonatomic) Player *base;
 @property (nonatomic) Player *temp;
 @property (nonatomic) bool checked;
+@property (nonatomic) NSInteger runnerAdvance;
 
 //-(id)initWithName:(Player *)b temp:(Player *)t checked:(bool *)c;
  
