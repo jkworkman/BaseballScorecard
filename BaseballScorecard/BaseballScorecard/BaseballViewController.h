@@ -14,28 +14,7 @@
 
 @interface BaseballViewController : UIViewController <UIActionSheetDelegate>
 
-- (IBAction)ThrowPitch:(id)sender;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *PitchedBallLabel;
-@property (weak, nonatomic) IBOutlet UILabel *NumInningLabel;
-@property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
-
-
-
--(void)RunnerAdvancing;
-
--(void)ShowPitchCountMenu;
--(void)ShowHitMenu;
--(void)RunnerOnFirstMenu;
--(void)RunnerOnSecondMenu;
--(void)RunnerOnThirdMenu;
-
--(void)Refresh;
--(void)CallLog;
 -(void)StartNewGame;
-
 -(void)LoadFromPlist;
 
 @end

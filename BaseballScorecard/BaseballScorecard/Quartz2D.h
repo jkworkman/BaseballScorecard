@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Quartz2D : UIView
+@interface Quartz2D : UIView <UIActionSheetDelegate>
 
--(void)redraw;
+- (IBAction)Pitch:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PitchCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *InningLabel;
+
+
 
 -(void)DrawField:(int)x :(int)y;
 -(void)DrawHomeRun:(int)x :(int)y;

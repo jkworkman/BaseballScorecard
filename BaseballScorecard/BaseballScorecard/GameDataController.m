@@ -181,7 +181,7 @@ static GameDataController *sharedInstance = nil;
     else
         HomeScore += x;
     
-    firstbase.base = secondbase.base = thirdbase.base = NULL;
+    firstbase.base = secondbase.base = thirdbase.base = firstbase.temp = secondbase.temp = thirdbase.temp = NULL;
     balls = strikes = 0;
     [self BatterHit];
     

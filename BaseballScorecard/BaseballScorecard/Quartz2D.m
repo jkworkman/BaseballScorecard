@@ -15,6 +15,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 @implementation Quartz2D
 
+@synthesize HomeScoreLabel;
+@synthesize AwayScoreLabel;
+@synthesize PitchCountLabel;
+@synthesize InningLabel;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -23,11 +28,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     return self;
 }
-
--(void)redraw {
-    [self setNeedsDisplay];
-}
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -39,50 +39,314 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     int y = 375;
     [self DrawField:x :y];
     
-    if(s.atbat.base != 0)
-    {
-        if(s.atbat.runnerAdvance == 1)
-            [self DrawSingle:x :y];
-        else if(s.atbat.runnerAdvance == 2)
-            [self DrawDouble:x :y];
-        else if(s.atbat.runnerAdvance == 3)
-            [self DrawTriple:x :y];
-        else if(s.atbat.runnerAdvance == 4)
-            [self DrawHomeRun:x :y];
-    }
-    if(s.firstbase.base != 0)
-    {
-        if(s.firstbase.runnerAdvance == 1)
-            [self DrawFirstToSecond:x :y];
-        else if(s.firstbase.runnerAdvance == 2)
-            [self DrawFirstToThird:x :y];
-        else if(s.firstbase.runnerAdvance == 3)
-            [self DrawFirstToHome:x :y];
-    }
-    if(s.secondbase.base != 0)
-    {
-        if(s.secondbase.runnerAdvance == 1)
-            [self DrawSecondToThird:x :y];
-        else if(s.secondbase.runnerAdvance == 2)
-            [self DrawSecondToHome:x :y];
-    }
-    if(s.thirdbase.base != 0)
-        if(s.thirdbase.runnerAdvance == 1)
+    if(s.atbat.runnerAdvance == 1)
+        [self DrawSingle:x :y];
+    else if(s.atbat.runnerAdvance == 2)
+        [self DrawDouble:x :y];
+    else if(s.atbat.runnerAdvance == 3)
+        [self DrawTriple:x :y];
+    else if(s.atbat.runnerAdvance == 4)
+        [self DrawHomeRun:x :y];
+
+    if(s.firstbase.runnerAdvance == 1)
+        [self DrawFirstToSecond:x :y];
+    else if(s.firstbase.runnerAdvance == 2)
+        [self DrawFirstToThird:x :y];
+    else if(s.firstbase.runnerAdvance == 3)
+        [self DrawFirstToHome:x :y];
+
+    if(s.secondbase.runnerAdvance == 1)
+        [self DrawSecondToThird:x :y];
+    else if(s.secondbase.runnerAdvance == 2)
+        [self DrawSecondToHome:x :y];
+
+    if(s.thirdbase.runnerAdvance == 1)
         [self DrawThirdToHome:x :y];
     
-    /*
-    [self DrawHomeRun:x :y];
-    [self DrawSingle:x :y];
-    [self DrawDouble:x :y];
-    [self DrawTriple:x :y];
-    [self DrawFirstToHome:x :y];
-    [self DrawFirstToThird:x :y];
-    [self DrawFirstToSecond:x :y];
-    [self DrawSecondToHome:x :y];
-    [self DrawSecondToThird:x :y];
-    [self DrawThirdToHome:x :y];
-     */
+    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    switch ( actionSheet.tag )
+    {
+        case 0: /* MainMenuActionSheet */
+        {
+            switch ( buttonIndex )
+            {
+                case 0: /* Ball button*/
+                    [s PitchedBall];
+                    break;
+                case 1: /* Strike button */
+                    [s PitchedStrike];
+                    break;
+                case 2: /* Hit button */
+                    [self ShowHitMenu];
+                    break;
+            }
+        }
+            break;
+        case 1: /* SubMenuActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* Single button*/
+                s.atbat.runnerAdvance = 1;
+                [s HitSingle];
+                [self RunnerAdvancing];
+                break;
+            case 1: /* Double button */
+                s.atbat.runnerAdvance = 2;
+                [s HitDouble];
+                [self RunnerAdvancing];
+                break;
+            case 2: /* Triple button */
+                s.atbat.runnerAdvance = 3;
+                [s HitTriple];
+                [self RunnerAdvancing];
+                break;
+            case 3: /* HomeRun button */
+                if(s.thirdbase.base != NULL)
+                    s.thirdbase.runnerAdvance = 1;
+                if(s.secondbase.base != NULL)
+                    s.secondbase.runnerAdvance = 2;
+                if(s.firstbase.base != NULL)
+                    s.firstbase.runnerAdvance = 3;
+                s.atbat.runnerAdvance = 4;
+                [self setNeedsDisplay];
+                [s HitHomeRun];
+                break;
+            case 4: /* HitOut button */
+                [s HitOut];
+                break;
+        }
+            break;
+        case 2: /* RunnerOnThirdActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* Out button*/
+                [s RunnerOut];
+                [self RunnerAdvancing];
+                break;
+            case 1: /* Score button */
+                s.thirdbase.runnerAdvance = 1;
+                [s RunnerScores];
+                [self RunnerAdvancing];
+                break;
+            case 2: /* StayOnBase button */
+                [s RunnerStaysOnBase];
+                [self RunnerAdvancing];
+                break;
+        }
+            break;
+        case 3: /* RunnerOnSecondActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* Out button*/
+                [s RunnerOut];
+                [self RunnerAdvancing];
+                break;
+            case 1: /* Score button */
+                s.secondbase.runnerAdvance = 2;
+                [s RunnerScores];
+                [self RunnerAdvancing];
+                break;
+            case 2: /* AdvanceToThird button */
+                s.secondbase.runnerAdvance = 1;
+                [s RunnerToThird];
+                [self RunnerAdvancing];
+                break;
+            case 3: /* StayOnBase button */
+                [s RunnerStaysOnBase];
+                [self RunnerAdvancing];
+                break;
+        }
+            break;
+        case 4: /* RunnerOnFirstActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* Out button*/
+                [s RunnerOut];
+                [self RunnerAdvancing];
+                break;
+            case 1: /* Score button */
+                s.firstbase.runnerAdvance = 3;
+                [s RunnerScores];
+                [self RunnerAdvancing];
+                break;
+            case 2: /* AdvanceToThird button */
+                s.firstbase.runnerAdvance = 2;
+                [s RunnerToThird];
+                [self RunnerAdvancing];
+                break;
+            case 3: /* AdvanceToSecond button */
+                s.firstbase.runnerAdvance = 1;
+                [s RunnerToSecond];
+                [self RunnerAdvancing];
+                break;
+        }
+            break;
+    }
+}
+/*--------------------------------------------------------------------------------*/
+-(void)RunnerAdvancing {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.firstbase.base != NULL && s.firstbase.checked == false)
+        [self RunnerOnFirstMenu];
+    else if(s.secondbase.base != NULL && s.secondbase.checked == false)
+        [self RunnerOnSecondMenu];
+    else if(s.thirdbase.base != NULL && s.thirdbase.checked == false)
+        [self RunnerOnThirdMenu];
+    else
+    {
+        [self setNeedsDisplay];
+        s.firstbase.base = s.firstbase.temp;
+        s.secondbase.base = s.secondbase.temp;
+        s.thirdbase.base = s.thirdbase.temp;
+        s.firstbase.checked = s.secondbase.checked = s.thirdbase.checked = false;
+        s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = NULL;
+        s.TypeofHit = 0;
+        [s BatterHit];
+        
+        [self UpdateLabels];
+        [self Log];
+    }
+}
+/*--------------------------------------------------------------------------------*/
+-(void)ShowPitchCountMenu {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"Main Menu"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Ball", @"Strike", @"Hit", nil];
+    actionSheet.tag = 0;
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+/*--------------------------------------------------------------------------------*/
+-(void)ShowHitMenu {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"Sub Menu"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Single", @"Double", @"Triple", @"Home Run", @"Out", nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+}
+/*--------------------------------------------------------------------------------*/
+-(void)RunnerOnThirdMenu {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.TypeofHit != 3 && s.thirdbase.temp == 0)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On Third"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"StayOnBase", nil];
+        actionSheet.tag = 2;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On Third"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", nil];
+        actionSheet.tag = 2;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+/*--------------------------------------------------------------------------------*/
+-(void) RunnerOnSecondMenu {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.TypeofHit == 1 && s.secondbase.temp == NULL && s.thirdbase.temp == NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On Second"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", @"StayOnBase", nil];
+        actionSheet.tag = 3;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.TypeofHit != 3 && s.thirdbase.temp == NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On Second"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", nil];
+        actionSheet.tag = 3;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On Second"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", nil];
+        actionSheet.tag = 3;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+/*--------------------------------------------------------------------------------*/
+-(void) RunnerOnFirstMenu {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.TypeofHit == 1)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On First"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", @"AdvanceToSecond", nil];
+        actionSheet.tag = 4;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.TypeofHit == 2)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On First"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", nil];
+        actionSheet.tag = 4;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On First"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", nil];
+        actionSheet.tag = 4;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+
+
+
 
 -(void)DrawHomeRun:(int)x :(int)y {
     
@@ -592,6 +856,39 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
     [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
     
+}
+
+
+- (IBAction)Pitch:(id)sender {
+    
+    [self ShowPitchCountMenu];
+}
+
+-(void)Log {
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    NSLog(@"B:%d, S:%d, O:%d, Hscore:%d, Ascore:%d, NumInning:%d, SideInning:%@, IsBottomInning:%d, Hindex:%d, Aindex:%d", s.balls, s.strikes, s.outs, s.HomeScore, s.AwayScore, s.numInning, s.sideInning, s.isBottomInning, s.HomeTeamLineupIndex, s.AwayTeamLineupIndex);
+    
+    
+    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %.3f", s.balls, s.strikes, s.outs, s.atbat.base.FirstName, s.atbat.base.LastName, s.atbat.base.Position, s.atbat.base.Hits, s.atbat.base.PlateAppearances, s.atbat.base.RunsScored, s.atbat.base.RBI, s.atbat.base.BattingAverage);
+    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.firstbase.base.FirstName, s.firstbase.base.LastName, s.firstbase.base.Position, s.firstbase.base.Hits, s.firstbase.base.PlateAppearances, s.firstbase.base.RunsScored, s.firstbase.base.RBI, s.firstbase.base.BattingAverage);
+    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.secondbase.base.FirstName, s.secondbase.base.LastName, s.secondbase.base.Position, s.secondbase.base.Hits, s.secondbase.base.PlateAppearances, s.secondbase.base.RunsScored, s.secondbase.base.RBI, s.secondbase.base.BattingAverage);
+    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.thirdbase.base.FirstName, s.thirdbase.base.LastName, s.thirdbase.base.Position, s.thirdbase.base.Hits, s.thirdbase.base.PlateAppearances, s.thirdbase.base.RunsScored, s.thirdbase.base.RBI, s.thirdbase.base.BattingAverage);
+}
+
+-(void)UpdateLabels {
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    PitchCountLabel.text = [NSString stringWithFormat:@"Balls: %@ Strikes: %@ Outs: %@", Convert(s.balls), Convert(s.strikes), Convert(s.outs)];
+    HomeScoreLabel.text = [NSString stringWithFormat:@"Home: %@",Convert(s.HomeScore)];
+    AwayScoreLabel.text = [NSString stringWithFormat:@"Away: %@",Convert(s.AwayScore)];
+    InningLabel.text = [NSString stringWithFormat:@"%@ %@", s.sideInning, Convert(s.numInning)];
+}
+
+NSString *Convert(int p)
+{
+    NSString *greeting = [[NSString alloc] initWithFormat:@"%d", p];
+    return greeting;
 }
 
 -(void)DrawField:(int)x :(int)y {
