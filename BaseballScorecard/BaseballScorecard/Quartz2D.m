@@ -33,6 +33,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    for (UIView *subview in [self subviews]) {
+        if (subview.tag == 1) {
+            [subview removeFromSuperview];
+        }
+    }
     GameDataController* s = [GameDataController sharedInstance];
     
     int x = 160;
@@ -64,6 +69,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawThirdToHome:x :y];
     
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
+
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -346,12 +352,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 
-
-
 -(void)DrawHomeRun:(int)x :(int)y {
     
     //Prepare the animation - we use keyframe animation for animations of this complexity
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    
     //Set some variables on the animation
     pathAnimation.calculationMode = kCAAnimationPaced;
     //We want the animation to persist - not so important in this case - but kept for clarity
@@ -360,6 +365,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
     pathAnimation.duration = 4.0;
+     
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -375,7 +381,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //Now we have the path, we tell the animation we want to use this path - then we release the path
     pathAnimation.path = curvedPath;
     CGPathRelease(curvedPath);
-
+    
     //We will now draw a circle at the start of the path which we will animate to follow the path
     //We use the same technique as before to draw to a bitmap context and then eventually create
     //a UIImageView which we add to our view
@@ -392,12 +398,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     UIGraphicsEndImageContext();
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
+    circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
     [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
-     
 }
 
 -(void)DrawSingle:(int)x :(int)y {
@@ -445,6 +452,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -497,6 +505,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -549,6 +558,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -600,6 +610,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -651,6 +662,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -702,6 +714,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -752,6 +765,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -802,6 +816,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -851,6 +866,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
     circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
@@ -858,9 +874,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
 }
 
-
 - (IBAction)Pitch:(id)sender {
-    
     [self ShowPitchCountMenu];
 }
 
