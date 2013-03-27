@@ -59,14 +59,20 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawFirstToThird:x :y];
     else if(s.firstbase.runnerAdvance == 3)
         [self DrawFirstToHome:x :y];
+    else if(s.firstbase.runnerAdvance == 5)
+        [self DrawStayOnFirst:x :y];
 
     if(s.secondbase.runnerAdvance == 1)
         [self DrawSecondToThird:x :y];
     else if(s.secondbase.runnerAdvance == 2)
         [self DrawSecondToHome:x :y];
+    else if(s.secondbase.runnerAdvance == 5)
+        [self DrawStayOnSecond:x :y];
 
     if(s.thirdbase.runnerAdvance == 1)
         [self DrawThirdToHome:x :y];
+    else if(s.thirdbase.runnerAdvance == 5)
+        [self DrawStayOnThird:x :y];
     
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
 
@@ -84,9 +90,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             {
                 case 0: /* Ball button*/
                     [s PitchedBall];
+                    [self UpdateLabels];
+                    [self Log];
                     break;
                 case 1: /* Strike button */
                     [s PitchedStrike];
+                    [self UpdateLabels];
+                    [self Log];
                     break;
                 case 2: /* Hit button */
                     [self ShowHitMenu];
@@ -125,6 +135,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 break;
             case 4: /* HitOut button */
                 [s HitOut];
+                [self RunnerAdvancing];
                 break;
         }
             break;
@@ -141,6 +152,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 [self RunnerAdvancing];
                 break;
             case 2: /* StayOnBase button */
+                s.thirdbase.runnerAdvance = 5;
                 [s RunnerStaysOnBase];
                 [self RunnerAdvancing];
                 break;
@@ -164,6 +176,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 [self RunnerAdvancing];
                 break;
             case 3: /* StayOnBase button */
+                s.secondbase.runnerAdvance = 5;
                 [s RunnerStaysOnBase];
                 [self RunnerAdvancing];
                 break;
@@ -191,6 +204,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 [s RunnerToSecond];
                 [self RunnerAdvancing];
                 break;
+            case 4: /* StayOnBase button */
+                s.firstbase.runnerAdvance = 5;
+                [s RunnerStaysOnBase];
+                [self RunnerAdvancing];
+                break;
         }
             break;
     }
@@ -214,9 +232,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         s.thirdbase.base = s.thirdbase.temp;
         s.firstbase.checked = s.secondbase.checked = s.thirdbase.checked = false;
         s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = NULL;
+        if(s.TypeofHit != 5)
+            [s BatterHit];
         s.TypeofHit = 0;
-        [s BatterHit];
-        
         [self UpdateLabels];
         [self Log];
     }
@@ -224,18 +242,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 /*--------------------------------------------------------------------------------*/
 -(void)ShowPitchCountMenu {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Main Menu"
+                                  initWithTitle:@"Pitch Menu"
                                   delegate:self
                                   cancelButtonTitle:@"Cancel"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Ball", @"Strike", @"Hit", nil];
+                                  otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", nil];
     actionSheet.tag = 0;
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 /*--------------------------------------------------------------------------------*/
 -(void)ShowHitMenu {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Sub Menu"
+                                  initWithTitle:@"Ball in Play"
                                   delegate:self
                                   cancelButtonTitle:@"Cancel"
                                   destructiveButtonTitle:nil
@@ -249,14 +267,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit != 3 && s.thirdbase.temp == 0)
+    if(s.TypeofHit != 3 && s.thirdbase.temp == 0 && s.firstbase.runnerAdvance != 3 && s.secondbase.runnerAdvance != 2)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Third"
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Out", @"Score", @"StayOnBase", nil];
+                                      otherButtonTitles:@"Out", @"Score", @"Stay On Base", nil];
         actionSheet.tag = 2;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -277,25 +295,25 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit == 1 && s.secondbase.temp == NULL && s.thirdbase.temp == NULL)
+    if(s.TypeofHit == 1 && s.secondbase.temp == NULL && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", @"StayOnBase", nil];
+                                      otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Stay On Base", nil];
         actionSheet.tag = 3;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
-    else if(s.TypeofHit != 3 && s.thirdbase.temp == NULL)
+    else if(s.TypeofHit != 3 && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", nil];
+                                      otherButtonTitles:@"Out", @"Score", @"Advance To Third", nil];
         actionSheet.tag = 3;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -316,14 +334,25 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit == 1)
+    if(s.TypeofHit == 5)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On First"
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", @"AdvanceToSecond", nil];
+                                      otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Advance To Second", @"Stay On Base", nil];
+        actionSheet.tag = 4;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.TypeofHit == 1)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runner On First"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Advance To Second", nil];
         actionSheet.tag = 4;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -334,7 +363,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Out", @"Score", @"AdvanceToThird", nil];
+                                      otherButtonTitles:@"Out", @"Score", @"Advance To Third", nil];
         actionSheet.tag = 4;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -354,6 +383,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 -(void)DrawHomeRun:(int)x :(int)y {
     
+    
     //Prepare the animation - we use keyframe animation for animations of this complexity
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     
@@ -363,8 +393,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //If we animated something from left to right - and we wanted it to stay in the new position,
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
-    pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 4.0;
+    pathAnimation.removedOnCompletion = YES;
      
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
@@ -576,7 +605,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //If we animated something from left to right - and we wanted it to stay in the new position,
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
-    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.removedOnCompletion = YES;
     pathAnimation.duration = 3.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
@@ -732,7 +761,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //If we animated something from left to right - and we wanted it to stay in the new position,
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
-    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.removedOnCompletion = YES;
     pathAnimation.duration = 2.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
@@ -834,7 +863,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //If we animated something from left to right - and we wanted it to stay in the new position,
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
-    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.removedOnCompletion = YES;
     pathAnimation.duration = 1.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
@@ -872,6 +901,156 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
     [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
     
+}
+
+-(void)DrawStayOnFirst:(int)x :(int)y {
+    //Prepare the animation - we use keyframe animation for animations of this complexity
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //Set some variables on the animation
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    //We want the animation to persist - not so important in this case - but kept for clarity
+    //If we animated something from left to right - and we wanted it to stay in the new position,
+    //then we would need these parameters
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.duration = .1;
+    //Lets loop continuously for the demonstration
+    //pathAnimation.repeatCount = 1000;
+    
+    //Setup the path for the animation - this is very similar as the code the draw the line
+    //instead of drawing to the graphics context, instead we draw lines on a CGPathRef
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPathMoveToPoint(curvedPath, NULL, x+100, y-123);
+    
+    CGPathAddLineToPoint(curvedPath, NULL, x+100, y-124);
+    //CGPathAddLineToPoint(curvedPath, NULL, x-100, y-124);
+    //CGPathAddLineToPoint(curvedPath, NULL, x, y-20);
+    //Now we have the path, we tell the animation we want to use this path - then we release the path
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    
+    //We will now draw a circle at the start of the path which we will animate to follow the path
+    //We use the same technique as before to draw to a bitmap context and then eventually create
+    //a UIImageView which we add to our view
+    UIGraphicsBeginImageContext(CGSizeMake(25,25));
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    //Set context variables
+    CGContextSetLineWidth(ctx, 1.5);
+    CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    //Draw a circle - and paint it with a different outline (white) and fill color (green)
+    CGContextAddEllipseInRect(ctx, CGRectMake(1, 1, 22, 22));
+    CGContextDrawPath(ctx, kCGPathFillStroke);
+    UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
+    circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
+    [self addSubview:circleView];
+    
+    //Add the animation to the circleView - once you add the animation to the layer, the animation starts
+    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+}
+
+-(void)DrawStayOnSecond:(int)x :(int)y {
+    //Prepare the animation - we use keyframe animation for animations of this complexity
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //Set some variables on the animation
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    //We want the animation to persist - not so important in this case - but kept for clarity
+    //If we animated something from left to right - and we wanted it to stay in the new position,
+    //then we would need these parameters
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.duration = .1;
+    //Lets loop continuously for the demonstration
+    //pathAnimation.repeatCount = 1000;
+    
+    //Setup the path for the animation - this is very similar as the code the draw the line
+    //instead of drawing to the graphics context, instead we draw lines on a CGPathRef
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPathMoveToPoint(curvedPath, NULL, x, y-227);
+    
+    CGPathAddLineToPoint(curvedPath, NULL, x, y-228);
+    //CGPathAddLineToPoint(curvedPath, NULL, x-100, y-124);
+    //CGPathAddLineToPoint(curvedPath, NULL, x, y-20);
+    //Now we have the path, we tell the animation we want to use this path - then we release the path
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    
+    //We will now draw a circle at the start of the path which we will animate to follow the path
+    //We use the same technique as before to draw to a bitmap context and then eventually create
+    //a UIImageView which we add to our view
+    UIGraphicsBeginImageContext(CGSizeMake(25,25));
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    //Set context variables
+    CGContextSetLineWidth(ctx, 1.5);
+    CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    //Draw a circle - and paint it with a different outline (white) and fill color (green)
+    CGContextAddEllipseInRect(ctx, CGRectMake(1, 1, 22, 22));
+    CGContextDrawPath(ctx, kCGPathFillStroke);
+    UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
+    circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
+    [self addSubview:circleView];
+    
+    //Add the animation to the circleView - once you add the animation to the layer, the animation starts
+    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+}
+
+-(void)DrawStayOnThird:(int)x :(int)y {
+    //Prepare the animation - we use keyframe animation for animations of this complexity
+    CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //Set some variables on the animation
+    pathAnimation.calculationMode = kCAAnimationPaced;
+    //We want the animation to persist - not so important in this case - but kept for clarity
+    //If we animated something from left to right - and we wanted it to stay in the new position,
+    //then we would need these parameters
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    pathAnimation.duration = .1;
+    //Lets loop continuously for the demonstration
+    //pathAnimation.repeatCount = 1000;
+    
+    //Setup the path for the animation - this is very similar as the code the draw the line
+    //instead of drawing to the graphics context, instead we draw lines on a CGPathRef
+    CGMutablePathRef curvedPath = CGPathCreateMutable();
+    CGPathMoveToPoint(curvedPath, NULL, x-100, y-123);
+    
+    CGPathAddLineToPoint(curvedPath, NULL, x-100, y-124);
+    //CGPathAddLineToPoint(curvedPath, NULL, x-100, y-124);
+    //CGPathAddLineToPoint(curvedPath, NULL, x, y-20);
+    //Now we have the path, we tell the animation we want to use this path - then we release the path
+    pathAnimation.path = curvedPath;
+    CGPathRelease(curvedPath);
+    
+    //We will now draw a circle at the start of the path which we will animate to follow the path
+    //We use the same technique as before to draw to a bitmap context and then eventually create
+    //a UIImageView which we add to our view
+    UIGraphicsBeginImageContext(CGSizeMake(25,25));
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    //Set context variables
+    CGContextSetLineWidth(ctx, 1.5);
+    CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    //Draw a circle - and paint it with a different outline (white) and fill color (green)
+    CGContextAddEllipseInRect(ctx, CGRectMake(1, 1, 22, 22));
+    CGContextDrawPath(ctx, kCGPathFillStroke);
+    UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
+    circleView.frame = CGRectMake(1, 1, 27, 27);
+    circleView.tag = 1;
+    [self addSubview:circleView];
+    
+    //Add the animation to the circleView - once you add the animation to the layer, the animation starts
+    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
 }
 
 - (IBAction)Pitch:(id)sender {

@@ -188,6 +188,7 @@ static GameDataController *sharedInstance = nil;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitOut {
+    TypeofHit = 5;
     strikes = 0;
     balls = 0;
     outs += 1;
@@ -210,8 +211,6 @@ static GameDataController *sharedInstance = nil;
         }
         firstbase.base = secondbase.base = thirdbase.base = NULL;
     }
-    else
-        [self BatterHit];
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerScores {
@@ -294,6 +293,11 @@ static GameDataController *sharedInstance = nil;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)RunnerStaysOnBase {
+    if(firstbase.base != NULL && firstbase.checked == false)
+    {
+        firstbase.temp = firstbase.base;
+        firstbase.checked = true;
+    }
     if(secondbase.base != NULL && secondbase.checked == false)
     {
         secondbase.temp = secondbase.base;
