@@ -14,6 +14,8 @@
 
 @interface BaseballViewController : UIViewController <UIActionSheetDelegate>
 
+- (IBAction)HomeButton:(id)sender;
+
 -(void)StartNewGame;
 -(void)LoadFromPlist;
 

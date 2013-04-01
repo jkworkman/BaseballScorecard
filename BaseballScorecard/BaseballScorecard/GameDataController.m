@@ -95,10 +95,13 @@ static GameDataController *sharedInstance = nil;
             if(thirdbase.base != NULL)
                 HomeScore += 1;
         }
+        
         thirdbase.base = secondbase.base;
         secondbase.base = firstbase.base;
         firstbase.base = atbat.base;
+         
         [self BatterHit];
+         
     }
 }
 /*--------------------------------------------------------------------------------*/
@@ -114,7 +117,6 @@ static GameDataController *sharedInstance = nil;
     }
     if(outs == 3)
     {
-        outs = 0;
         if(isBottomInning)
         {
             sideInning = @"Top";

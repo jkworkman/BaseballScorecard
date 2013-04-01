@@ -24,7 +24,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        [self setNeedsDisplay];
     }
     return self;
 }
@@ -75,6 +75,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawStayOnThird:x :y];
     
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
+    //[self UpdateLabels];
 
 }
 
@@ -89,14 +90,56 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             switch ( buttonIndex )
             {
                 case 0: /* Ball button*/
-                    [s PitchedBall];
+                    s.balls += 1;
+                    if(s.balls == 4)
+                    {
+                        if(s.thirdbase.base != NULL)
+                            s.thirdbase.runnerAdvance = 1;
+                        if(s.secondbase.base != NULL)
+                            s.secondbase.runnerAdvance = 1;
+                        if(s.firstbase.base != NULL)
+                            s.firstbase.runnerAdvance = 1;
+                        s.atbat.runnerAdvance = 1;
+                        s.balls = 0;
+                        s.strikes = 0;
+                        if(!s.isBottomInning)
+                        {
+                            if(s.thirdbase.base != NULL)
+                                s.AwayScore += 1;
+                        }
+                        else
+                        {
+                            if(s.thirdbase.base != NULL)
+                                s.HomeScore += 1;
+                        }
+                        
+                        s.thirdbase.base = s.secondbase.base;
+                        s.secondbase.base = s.firstbase.base;
+                        s.firstbase.base = s.atbat.base;
+                        
+                        [s BatterHit];
+                        [self setNeedsDisplay];
+                    }
                     [self UpdateLabels];
                     [self Log];
+                    if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                    {
+                        [self GameEnded];
+                    }
                     break;
                 case 1: /* Strike button */
                     [s PitchedStrike];
+                    if(s.outs == 3)
+                    {
+                        [self setNeedsDisplay];
+                        s.outs = 0;
+                    }
                     [self UpdateLabels];
                     [self Log];
+                    if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                    {
+                        [self GameEnded];
+                    }
                     break;
                 case 2: /* Hit button */
                     [self ShowHitMenu];
@@ -132,6 +175,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 s.atbat.runnerAdvance = 4;
                 [self setNeedsDisplay];
                 [s HitHomeRun];
+                if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                {
+                    [self GameEnded];
+                }
                 break;
             case 4: /* HitOut button */
                 [s HitOut];
@@ -217,7 +264,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void)RunnerAdvancing {
     
     GameDataController* s = [GameDataController sharedInstance];
-    
+
     if(s.firstbase.base != NULL && s.firstbase.checked == false)
         [self RunnerOnFirstMenu];
     else if(s.secondbase.base != NULL && s.secondbase.checked == false)
@@ -237,6 +284,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         s.TypeofHit = 0;
         [self UpdateLabels];
         [self Log];
+        if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+        {
+            [self GameEnded];
+        }
     }
 }
 /*--------------------------------------------------------------------------------*/
@@ -1142,6 +1193,8 @@ NSString *Convert(int p)
     CGContextDrawPath(context, kCGPathEOFillStroke);
 }
 
-
+-(void)GameEnded {
+    
+}
 
 @end

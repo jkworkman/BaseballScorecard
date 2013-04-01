@@ -11,6 +11,7 @@
 @interface Quartz2D : UIView <UIActionSheetDelegate>
 
 - (IBAction)Pitch:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitchCountLabel;
@@ -30,5 +31,6 @@
 -(void)DrawSecondToThird:(int)x :(int)y;
 -(void)DrawThirdToHome:(int)x :(int)y;
 
+-(void)UpdateLabels;
 
 @end

@@ -9,6 +9,7 @@
 #import "BaseballViewController.h"
 #import "GameDataController.h"
 #import "Quartz2D.h"
+#import "MainMenuViewController.h"
 
 @implementation BaseballViewController
 
@@ -23,10 +24,15 @@
 /*--------------------------------------------------------------------------------*/
 - (void)viewDidLoad
 {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self StartNewGame];
+    if(s.GameInProgress == false)
+        [self StartNewGame];
+    
     /*
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
@@ -42,6 +48,10 @@
 }
 /*--------------------------------------------------------------------------------*/
 
+
+- (IBAction)HomeButton:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 -(void)StartNewGame {
     GameDataController* s = [GameDataController sharedInstance];

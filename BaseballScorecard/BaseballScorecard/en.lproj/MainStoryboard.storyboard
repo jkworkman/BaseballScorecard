@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hSa-HU-7y2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uY5-4J-WrZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -48,15 +48,30 @@
                                     <action selector="Pitch:" destination="3" eventType="touchUpInside" id="80v-QN-K7h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyK-6w-AX2">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="HomeButton:" destination="2" eventType="touchUpInside" id="1l9-5b-CSz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="YwY-EL-OV8" secondAttribute="bottom" constant="50" id="SF0-kx-C5f"/>
+                            <constraint firstItem="gyK-6w-AX2" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="3HC-60-WgT"/>
+                            <constraint firstItem="gyK-6w-AX2" firstAttribute="baseline" secondItem="YwY-EL-OV8" secondAttribute="baseline" type="default" id="4g5-R5-auS"/>
+                            <constraint firstAttribute="bottom" secondItem="gyK-6w-AX2" secondAttribute="bottom" constant="50" id="I9t-us-jtS"/>
                             <constraint firstItem="ELG-hE-WP2" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="SFP-MN-HM8"/>
                             <constraint firstAttribute="trailing" secondItem="jyF-oG-qIU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="WOj-NV-9eg"/>
                             <constraint firstItem="6Oc-lN-Vnk" firstAttribute="centerX" secondItem="hqg-SV-gvv" secondAttribute="centerX" type="default" id="evu-SH-KBf"/>
                             <constraint firstItem="ELG-hE-WP2" firstAttribute="top" secondItem="3" secondAttribute="top" constant="13" id="hID-I6-lik"/>
-                            <constraint firstItem="YwY-EL-OV8" firstAttribute="centerX" secondItem="jyF-oG-qIU" secondAttribute="centerX" type="default" id="jB8-M4-Vbw"/>
+                            <constraint firstAttribute="trailing" secondItem="YwY-EL-OV8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="moU-9t-kxA"/>
                             <constraint firstItem="hqg-SV-gvv" firstAttribute="top" secondItem="6Oc-lN-Vnk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="r0F-lG-ciz"/>
                             <constraint firstItem="6Oc-lN-Vnk" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="xdJ-2a-JVL"/>
                             <constraint firstItem="6Oc-lN-Vnk" firstAttribute="baseline" secondItem="jyF-oG-qIU" secondAttribute="baseline" type="default" id="yF1-6e-09f"/>
@@ -76,15 +91,15 @@
             </objects>
             <point key="canvasLocation" x="-605" y="-247"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="1uy-fJ-YgG">
             <objects>
-                <viewController id="84k-gm-0ae" sceneMemberID="viewController">
+                <viewController id="84k-gm-0ae" customClass="MainMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qW2-Jg-sxc">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46b-d0-TIn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lr3-iz-0dc">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="New Game">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,10 +108,14 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="MainMenuButton:" destination="84k-gm-0ae" eventType="touchUpInside" id="vwL-9s-Zw6"/>
+                                    <segue destination="hSa-HU-7y2" kind="modal" id="Ihh-Yw-IEM"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doa-ll-0di">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3x-C6-oWl">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Box Scores">
+                                <state key="normal" title="Box Score">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -104,19 +123,38 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xgc-Eh-PEz" kind="push" id="zBh-2m-o5U"/>
+                                    <segue destination="xgc-Eh-PEz" kind="push" id="aaO-lh-PFg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5s-Pz-oHy">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Resume Game">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ResumeGameButton:" destination="84k-gm-0ae" eventType="touchUpInside" id="dFD-bq-Euf"/>
+                                    <segue destination="hSa-HU-7y2" kind="modal" id="jM1-ma-BZ1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="46b-d0-TIn" firstAttribute="trailing" secondItem="doa-ll-0di" secondAttribute="trailing" type="default" id="QPx-rA-eLt"/>
-                            <constraint firstItem="46b-d0-TIn" firstAttribute="top" secondItem="qW2-Jg-sxc" secondAttribute="top" constant="164" id="UQQ-YL-Qv2"/>
-                            <constraint firstItem="doa-ll-0di" firstAttribute="centerX" secondItem="qW2-Jg-sxc" secondAttribute="centerX" type="default" id="fsm-Op-Eul"/>
-                            <constraint firstAttribute="bottom" secondItem="doa-ll-0di" secondAttribute="bottom" constant="128" id="sZX-hO-Dz6"/>
+                            <constraint firstItem="G5s-Pz-oHy" firstAttribute="centerX" secondItem="qW2-Jg-sxc" secondAttribute="centerX" type="default" id="5d8-g0-tw9"/>
+                            <constraint firstItem="x3x-C6-oWl" firstAttribute="centerX" secondItem="lr3-iz-0dc" secondAttribute="centerX" type="default" id="BGP-SY-s7N"/>
+                            <constraint firstAttribute="bottom" secondItem="x3x-C6-oWl" secondAttribute="bottom" constant="116" id="Rfo-99-ApR"/>
+                            <constraint firstItem="lr3-iz-0dc" firstAttribute="top" secondItem="qW2-Jg-sxc" secondAttribute="top" constant="144" id="i4f-SQ-fPd"/>
+                            <constraint firstItem="lr3-iz-0dc" firstAttribute="centerX" secondItem="qW2-Jg-sxc" secondAttribute="centerX" type="default" id="kNs-UW-WtH"/>
+                            <constraint firstItem="G5s-Pz-oHy" firstAttribute="top" secondItem="lr3-iz-0dc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nEN-bQ-oOK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3jr-dL-Qak"/>
+                    <connections>
+                        <outlet property="ResumeGameLabel" destination="G5s-Pz-oHy" id="qqx-fJ-4FA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ay-cU-UOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -919,6 +957,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iJS-1g-kbm"/>
+        <segue reference="jM1-ma-BZ1"/>
+        <segue reference="aaO-lh-PFg"/>
     </inferredMetricsTieBreakers>
 </document>
