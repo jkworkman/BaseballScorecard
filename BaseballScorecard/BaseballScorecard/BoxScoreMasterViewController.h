@@ -10,6 +10,7 @@
 
 @interface BoxScoreMasterViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *tableList;
+@property (strong, nonatomic) NSMutableArray *tableList;
+
 
 @end

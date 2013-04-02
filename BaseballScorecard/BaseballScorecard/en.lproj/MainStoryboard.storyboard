@@ -221,9 +221,23 @@
                     <view key="view" contentMode="scaleToFill" id="PwH-VB-rpB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shd-xD-MCc">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Shd-xD-MCc" firstAttribute="centerX" secondItem="PwH-VB-rpB" secondAttribute="centerX" type="default" id="g41-4v-X3u"/>
+                            <constraint firstItem="Shd-xD-MCc" firstAttribute="top" secondItem="PwH-VB-rpB" secondAttribute="top" constant="197" id="mbD-gJ-z52"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Box Score" id="5dt-V5-2jQ"/>
+                    <connections>
+                        <outlet property="tempLabel" destination="Shd-xD-MCc" id="kor-dn-Pnq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogI-ux-dZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

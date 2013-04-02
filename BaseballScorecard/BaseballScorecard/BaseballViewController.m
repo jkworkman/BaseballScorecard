@@ -58,6 +58,7 @@
     
     s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
     s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    s.FinalGameArray = [[NSMutableArray alloc] init];
     s.firstbase = [[Bases alloc] init];
     s.secondbase = [[Bases alloc] init];
     s.thirdbase = [[Bases alloc] init];

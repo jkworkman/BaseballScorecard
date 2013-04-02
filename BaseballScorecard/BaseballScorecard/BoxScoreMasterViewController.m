@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    tableList = [[NSArray alloc] initWithObjects:@"Number 1", @"Number 2", @"Number 3", nil];
+    tableList = [[NSMutableArray alloc] initWithObjects:@"Number 1", @"Number 2", @"Number 3", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

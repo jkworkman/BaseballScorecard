@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BoxScoreDetailViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
 
 @end

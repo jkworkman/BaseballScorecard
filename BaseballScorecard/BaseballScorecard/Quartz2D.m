@@ -8,6 +8,7 @@
 
 #import "Quartz2D.h"
 #import "GameDataController.h"
+#import "BoxScoreMasterViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #include <math.h>
 
@@ -24,7 +25,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setNeedsDisplay];
+        [self UpdateLabels];
     }
     return self;
 }
@@ -75,8 +76,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawStayOnThird:x :y];
     
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
-    //[self UpdateLabels];
-
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -122,7 +121,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     }
                     [self UpdateLabels];
                     [self Log];
-                    if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                    if(s.numInning >=2 && s.HomeScore != s.AwayScore)
                     {
                         [self GameEnded];
                     }
@@ -136,7 +135,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     }
                     [self UpdateLabels];
                     [self Log];
-                    if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                    if(s.numInning >=2 && s.HomeScore != s.AwayScore)
                     {
                         [self GameEnded];
                     }
@@ -175,7 +174,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 s.atbat.runnerAdvance = 4;
                 [self setNeedsDisplay];
                 [s HitHomeRun];
-                if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+                if(s.numInning >=2 && s.HomeScore != s.AwayScore)
                 {
                     [self GameEnded];
                 }
@@ -284,7 +283,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         s.TypeofHit = 0;
         [self UpdateLabels];
         [self Log];
-        if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+        if(s.numInning >=2 && s.HomeScore != s.AwayScore)
         {
             [self GameEnded];
         }
@@ -1195,6 +1194,30 @@ NSString *Convert(int p)
 
 -(void)GameEnded {
     
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    [s.FinalGameArray addObject:AwayScoreLabel.text];
+    [s.FinalGameArray addObject:HomeScoreLabel.text];
+    
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:0]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:1]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:2]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:3]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:4]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:5]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:6]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:7]];
+    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:8]];
+    
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:0]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:1]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:2]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:3]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:4]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:5]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:6]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:7]];
+    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:8]];
 }
 
 @end
