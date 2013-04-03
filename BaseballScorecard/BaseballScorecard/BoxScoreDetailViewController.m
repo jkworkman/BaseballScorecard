@@ -14,6 +14,9 @@
 
 @implementation BoxScoreDetailViewController
 
+@synthesize tempLabel;
+@synthesize tempstring;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +30,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+    tempLabel.text = tempstring;
 }
 
 - (void)didReceiveMemoryWarning

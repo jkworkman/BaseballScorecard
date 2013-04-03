@@ -7,6 +7,7 @@
 //
 
 #import "BoxScoreMasterViewController.h"
+#import "BoxScoreDetailViewController.h"
 
 @interface BoxScoreMasterViewController ()
 
@@ -117,17 +118,33 @@
 }
 */
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    //Create instance of DetailViewController
+    BoxScoreDetailViewController *DVC = [[BoxScoreDetailViewController alloc] init];
+    
+    //Set the DetailViewController to the DestinationViewController
+    DVC = [segue destinationViewController];
+    
+    //Get the index path
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    
+    //NSString *theCharacter = [tableList objectAtIndex:path.row];
+    
+    DVC.tempstring = [tableList objectAtIndex:path.row];
+    
+    //DVC.characterNumber = path.row;
+    //DVC.characterName = theCharacter;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 @end
