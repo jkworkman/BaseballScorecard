@@ -8,6 +8,7 @@
 
 #import "BoxScoreMasterViewController.h"
 #import "BoxScoreDetailViewController.h"
+#import "GameDataController.h"
 
 @interface BoxScoreMasterViewController ()
 
@@ -56,13 +57,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    GameDataController* s = [GameDataController sharedInstance];
     // Return the number of rows in the section.
-    return tableList.count;
+    return s.BoxScoreList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GameDataController* s = [GameDataController sharedInstance];
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -72,7 +75,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [tableList objectAtIndex:indexPath.row];
+    NSMutableArray *t = [[NSMutableArray alloc] init];
+    t = [s.BoxScoreList objectAtIndex:indexPath.row];
+    cell.textLabel.text = [t objectAtIndex:0];
+    //cell.textLabel.text = [tableList objectAtIndex:indexPath.row];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
