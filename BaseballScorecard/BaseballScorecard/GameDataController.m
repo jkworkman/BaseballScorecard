@@ -30,6 +30,8 @@
 @synthesize secondbase;
 @synthesize thirdbase;
 @synthesize atbat;
+@synthesize BoxScoreList;
+@synthesize FinalGameArray;
 
 static GameDataController *sharedInstance = nil;
 
@@ -50,29 +52,7 @@ static GameDataController *sharedInstance = nil;
 -(id)init {
     self = [super init];
     if (self) {
-        /*
-        NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
-        for(NSInteger i=0;i<9;i++){
-            
-            Player *tempPlayer = [HomeTeam objectAtIndex:i];
-            
-            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-            
-            [tempArray addObject:tempPlayer.FirstName];
-            [tempArray addObject:tempPlayer.LastName];
-            [tempArray addObject:tempPlayer.Position];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.PlateAppearances]];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.Hits]];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RunsScored]];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.RBI]];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.BattingAverage]];
-            [tempArray addObject:[NSNumber numberWithInt:tempPlayer.HR]];
-            
-            [[homeLineupArray addObject:tempArray];
-        ]
-        
-        NSLog(@"home: %@", homeLineupArray);
-        */
+
     }
     return self;
 }

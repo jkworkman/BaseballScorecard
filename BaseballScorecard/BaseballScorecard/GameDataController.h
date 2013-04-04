@@ -31,6 +31,7 @@
 @property (nonatomic) NSInteger TypeofHit; // 0=empty 1=single 2=double 3=triple
 @property (nonatomic) BOOL GameInProgress;
 @property (nonatomic) NSMutableArray *FinalGameArray;
+@property (nonatomic) NSMutableArray *BoxScoreList;
 
 + (id)sharedInstance;
 

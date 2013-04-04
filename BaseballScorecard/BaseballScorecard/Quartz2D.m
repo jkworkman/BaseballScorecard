@@ -1195,29 +1195,49 @@ NSString *Convert(int p)
 -(void)GameEnded {
     
     GameDataController* s = [GameDataController sharedInstance];
+    Player *a = [[Player alloc] init];
+    
     
     [s.FinalGameArray addObject:AwayScoreLabel.text];
     [s.FinalGameArray addObject:HomeScoreLabel.text];
     
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:0]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:1]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:2]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:3]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:4]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:5]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:6]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:7]];
-    [s.FinalGameArray addObject:[s.AwayTeam objectAtIndex:8]];
+    for(int i=0;i<9;i++) {
+        a = [s.AwayTeam objectAtIndex:i];
+        [s.FinalGameArray addObject:a.FirstName];
+        [s.FinalGameArray addObject:a.LastName];
+        [s.FinalGameArray addObject:a.Position];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.PlateAppearances]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.Hits]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RunsScored]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RBI]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.BattingAverage]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.HR]];
+    }
+    for(int i=0;i<9;i++) {
+        a = [s.HomeTeam objectAtIndex:i];
+        [s.FinalGameArray addObject:a.FirstName];
+        [s.FinalGameArray addObject:a.LastName];
+        [s.FinalGameArray addObject:a.Position];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.PlateAppearances]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.Hits]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RunsScored]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RBI]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.BattingAverage]];
+        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.HR]];
+    }
     
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:0]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:1]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:2]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:3]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:4]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:5]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:6]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:7]];
-    [s.FinalGameArray addObject:[s.HomeTeam objectAtIndex:8]];
+    [s.BoxScoreList addObject:s.FinalGameArray];
+    s.FinalGameArray = NULL;
+    
+    NSLog(@"%@", s.BoxScoreList);
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 @end
