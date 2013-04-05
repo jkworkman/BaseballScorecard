@@ -11,7 +11,7 @@
 @interface BoxScoreDetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
-@property (weak, nonatomic) NSString *tempstring;
+@property (nonatomic) NSInteger tempInt;
 
 
 @end

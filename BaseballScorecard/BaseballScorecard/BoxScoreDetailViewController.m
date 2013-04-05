@@ -7,6 +7,7 @@
 //
 
 #import "BoxScoreDetailViewController.h"
+#import "GameDataController.h"
 
 @interface BoxScoreDetailViewController ()
 
@@ -15,7 +16,7 @@
 @implementation BoxScoreDetailViewController
 
 @synthesize tempLabel;
-@synthesize tempstring;
+@synthesize tempInt;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,8 +31,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-    tempLabel.text = tempstring;
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    NSMutableArray *t = [[NSMutableArray alloc] init];
+    t = [s.BoxScoreList objectAtIndex:tempInt];
+    NSString *r = [NSString stringWithFormat: @"%@ %@", [t objectAtIndex:0], [t objectAtIndex:1]];
+    tempLabel.text = r;
+    
+    UILabel* a = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+    a.text = r;
 }
 
 - (void)didReceiveMemoryWarning

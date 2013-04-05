@@ -227,11 +227,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWu-Z4-zbT">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kWu-Z4-zbT" firstAttribute="leading" secondItem="PwH-VB-rpB" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7Sw-N8-ZhL"/>
+                            <constraint firstItem="kWu-Z4-zbT" firstAttribute="top" secondItem="PwH-VB-rpB" secondAttribute="top" constant="29" id="UIj-M7-zmH"/>
+                            <constraint firstItem="Shd-xD-MCc" firstAttribute="top" secondItem="PwH-VB-rpB" secondAttribute="top" constant="5" id="eY9-2f-crh"/>
                             <constraint firstItem="Shd-xD-MCc" firstAttribute="centerX" secondItem="PwH-VB-rpB" secondAttribute="centerX" type="default" id="g41-4v-X3u"/>
-                            <constraint firstItem="Shd-xD-MCc" firstAttribute="top" secondItem="PwH-VB-rpB" secondAttribute="top" constant="197" id="mbD-gJ-z52"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Box Score" id="5dt-V5-2jQ"/>

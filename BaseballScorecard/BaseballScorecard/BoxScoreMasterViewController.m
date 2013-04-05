@@ -77,7 +77,8 @@
     
     NSMutableArray *t = [[NSMutableArray alloc] init];
     t = [s.BoxScoreList objectAtIndex:indexPath.row];
-    cell.textLabel.text = [t objectAtIndex:0];
+    NSString *r = [NSString stringWithFormat: @"%@ %@", [t objectAtIndex:0], [t objectAtIndex:1]];
+    cell.textLabel.text = r;
     //cell.textLabel.text = [tableList objectAtIndex:indexPath.row];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -135,22 +136,7 @@
     //Get the index path
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
-    //NSString *theCharacter = [tableList objectAtIndex:path.row];
-    
-    DVC.tempstring = [tableList objectAtIndex:path.row];
-    
-    //DVC.characterNumber = path.row;
-    //DVC.characterName = theCharacter;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    DVC.tempInt = path.row;
 }
 
 @end
