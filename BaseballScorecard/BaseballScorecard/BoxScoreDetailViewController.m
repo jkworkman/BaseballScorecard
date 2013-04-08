@@ -48,37 +48,75 @@
     t = [s.BoxScoreList objectAtIndex:tempInt];
 
     self.view = a;
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [a addSubview:[self LabelProperties:20 :30 :@"Name"]];
-    [a addSubview:[self LabelProperties:100 :30 :@"Position"]];
-    [a addSubview:[self LabelProperties:140 :30 :@"Hits"]];
-    [a addSubview:[self LabelProperties:180 :30 :@"Runs"]];
-    [a addSubview:[self LabelProperties:220 :30 :@"HR"]];
-    [a addSubview:[self LabelProperties:260 :30 :@"RBI"]];
-    [a addSubview:[self LabelProperties:300 :30 :@"BA"]];
+    [a addSubview:[self LabelProperties:100 :25 :100 :15 :[NSString stringWithFormat: @"%@ %@", [t objectAtIndex:0], [t objectAtIndex:1]]]];
     
-    int x = 20;
+    [a addSubview:[self LabelProperties:50 :45 :40 :15 :@"Name"]];
+    [a addSubview:[self LabelProperties:125 :45 :30 :15 :@"P"]];
+    [a addSubview:[self LabelProperties:155 :45 :30 :15 :@"H/AB"]];
+    [a addSubview:[self LabelProperties:185 :45 :30 :15 :@"Runs"]];
+    [a addSubview:[self LabelProperties:215 :45 :30 :15 :@"HR"]];
+    [a addSubview:[self LabelProperties:245 :45 :30 :15 :@"RBI"]];
+    [a addSubview:[self LabelProperties:275 :45 :30 :15 :@"BA"]];
+    
+    int x = 5;
     int y = 60;
     int z = 2;
     
     for(int i=0;i<9;i++)
     {
-        for(int j=0;j<9;j++)
+        for(int j=0;j<2;j++)
         {
-            [a addSubview:[self LabelProperties:x :y :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
-            x += 40;
+            [a addSubview:[self LabelProperties:x :y :60 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 60;
             z += 1;
         }
-        x = 20;
+        for(int j=0;j<6;j++)
+        {
+            [a addSubview:[self LabelProperties:x :y :30 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 30;
+            z += 1;
+        }
+        x = 5;
+        y += 15;
+    }
+    
+    [a addSubview:[self LabelProperties:50 :225 :40 :15 :@"Name"]];
+    [a addSubview:[self LabelProperties:125 :225 :30 :15 :@"P"]];
+    [a addSubview:[self LabelProperties:155 :225 :30 :15 :@"H/AB"]];
+    [a addSubview:[self LabelProperties:185 :225 :30 :15 :@"Runs"]];
+    [a addSubview:[self LabelProperties:215 :225 :30 :15 :@"HR"]];
+    [a addSubview:[self LabelProperties:245 :225 :30 :15 :@"RBI"]];
+    [a addSubview:[self LabelProperties:275 :225 :30 :15 :@"BA"]];
+    
+    x = 5;
+    y = 240;
+    for(int i=0;i<9;i++)
+    {
+        for(int j=0;j<2;j++)
+        {
+            [a addSubview:[self LabelProperties:x :y :60 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 60;
+            z += 1;
+        }
+        for(int j=0;j<6;j++)
+        {
+            [a addSubview:[self LabelProperties:x :y :30 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 30;
+            z += 1;
+        }
+        x = 5;
         y += 15;
     }
 
 }
 
--(UIView*)LabelProperties:(NSInteger)x :(NSInteger)y :(NSString *)text {
-    UILabel* z = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 40, 15)];
-    [z setFont:[UIFont fontWithName:@"American Typewriter" size:8]];
+-(UIView*)LabelProperties:(NSInteger)x :(NSInteger)y :(NSInteger)w :(NSInteger)h :(NSString *)text{
+    UILabel* z = [[UILabel alloc] initWithFrame:CGRectMake(x, y, w, h)];
+    [z setFont:[UIFont fontWithName:@"American Typewriter" size:10]];
     z.text = text;
+    z.textAlignment = NSTextAlignmentCenter;
     z.adjustsFontSizeToFitWidth = YES;
     return z;
 }

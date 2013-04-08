@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
 @property (nonatomic) NSInteger tempInt;
 
+-(UIView*)LabelProperties:(NSInteger)x :(NSInteger)y :(NSInteger)w :(NSInteger)h :(NSString *)text;
 
 @end

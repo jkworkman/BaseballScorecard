@@ -1203,27 +1203,30 @@ NSString *Convert(int p)
     
     for(int i=0;i<9;i++) {
         a = [s.AwayTeam objectAtIndex:i];
-        [s.FinalGameArray addObject:a.FirstName];
-        [s.FinalGameArray addObject:a.LastName];
-        [s.FinalGameArray addObject:a.Position];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.PlateAppearances]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.Hits]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RunsScored]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RBI]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.BattingAverage]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.HR]];
+        
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.FirstName]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.LastName]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.Position]];
+        NSString *temp = [NSString stringWithFormat: @"%d/%d", a.Hits, a.PlateAppearances];
+        [s.FinalGameArray addObject:temp];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RunsScored]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.HR]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RBI]];
+        temp = [NSString stringWithFormat: @"%.3f", a.BattingAverage];
+        [s.FinalGameArray addObject:temp];
     }
     for(int i=0;i<9;i++) {
         a = [s.HomeTeam objectAtIndex:i];
-        [s.FinalGameArray addObject:a.FirstName];
-        [s.FinalGameArray addObject:a.LastName];
-        [s.FinalGameArray addObject:a.Position];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.PlateAppearances]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.Hits]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RunsScored]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.RBI]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.BattingAverage]];
-        [s.FinalGameArray addObject:[NSNumber numberWithInt:a.HR]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.FirstName]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.LastName]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%@", a.Position]];
+        NSString *temp = [NSString stringWithFormat: @"%d/%d", a.Hits, a.PlateAppearances];
+        [s.FinalGameArray addObject:temp];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RunsScored]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.HR]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RBI]];
+        temp = [NSString stringWithFormat: @"%.3f", a.BattingAverage];
+        [s.FinalGameArray addObject:temp];
     }
     
     [s.BoxScoreList addObject:s.FinalGameArray];
