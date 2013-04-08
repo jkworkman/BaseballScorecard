@@ -87,36 +87,56 @@ static GameDataController *sharedInstance = nil;
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedStrike {
     strikes += 1;
+    TypeofHit = 5;
+    if(thirdbase.base != NULL)
+    {
+        thirdbase.checked = true;
+        thirdbase.runnerAdvance = 5;
+        thirdbase.temp = thirdbase.base;
+
+    }
+    if(secondbase.base != NULL)
+    {
+        secondbase.checked = true;
+        secondbase.runnerAdvance = 5;
+        secondbase.temp = secondbase.base;
+    }
+    if(firstbase.base != NULL)
+    {
+        firstbase.checked = true;
+        firstbase.runnerAdvance = 5;
+        firstbase.temp = firstbase.base;
+    }
+
     if(strikes == 3)
     {
         outs += 1;
         strikes = 0;
         balls = 0;
         atbat.base.PlateAppearances += 1;
-        [self BatterHit];
+        TypeofHit = 0;
     }
     if(outs == 3)
     {
+        outs = 0;
         if(isBottomInning)
         {
             sideInning = @"Top";
             numInning += 1;
             isBottomInning = false;
-            atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         }
         else
         {
             sideInning = @"Bottom";
             isBottomInning = true;
-            atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
         }
-        
-        firstbase.base = secondbase.base = thirdbase.base = NULL;
-        
+        atbat.runnerAdvance = firstbase.runnerAdvance = secondbase.runnerAdvance = thirdbase.runnerAdvance = 0;
+        firstbase.base = secondbase.base = thirdbase.base = firstbase.temp = secondbase.temp = thirdbase.temp = NULL;
     }
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitSingle {
+    atbat.runnerAdvance = 1;
     atbat.base.PlateAppearances += 1;
     atbat.base.Hits += 1;
     TypeofHit = 1;
@@ -125,6 +145,7 @@ static GameDataController *sharedInstance = nil;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitDouble {
+    atbat.runnerAdvance = 2;
     atbat.base.PlateAppearances += 1;
     atbat.base.Hits += 1;
     TypeofHit = 2;
@@ -133,6 +154,7 @@ static GameDataController *sharedInstance = nil;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitTriple {
+    atbat.runnerAdvance = 3;
     atbat.base.PlateAppearances += 1;
     atbat.base.Hits += 1;
     TypeofHit = 3;
@@ -143,30 +165,41 @@ static GameDataController *sharedInstance = nil;
 -(void)HitHomeRun {
     
     int x = 0;
-    
-    if(thirdbase.base != 0)
+    x += 1; //the run for the batter
+    if(thirdbase.base != NULL)
+    {
+        thirdbase.checked = true;
+        thirdbase.runnerAdvance = 1;
+        thirdbase.base.RunsScored += 1;
         x += 1;
-    if(secondbase.base != 0)
+    }
+    if(secondbase.base != NULL)
+    {
+        secondbase.checked = true;
+        secondbase.runnerAdvance = 2;
+        secondbase.base.RunsScored += 1;
         x += 1;
-    if(firstbase.base != 0)
+    }
+    if(firstbase.base != NULL)
+    {
+        firstbase.checked = true;
+        firstbase.runnerAdvance = 3;
+        firstbase.base.RunsScored += 1;
         x += 1;
-    
+    }
+    atbat.runnerAdvance = 4;
     atbat.base.RBI += x;
     atbat.base.PlateAppearances += 1;
     atbat.base.Hits += 1;
     atbat.base.HR += 1;
+    atbat.base.RunsScored += 1;
     atbat.base.BattingAverage = (float)atbat.base.Hits / (float)atbat.base.PlateAppearances;
-    x += 1; //the run for the batter
+
     
     if(!isBottomInning)
         AwayScore += x;
     else
         HomeScore += x;
-    
-    firstbase.base = secondbase.base = thirdbase.base = firstbase.temp = secondbase.temp = thirdbase.temp = NULL;
-    balls = strikes = 0;
-    [self BatterHit];
-    
 }
 /*--------------------------------------------------------------------------------*/
 -(void)HitOut {

@@ -128,17 +128,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     break;
                 case 1: /* Strike button */
                     [s PitchedStrike];
-                    if(s.outs == 3)
-                    {
-                        [self setNeedsDisplay];
-                        s.outs = 0;
-                    }
-                    [self UpdateLabels];
-                    [self Log];
-                    if(s.numInning >=2 && s.HomeScore != s.AwayScore)
-                    {
-                        [self GameEnded];
-                    }
+                    [self RunnerAdvancing];
                     break;
                 case 2: /* Hit button */
                     [self ShowHitMenu];
@@ -150,34 +140,20 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             switch ( buttonIndex )
         {
             case 0: /* Single button*/
-                s.atbat.runnerAdvance = 1;
                 [s HitSingle];
                 [self RunnerAdvancing];
                 break;
             case 1: /* Double button */
-                s.atbat.runnerAdvance = 2;
                 [s HitDouble];
                 [self RunnerAdvancing];
                 break;
             case 2: /* Triple button */
-                s.atbat.runnerAdvance = 3;
                 [s HitTriple];
                 [self RunnerAdvancing];
                 break;
             case 3: /* HomeRun button */
-                if(s.thirdbase.base != NULL)
-                    s.thirdbase.runnerAdvance = 1;
-                if(s.secondbase.base != NULL)
-                    s.secondbase.runnerAdvance = 2;
-                if(s.firstbase.base != NULL)
-                    s.firstbase.runnerAdvance = 3;
-                s.atbat.runnerAdvance = 4;
-                [self setNeedsDisplay];
                 [s HitHomeRun];
-                if(s.numInning >=2 && s.HomeScore != s.AwayScore)
-                {
-                    [self GameEnded];
-                }
+                [self RunnerAdvancing];
                 break;
             case 4: /* HitOut button */
                 [s HitOut];
@@ -278,11 +254,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         s.thirdbase.base = s.thirdbase.temp;
         s.firstbase.checked = s.secondbase.checked = s.thirdbase.checked = false;
         s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = NULL;
+        
         if(s.TypeofHit != 5)
+        {
+            s.balls = 0;
+            s.strikes = 0;
             [s BatterHit];
+        }
         s.TypeofHit = 0;
+        
         [self UpdateLabels];
         [self Log];
+        
         if(s.numInning >=2 && s.HomeScore != s.AwayScore)
         {
             [self GameEnded];
@@ -444,7 +427,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = YES;
-     
+    pathAnimation.duration = 4.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
