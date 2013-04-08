@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 JACOB WORKMAN. All rights reserved.
 //
 
+#import "BoxScoreDetailView.h"
 #import <UIKit/UIKit.h>
 
 @interface BoxScoreDetailViewController : UIViewController

@@ -30,6 +30,7 @@
 		1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */; };
 		1CD6B4C316C974AA00584EDE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6B4C216C974AA00584EDE /* Player.m */; };
 		1CE77A0216EFE04600AE9175 /* GameDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */; };
+		1CF1EC31171216340088E5DD /* BoxScoreDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF1EC30171216340088E5DD /* BoxScoreDetailView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		1CD6B4C116C974AA00584EDE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1CD6B4C216C974AA00584EDE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameDataPlist.plist; sourceTree = "<group>"; };
+		1CF1EC2F171216340088E5DD /* BoxScoreDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreDetailView.h; sourceTree = "<group>"; };
+		1CF1EC30171216340088E5DD /* BoxScoreDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreDetailView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				1C7F0D2416F1312500441C47 /* BoxScoreMasterViewController.m */,
 				1C7F0D2716F1327E00441C47 /* BoxScoreDetailViewController.h */,
 				1C7F0D2816F1327E00441C47 /* BoxScoreDetailViewController.m */,
+				1CF1EC2F171216340088E5DD /* BoxScoreDetailView.h */,
+				1CF1EC30171216340088E5DD /* BoxScoreDetailView.m */,
 				1CD32DBA16D2A35600EB0BA2 /* Quartz2D.h */,
 				1CD32DBB16D2A35600EB0BA2 /* Quartz2D.m */,
 				1CD6B4C116C974AA00584EDE /* Player.h */,
@@ -245,6 +250,7 @@
 				1C7F0D2516F1312500441C47 /* BoxScoreMasterViewController.m in Sources */,
 				1C7F0D2916F1327E00441C47 /* BoxScoreDetailViewController.m in Sources */,
 				1CD334FD1709E5B60006989F /* MainMenuViewController.m in Sources */,
+				1CF1EC31171216340088E5DD /* BoxScoreDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

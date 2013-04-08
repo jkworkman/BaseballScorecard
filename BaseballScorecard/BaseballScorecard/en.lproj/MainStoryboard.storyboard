@@ -218,7 +218,7 @@
         <scene sceneID="9ah-ed-Ist">
             <objects>
                 <viewController id="gQv-xa-fzR" customClass="BoxScoreDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PwH-VB-rpB">
+                    <view key="view" contentMode="scaleToFill" id="PwH-VB-rpB" customClass="BoxScoreDetailView">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
