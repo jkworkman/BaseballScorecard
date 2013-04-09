@@ -89,42 +89,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             switch ( buttonIndex )
             {
                 case 0: /* Ball button*/
-                    s.balls += 1;
-                    if(s.balls == 4)
-                    {
-                        if(s.thirdbase.base != NULL)
-                            s.thirdbase.runnerAdvance = 1;
-                        if(s.secondbase.base != NULL)
-                            s.secondbase.runnerAdvance = 1;
-                        if(s.firstbase.base != NULL)
-                            s.firstbase.runnerAdvance = 1;
-                        s.atbat.runnerAdvance = 1;
-                        s.balls = 0;
-                        s.strikes = 0;
-                        if(!s.isBottomInning)
-                        {
-                            if(s.thirdbase.base != NULL)
-                                s.AwayScore += 1;
-                        }
-                        else
-                        {
-                            if(s.thirdbase.base != NULL)
-                                s.HomeScore += 1;
-                        }
-                        
-                        s.thirdbase.base = s.secondbase.base;
-                        s.secondbase.base = s.firstbase.base;
-                        s.firstbase.base = s.atbat.base;
-                        
-                        [s BatterHit];
-                        [self setNeedsDisplay];
-                    }
-                    [self UpdateLabels];
-                    [self Log];
-                    if(s.numInning >=2 && s.HomeScore != s.AwayScore)
-                    {
-                        [self GameEnded];
-                    }
+                    [s PitchedBall];
+                    [self RunnerAdvancing];
                     break;
                 case 1: /* Strike button */
                     [s PitchedStrike];
@@ -466,7 +432,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    //[circleView.layer addAnimation:pathAnimation forKey:@"HomeRun"];
+    
+    [UIView animateWithDuration:4.0f animations:^
+    { 
+        circleView.alpha=4.0f;
+        [circleView.layer addAnimation:pathAnimation forKey:@"HomeRun"];
+    }
+                     completion:^(BOOL finished)
+    {
+        [circleView removeFromSuperview];
+    }];
 }
 
 -(void)DrawSingle:(int)x :(int)y {
@@ -676,7 +652,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    [UIView animateWithDuration:3.0f animations:^
+     {
+         circleView.alpha=3.0f;
+         [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+     }
+                     completion:^(BOOL finished)
+     {
+         [circleView removeFromSuperview];
+     }];
     
 }
 
@@ -831,7 +815,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    [UIView animateWithDuration:2.0f animations:^
+     {
+         circleView.alpha=2.0f;
+         [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+     }
+                     completion:^(BOOL finished)
+     {
+         [circleView removeFromSuperview];
+     }];
     
 }
 
@@ -932,7 +924,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    [UIView animateWithDuration:1.0f animations:^
+     {
+         circleView.alpha=2.0f;
+         [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+     }
+                     completion:^(BOOL finished)
+     {
+         [circleView removeFromSuperview];
+     }];
     
 }
 
