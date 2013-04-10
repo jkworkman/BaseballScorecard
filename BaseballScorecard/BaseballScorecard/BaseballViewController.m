@@ -54,6 +54,7 @@
 }
 
 -(void)StartNewGame {
+    /*
     GameDataController* s = [GameDataController sharedInstance];
     
     s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
@@ -76,6 +77,7 @@
     [s HomePlayerLineup];
     
     s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
+     */
 }
 
 -(void)LoadFromPlist {
