@@ -47,10 +47,12 @@
     NSString *sideInning = s.sideInning;
     NSNumber *homeScore = [NSNumber numberWithInt:s.HomeScore];
     NSNumber *awayScore = [NSNumber numberWithInt:s.AwayScore];
+    NSNumber *htli = [NSNumber numberWithInt:s.HomeTeamLineupIndex];
+    NSNumber *atli = [NSNumber numberWithInt:s.AwayTeamLineupIndex];
     
     innerDict = [NSDictionary dictionaryWithObjects:
-                 [NSArray arrayWithObjects: balls, strikes, outs, numInning, sideInning, homeScore, awayScore, nil]
-                    forKeys:[NSArray arrayWithObjects:@"Balls", @"Strikes", @"Outs", @"NumInning", @"SideInning", @"HomeScore", @"AwayScore", nil]];
+                 [NSArray arrayWithObjects: balls, strikes, outs, numInning, sideInning, homeScore, awayScore, htli, atli, nil]
+                    forKeys:[NSArray arrayWithObjects:@"Balls", @"Strikes", @"Outs", @"NumInning", @"SideInning", @"HomeScore", @"AwayScore", @"HTLI", @"ATLI", nil]];
     
     [root setObject:innerDict forKey:@"GameInfo"];
     
@@ -70,7 +72,7 @@
         player = [NSDictionary dictionaryWithObjects:
                  [NSArray arrayWithObjects: fname, lname, position, pa, hits, runs, rbi, hr, ba, nil]
                         forKeys:[NSArray arrayWithObjects:@"Fname", @"Lname", @"Position", @"PA", @"Hits", @"Runs", @"RBI", @"HR", @"BA", nil]];
-        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter %d", i]];
+        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
     }
     
     [root setObject:Lineup forKey:@"AwayLineup"];
@@ -91,16 +93,16 @@
         player = [NSDictionary dictionaryWithObjects:
                   [NSArray arrayWithObjects: fname, lname, position, pa, hits, runs, rbi, hr, ba, nil]
                                              forKeys:[NSArray arrayWithObjects:@"Fname", @"Lname", @"Position", @"PA", @"Hits", @"Runs", @"RBI", @"HR", @"BA", nil]];
-        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter %d", i]];
+        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
     }
     
     [root setObject:Lineup forKey:@"HomeLineup"];
-    NSLog(@"%@", root);
+    //NSLog(@"%@", root);
     
     //****************************Save Plist*************************************************
     
     id plist = root;       // Assume this property list exists.
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"GameDataPlist" ofType:@"plist"];
     NSData *xmlData;
     NSString *error;
     
@@ -114,11 +116,11 @@
     else {
         NSLog(@"Error creating XML data");
     }
-    NSLog(@"%@", plist);
+    //NSLog(@"%@", plist);
     
     //***************************Restore Plist************************************************
     
-    NSString *restorepath = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"];
+    NSString *restorepath = [[NSBundle mainBundle] pathForResource:@"GameDataPlist" ofType:@"plist"];
     NSData *plistData = [NSData dataWithContentsOfFile:restorepath];
     NSString *errors;
     NSPropertyListFormat format;
@@ -132,7 +134,9 @@
         NSLog(@"Error restoring plist: %@", errors);
     else
         NSLog(@"Plist restored Successfully");
-    NSLog(@"%@", propertylist);
+    //NSLog(@"%@", propertylist);
+    root = propertylist;
+    NSLog(@"%@", root);
     //****************************************************************************************
 }
 

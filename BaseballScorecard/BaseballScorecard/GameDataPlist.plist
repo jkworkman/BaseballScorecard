@@ -3,209 +3,389 @@
 <plist version="1.0">
 <dict>
 	<key>AwayTeam</key>
-	<array>
-		<array>
+	<dict>
+		<key>Batter0</key>
+		<dict>
+			<key>Fname</key>
 			<string>a1 fname</string>
+			<key>Lname</key>
 			<string>a1 lname</string>
+			<key>Position</key>
 			<string>a1 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter1</key>
+		<dict>
+			<key>Fname</key>
 			<string>a2 fname</string>
+			<key>Lname</key>
 			<string>a2 lname</string>
+			<key>Position</key>
 			<string>a2 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter2</key>
+		<dict>
+			<key>Fname</key>
 			<string>a3 fname</string>
+			<key>Lname</key>
 			<string>a3 lname</string>
+			<key>Position</key>
 			<string>a3 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter3</key>
+		<dict>
+			<key>Fname</key>
 			<string>a4 fname</string>
+			<key>Lname</key>
 			<string>a4 lname</string>
+			<key>Position</key>
 			<string>a4 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter4</key>
+		<dict>
+			<key>Fname</key>
 			<string>a5 fname</string>
+			<key>Lname</key>
 			<string>a5 lname</string>
+			<key>Position</key>
 			<string>a5 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter5</key>
+		<dict>
+			<key>Fname</key>
 			<string>a6 fname</string>
+			<key>Lname</key>
 			<string>a6 lname</string>
+			<key>Position</key>
 			<string>a6 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter6</key>
+		<dict>
+			<key>Fname</key>
 			<string>a7 fname</string>
+			<key>Lname</key>
 			<string>a7 lname</string>
+			<key>Position</key>
 			<string>a7 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter7</key>
+		<dict>
+			<key>Fname</key>
 			<string>a8 fname</string>
+			<key>Lname</key>
 			<string>a8 lname</string>
+			<key>Position</key>
 			<string>a8 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter8</key>
+		<dict>
+			<key>Fname</key>
 			<string>a9 fname</string>
+			<key>Lname</key>
 			<string>a9 lname</string>
+			<key>Position</key>
 			<string>a9 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-	</array>
+		</dict>
+	</dict>
 	<key>HomeTeam</key>
-	<array>
-		<array>
+	<dict>
+		<key>Batter0</key>
+		<dict>
+			<key>Fname</key>
 			<string>h1 fname</string>
+			<key>Lname</key>
 			<string>h1 lname</string>
+			<key>Position</key>
 			<string>h1 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter1</key>
+		<dict>
+			<key>Fname</key>
 			<string>h2 fname</string>
+			<key>Lname</key>
 			<string>h2 lname</string>
+			<key>Position</key>
 			<string>h2 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter2</key>
+		<dict>
+			<key>Fname</key>
 			<string>h3 fname</string>
+			<key>Lname</key>
 			<string>h3 lname</string>
+			<key>Position</key>
 			<string>h3 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter3</key>
+		<dict>
+			<key>Fname</key>
 			<string>h4 fname</string>
+			<key>Lname</key>
 			<string>h4 lname</string>
+			<key>Position</key>
 			<string>h4 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter4</key>
+		<dict>
+			<key>Fname</key>
 			<string>h5 fname</string>
+			<key>Lname</key>
 			<string>h5 lname</string>
+			<key>Position</key>
 			<string>h5 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter5</key>
+		<dict>
+			<key>Fname</key>
 			<string>h6 fname</string>
+			<key>Lname</key>
 			<string>h6 lname</string>
+			<key>Position</key>
 			<string>h6 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter6</key>
+		<dict>
+			<key>Fname</key>
 			<string>h7 fname</string>
+			<key>Lname</key>
 			<string>h7 lname</string>
+			<key>Position</key>
 			<string>h7 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter7</key>
+		<dict>
+			<key>Fname</key>
 			<string>h8 fname</string>
+			<key>Lname</key>
 			<string>h8 lname</string>
+			<key>Position</key>
 			<string>h8 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-		<array>
+		</dict>
+		<key>Batter8</key>
+		<dict>
+			<key>Fname</key>
 			<string>h9 fname</string>
+			<key>Lname</key>
 			<string>h9 lname</string>
+			<key>Position</key>
 			<string>h9 pos</string>
+			<key>PA</key>
 			<integer>0</integer>
+			<key>Hits</key>
 			<integer>0</integer>
+			<key>Runs</key>
 			<integer>0</integer>
+			<key>RBI</key>
 			<integer>0</integer>
+			<key>HR</key>
 			<integer>0</integer>
+			<key>BA</key>
 			<integer>0</integer>
-		</array>
-	</array>
+		</dict>
+	</dict>
 	<key>AwayTeamLineupIndex</key>
 	<integer>0</integer>
 	<key>HomeTeamLineupIndex</key>
