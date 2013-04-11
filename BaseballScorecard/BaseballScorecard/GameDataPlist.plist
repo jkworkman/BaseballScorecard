@@ -2,6 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GameInfo</key>
+	<dict>
+		<key>ATLI</key>
+		<integer>0</integer>
+		<key>HTLI</key>
+		<integer>0</integer>
+		<key>HomeScore</key>
+		<integer>0</integer>
+		<key>AwayScore</key>
+		<integer>0</integer>
+		<key>SideInning</key>
+		<string>Top</string>
+		<key>NumInning</key>
+		<integer>1</integer>
+		<key>Balls</key>
+		<integer>0</integer>
+		<key>Strikes</key>
+		<integer>0</integer>
+		<key>Outs</key>
+		<integer>0</integer>
+	</dict>
 	<key>AwayTeam</key>
 	<dict>
 		<key>Batter0</key>
@@ -386,25 +407,5 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>AwayTeamLineupIndex</key>
-	<integer>0</integer>
-	<key>HomeTeamLineupIndex</key>
-	<integer>0</integer>
-	<key>AwayScore</key>
-	<integer>0</integer>
-	<key>HomeScore</key>
-	<integer>0</integer>
-	<key>IsBottomInning</key>
-	<false/>
-	<key>SideInning</key>
-	<string>Top</string>
-	<key>NumInning</key>
-	<integer>1</integer>
-	<key>Outs</key>
-	<integer>0</integer>
-	<key>Strikes</key>
-	<integer>0</integer>
-	<key>Balls</key>
-	<integer>0</integer>
 </dict>
 </plist>

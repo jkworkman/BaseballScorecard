@@ -24,14 +24,8 @@
 /*--------------------------------------------------------------------------------*/
 - (void)viewDidLoad
 {
-    
-    GameDataController* s = [GameDataController sharedInstance];
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    if(s.GameInProgress == false)
-        [self StartNewGame];
     
     /*
     UIApplication *app = [UIApplication sharedApplication];
@@ -81,6 +75,7 @@
 }
 
 -(void)LoadFromPlist {
+    /*
     GameDataController* s = [GameDataController sharedInstance];
     
     NSString *errorDesc = nil;
@@ -111,7 +106,7 @@
     s.AwayScore = [[temp objectForKey:@"AwayScore"] integerValue];
     s.HomeTeamLineupIndex = [[temp objectForKey:@"HomeTeamLineupIndex"] integerValue];
     s.AwayTeamLineupIndex = [[temp objectForKey:@"AwayTeamLineupIndex"] integerValue];
-    /*
+    
     NSMutableArray *homeLineupArray = [[NSMutableArray alloc] init];
     for(NSInteger i=0;i<9;i++){
         
@@ -137,6 +132,7 @@
 }
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification {
+    /*
     NSLog(@"Entering Background");
     // get paths from root direcory
     GameDataController* s = [GameDataController sharedInstance];
@@ -156,14 +152,15 @@
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *plistPath = [rootPath stringByAppendingPathComponent:@"GameDataPlist.plist"];
     NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:
-                               [NSArray arrayWithObjects: /*s.AwayTeam, s.HomeTeam,*/ atli, htli, awayscore, homescore, isbottominning, numinning, inning, outs, strike, ball, nil]
-                                                          forKeys:[NSArray arrayWithObjects: /*@"AwayTeam", @"HomeTeam",*/ @"AwayTeamLineupIndex", @"HomeTeamLineupIndex", @"AwayScore", @"HomeScore", @"IsBottomInning", @"SideInning", @"NumInning", @"Outs", @"Strikes", @"Balls", nil]];
+                               [NSArray arrayWithObjects:  atli, htli, awayscore, homescore, isbottominning, numinning, inning, outs, strike, ball, nil]
+                                                          forKeys:[NSArray arrayWithObjects: @"AwayTeamLineupIndex", @"HomeTeamLineupIndex", @"AwayScore", @"HomeScore", @"IsBottomInning", @"SideInning", @"NumInning", @"Outs", @"Strikes", @"Balls", nil]];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict
                                                                    format:NSPropertyListXMLFormat_v1_0
                                                          errorDescription:&error];
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
     }
+    */
 }
 
 @end

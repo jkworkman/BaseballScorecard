@@ -31,13 +31,40 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UIApplication *app = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
+    
     GameDataController* s = [GameDataController sharedInstance];
     
-    [self StartGame];
+    s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    s.BoxScoreList = [[NSMutableArray alloc] init];
+    s.FinalGameArray = [[NSMutableArray alloc] init];
+    s.firstbase = [[Bases alloc] init];
+    s.secondbase = [[Bases alloc] init];
+    s.thirdbase = [[Bases alloc] init];
+    s.atbat = [[Bases alloc] init];
+    
+    [self RestorePList];
+    
+    s.firstbase.base = s.secondbase.base = s.thirdbase.base = s.atbat.base = s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = s.atbat.temp = NULL;
+    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = s.TypeofHit = 0;
+    
+    [s AwayPlayerLineup];
+    [s HomePlayerLineup];
+    
+    s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
+}
+
+-(void)SavePList {
     //**************************Create Plist*************************************
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
     NSMutableDictionary *root = [NSMutableDictionary dictionaryWithCapacity:3];
     NSDictionary *innerDict;
-    NSMutableDictionary *Lineup = [NSMutableDictionary dictionaryWithCapacity:9];
+    NSMutableDictionary *hLineup = [NSMutableDictionary dictionaryWithCapacity:9];
+    NSMutableDictionary *aLineup = [NSMutableDictionary dictionaryWithCapacity:9];
     NSMutableDictionary *player = [NSMutableDictionary dictionaryWithCapacity:1];
     
     NSNumber *balls = [NSNumber numberWithInt:s.balls];
@@ -52,7 +79,7 @@
     
     innerDict = [NSDictionary dictionaryWithObjects:
                  [NSArray arrayWithObjects: balls, strikes, outs, numInning, sideInning, homeScore, awayScore, htli, atli, nil]
-                    forKeys:[NSArray arrayWithObjects:@"Balls", @"Strikes", @"Outs", @"NumInning", @"SideInning", @"HomeScore", @"AwayScore", @"HTLI", @"ATLI", nil]];
+                                            forKeys:[NSArray arrayWithObjects:@"Balls", @"Strikes", @"Outs", @"NumInning", @"SideInning", @"HomeScore", @"AwayScore", @"HTLI", @"ATLI", nil]];
     
     [root setObject:innerDict forKey:@"GameInfo"];
     
@@ -68,14 +95,14 @@
         NSNumber *rbi = [NSNumber numberWithInt:temp.RBI];
         NSNumber *hr = [NSNumber numberWithInt:temp.HR];
         NSNumber *ba = [NSNumber numberWithInt:temp.BattingAverage];
-    
+        
         player = [NSDictionary dictionaryWithObjects:
-                 [NSArray arrayWithObjects: fname, lname, position, pa, hits, runs, rbi, hr, ba, nil]
-                        forKeys:[NSArray arrayWithObjects:@"Fname", @"Lname", @"Position", @"PA", @"Hits", @"Runs", @"RBI", @"HR", @"BA", nil]];
-        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
+                  [NSArray arrayWithObjects: fname, lname, position, pa, hits, runs, rbi, hr, ba, nil]
+                                             forKeys:[NSArray arrayWithObjects:@"Fname", @"Lname", @"Position", @"PA", @"Hits", @"Runs", @"RBI", @"HR", @"BA", nil]];
+        [aLineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
     }
     
-    [root setObject:Lineup forKey:@"AwayLineup"];
+    [root setObject:aLineup forKey:@"AwayTeam"];
     
     for(int i=0;i<9;i++)
     {
@@ -93,11 +120,11 @@
         player = [NSDictionary dictionaryWithObjects:
                   [NSArray arrayWithObjects: fname, lname, position, pa, hits, runs, rbi, hr, ba, nil]
                                              forKeys:[NSArray arrayWithObjects:@"Fname", @"Lname", @"Position", @"PA", @"Hits", @"Runs", @"RBI", @"HR", @"BA", nil]];
-        [Lineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
+        [hLineup setObject:player forKey:[NSString stringWithFormat: @"Batter%d", i]];
     }
     
-    [root setObject:Lineup forKey:@"HomeLineup"];
-    //NSLog(@"%@", root);
+    [root setObject:hLineup forKey:@"HomeTeam"];
+
     
     //****************************Save Plist*************************************************
     
@@ -116,10 +143,17 @@
     else {
         NSLog(@"Error creating XML data");
     }
-    //NSLog(@"%@", plist);
+    NSLog(@"%@", plist);
+}
     
+-(void)RestorePList {
+        
     //***************************Restore Plist************************************************
     
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    NSMutableDictionary *plistRoot = [NSMutableDictionary dictionaryWithCapacity:3];
+    NSMutableDictionary *subDict = [NSMutableDictionary dictionaryWithCapacity:3];
     NSString *restorepath = [[NSBundle mainBundle] pathForResource:@"GameDataPlist" ofType:@"plist"];
     NSData *plistData = [NSData dataWithContentsOfFile:restorepath];
     NSString *errors;
@@ -134,10 +168,59 @@
         NSLog(@"Error restoring plist: %@", errors);
     else
         NSLog(@"Plist restored Successfully");
-    //NSLog(@"%@", propertylist);
-    root = propertylist;
-    NSLog(@"%@", root);
-    //****************************************************************************************
+    plistRoot = propertylist;
+    
+    subDict = [plistRoot objectForKey:@"GameInfo"];
+
+    s.balls = [[subDict objectForKey:@"Balls"] integerValue];
+    s.strikes = [[subDict objectForKey:@"Strikes"] integerValue];
+    s.outs = [[subDict objectForKey:@"Outs"] integerValue];
+    s.numInning = [[subDict objectForKey:@"NumInning"] integerValue];
+    s.sideInning = [subDict objectForKey:@"SideInning"];
+    s.HomeScore = [[subDict objectForKey:@"HomeScore"] integerValue];
+    s.AwayScore = [[subDict objectForKey:@"AwayScore"] integerValue];
+    s.AwayTeamLineupIndex = [[subDict objectForKey:@"ATLI"] integerValue];
+    s.HomeTeamLineupIndex = [[subDict objectForKey:@"HTLI"] integerValue];
+    
+    subDict = [plistRoot objectForKey:@"AwayTeam"];
+    NSLog(@"%@", subDict);
+    for(int i=0;i<9;i++)
+    {
+        Player *a = [[Player alloc] init];
+        NSDictionary *b = [subDict objectForKey:[NSString stringWithFormat: @"Batter%d", i]];
+        
+        a.FirstName = [b objectForKey:@"Fname"];
+        a.LastName = [b objectForKey:@"Lname"];
+        a.Position = [b objectForKey:@"Position"];
+        a.PlateAppearances = [[b objectForKey:@"PA"] integerValue];
+        a.Hits = [[b objectForKey:@"Hits"] integerValue];
+        a.RunsScored = [[b objectForKey:@"Runs"] integerValue];
+        a.RBI = [[b objectForKey:@"RBI"] integerValue];
+        a.HR = [[b objectForKey:@"HR"] integerValue];
+        a.BattingAverage = [[b objectForKey:@"BA"] integerValue];
+       
+        [s.AwayTeam addObject:a];
+    }
+    
+    subDict = [plistRoot objectForKey:@"HomeTeam"];
+
+    for(int i=0;i<9;i++)
+    {
+        Player *a = [[Player alloc] init];
+        NSDictionary *b = [subDict objectForKey:[NSString stringWithFormat: @"Batter%d", i]];
+        
+        a.FirstName = [b objectForKey:@"Fname"];
+        a.LastName = [b objectForKey:@"Lname"];
+        a.Position = [b objectForKey:@"Position"];
+        a.PlateAppearances = [[b objectForKey:@"PA"] integerValue];
+        a.Hits = [[b objectForKey:@"Hits"] integerValue];
+        a.RunsScored = [[b objectForKey:@"Runs"] integerValue];
+        a.RBI = [[b objectForKey:@"RBI"] integerValue];
+        a.HR = [[b objectForKey:@"HR"] integerValue];
+        a.BattingAverage = [[b objectForKey:@"BA"] integerValue];
+        
+        [s.HomeTeam addObject:a];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,18 +230,14 @@
 }
 
 - (IBAction)MainMenuButton:(id)sender {
-    GameDataController* s = [GameDataController sharedInstance];
     
-    s.GameInProgress = false;
 }
 
 - (IBAction)ResumeGameButton:(id)sender {
-    GameDataController* s = [GameDataController sharedInstance];
     
-    s.GameInProgress = true;
 }
 
--(void)StartGame {
+-(void)StartGame {/*
     GameDataController* s = [GameDataController sharedInstance];
     
     s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
@@ -180,7 +259,16 @@
     
     [s AwayPlayerLineup];
     [s HomePlayerLineup];
-    
+    s.firstbase.base = s.secondbase.base = s.thirdbase.base = s.atbat.base = s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = s.atbat.temp = NULL;
+    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = s.TypeofHit = 0;
     s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
+                   */
 }
+
+- (void)applicationDidEnterBackground:(NSNotification *)notification {
+    NSLog(@"Entering Background");
+    
+    [self SavePList];
+}
+
 @end
