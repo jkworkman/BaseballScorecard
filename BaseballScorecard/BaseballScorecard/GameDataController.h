@@ -55,4 +55,6 @@
 
 -(void)BatterHit;
 
+-(void)initilizeGame;
+
 @end

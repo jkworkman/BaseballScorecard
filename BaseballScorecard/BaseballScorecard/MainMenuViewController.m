@@ -34,26 +34,7 @@
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
     
-    GameDataController* s = [GameDataController sharedInstance];
-    
-    s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.BoxScoreList = [[NSMutableArray alloc] init];
-    s.FinalGameArray = [[NSMutableArray alloc] init];
-    s.firstbase = [[Bases alloc] init];
-    s.secondbase = [[Bases alloc] init];
-    s.thirdbase = [[Bases alloc] init];
-    s.atbat = [[Bases alloc] init];
-    
     [self RestorePList];
-    
-    s.firstbase.base = s.secondbase.base = s.thirdbase.base = s.atbat.base = s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = s.atbat.temp = NULL;
-    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = s.TypeofHit = 0;
-    
-    [s AwayPlayerLineup];
-    [s HomePlayerLineup];
-    
-    s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
 }
 
 -(void)SavePList {
@@ -233,42 +214,13 @@
     
 }
 
-- (IBAction)ResumeGameButton:(id)sender {
-    
-}
 
--(void)StartGame {/*
-    GameDataController* s = [GameDataController sharedInstance];
-    
-    s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.BoxScoreList = [[NSMutableArray alloc] init];
-    s.FinalGameArray = [[NSMutableArray alloc] init];
-    s.firstbase = [[Bases alloc] init];
-    s.secondbase = [[Bases alloc] init];
-    s.thirdbase = [[Bases alloc] init];
-    s.atbat = [[Bases alloc] init];
-    
-    s.firstbase.base = s.secondbase.base = s.thirdbase.base = s.atbat.base = s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = s.atbat.temp = NULL;
-    
-    s.balls = s.strikes = s.outs = s.HomeScore = s.AwayScore = s.HomeTeamLineupIndex = s.AwayTeamLineupIndex = s.TypeofHit = 0;
-    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
-    s.isBottomInning = false;
-    s.numInning = 1;
-    s.sideInning = @"Top";
-    
-    [s AwayPlayerLineup];
-    [s HomePlayerLineup];
-    s.firstbase.base = s.secondbase.base = s.thirdbase.base = s.atbat.base = s.firstbase.temp = s.secondbase.temp = s.thirdbase.temp = s.atbat.temp = NULL;
-    s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = s.TypeofHit = 0;
-    s.atbat.base = [s.AwayTeam objectAtIndex:s.AwayTeamLineupIndex];
-                   */
-}
+
+
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification {
     NSLog(@"Entering Background");
     
-    [self SavePList];
+    //[self SavePList];
 }
-
 @end

@@ -9,6 +9,7 @@
 #import "Quartz2D.h"
 #import "GameDataController.h"
 #import "BoxScoreMasterViewController.h"
+#import "BaseballViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #include <math.h>
 
@@ -1180,7 +1181,6 @@ NSString *Convert(int p)
     GameDataController* s = [GameDataController sharedInstance];
     Player *a = [[Player alloc] init];
     
-    
     [s.FinalGameArray addObject:AwayScoreLabel.text];
     [s.FinalGameArray addObject:HomeScoreLabel.text];
     
@@ -1216,14 +1216,6 @@ NSString *Convert(int p)
     s.FinalGameArray = NULL;
     
     NSLog(@"%@", s.BoxScoreList);
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 @end

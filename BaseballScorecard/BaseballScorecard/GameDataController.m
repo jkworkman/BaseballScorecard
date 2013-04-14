@@ -57,6 +57,26 @@ static GameDataController *sharedInstance = nil;
     return self;
 }
 
+-(void)initilizeGame {
+    
+    HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    BoxScoreList = [[NSMutableArray alloc] init];
+    FinalGameArray = [[NSMutableArray alloc] init];
+    firstbase = [[Bases alloc] init];
+    secondbase = [[Bases alloc] init];
+    thirdbase = [[Bases alloc] init];
+    atbat = [[Bases alloc] init];
+    
+    firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = atbat.temp = NULL;
+    firstbase.runnerAdvance = secondbase.runnerAdvance = thirdbase.runnerAdvance = atbat.runnerAdvance = TypeofHit = 0;
+    
+    [self AwayPlayerLineup];
+    [self HomePlayerLineup];
+    
+    atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+}
+
 
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedBall {

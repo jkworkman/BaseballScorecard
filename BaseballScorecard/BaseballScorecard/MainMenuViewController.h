@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MainMenuViewController : UIViewController
+
 - (IBAction)MainMenuButton:(id)sender;
-- (IBAction)ResumeGameButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *ResumeGameLabel;
+
 
 
 @end
