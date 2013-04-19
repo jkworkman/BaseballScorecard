@@ -21,6 +21,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize AwayScoreLabel;
 @synthesize PitchCountLabel;
 @synthesize InningLabel;
+@synthesize PitchButtonLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -443,6 +444,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                      completion:^(BOOL finished)
     {
         [circleView removeFromSuperview];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
+                                                        message:@"The game is over and has been logged in your box scores.  Please return to home page."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+        
     }];
 }
 
@@ -1216,6 +1225,15 @@ NSString *Convert(int p)
     s.FinalGameArray = NULL;
     
     NSLog(@"%@", s.BoxScoreList);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
+                                                    message:@"The game is over and has been logged in your box scores.  Please return to home page."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    PitchButtonLabel.hidden = true;
 }
 
 @end

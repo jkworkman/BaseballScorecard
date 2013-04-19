@@ -81,6 +81,7 @@
                             <outlet property="AwayScoreLabel" destination="jyF-oG-qIU" id="SH3-1S-hs5"/>
                             <outlet property="HomeScoreLabel" destination="ELG-hE-WP2" id="zFV-uu-fLh"/>
                             <outlet property="InningLabel" destination="6Oc-lN-Vnk" id="fEL-Rj-r3s"/>
+                            <outlet property="PitchButtonLabel" destination="YwY-EL-OV8" id="QFQ-ij-AtG"/>
                             <outlet property="PitchCountLabel" destination="hqg-SV-gvv" id="xo3-eI-W0x"/>
                         </connections>
                     </view>

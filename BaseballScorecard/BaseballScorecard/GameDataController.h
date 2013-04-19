@@ -33,6 +33,7 @@
 @property (nonatomic) NSMutableArray *FinalGameArray;
 @property (nonatomic) NSMutableArray *BoxScoreList;
 
+
 + (id)sharedInstance;
 
 -(id)init;

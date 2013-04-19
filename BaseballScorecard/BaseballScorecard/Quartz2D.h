@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitchCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *InningLabel;
+@property (weak, nonatomic) IBOutlet UIButton *PitchButtonLabel;
 
 
 

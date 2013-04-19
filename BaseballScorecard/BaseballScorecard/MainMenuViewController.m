@@ -15,7 +15,6 @@
 
 @implementation MainMenuViewController
 
-@synthesize ResumeGameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
