@@ -101,6 +101,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 case 2: /* Hit button */
                     [self ShowHitMenu];
                     break;
+                case 3: /* Runners button */
+                    [self ShowRunnersMenu];
             }
         }
             break;
@@ -201,6 +203,83 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                 break;
         }
             break;
+        case 5: /* RunnersActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* RunnerOnFirst button*/
+                s.whichRunner = 1;
+                [self ShowStealMenu];
+                break;
+            case 1: /* RunnerOnSecond button */
+                s.whichRunner = 2;
+                [self ShowStealMenu];
+                break;
+            case 2: /* RunnerOnThird button */
+                s.whichRunner = 3;
+                [self ShowStealMenu];
+                break;
+        }
+            break;
+        case 6: /* RunnersActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* RunnerOnSecond button*/
+                s.whichRunner = 2;
+                [self ShowStealMenu];
+                break;
+            case 1: /* RunnerOnThird button */
+                s.whichRunner = 3;
+                [self ShowStealMenu];
+                break;
+        }
+            break;
+        case 7: /* RunnersActionSheet */
+            switch ( buttonIndex )
+        {
+            case 0: /* RunnerOnThird button*/
+                s.whichRunner = 3;
+                [self ShowStealMenu];
+                break;
+        }
+            break;
+        case 8: /*SB/CS Actionsheet*/
+            switch ( buttonIndex )
+        {
+            case 0: /*Picked Off*/
+                break;
+            case 1: /*SB button*/
+                /*
+                s.firstbase.temp = s.firstbase.base;
+                s.secondbase.temp = s.secondbase.base;
+                s.thirdbase.temp = s.thirdbase.base;
+                 */
+                s.TypeofHit = 5;
+                s.firstbase.checked = true;
+                s.secondbase.checked = true;
+                s.thirdbase.checked = true;
+                if(s.whichRunner == 1) {
+                    s.firstbase.runnerAdvance = 1;
+                    s.secondbase.temp = s.firstbase.base;
+                }
+                else if(s.whichRunner == 2) {
+                    s.secondbase.runnerAdvance = 1;
+                    s.thirdbase.temp = s.secondbase.base;
+                }
+                else if(s.whichRunner == 3) {
+                    s.thirdbase.runnerAdvance = 1;
+                    s.thirdbase.temp.RunsScored += 1;
+                    if(!s.isBottomInning)
+                        s.AwayScore += 1;
+                    else
+                        s.HomeScore += 1;
+                    s.thirdbase.temp = NULL;
+                }
+                [self RunnerAdvancing];
+                break;
+            case 2: /*CS button*/
+                break;
+        }
+            break;
     }
 }
 /*--------------------------------------------------------------------------------*/
@@ -242,14 +321,132 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 /*--------------------------------------------------------------------------------*/
 -(void)ShowPitchCountMenu {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.firstbase.base != NULL || s.secondbase.base != NULL || s.thirdbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:@"Pitch Menu"
                                   delegate:self
                                   cancelButtonTitle:@"Cancel"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", nil];
-    actionSheet.tag = 0;
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+                                  otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", @"Runners", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Pitch Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", nil];
+        actionSheet.tag = 0;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+        
+}
+
+-(void) ShowRunnersMenu {
+
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.firstbase.base != NULL && s.secondbase.base != NULL && s.thirdbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On First", @"Runner On Second", @"Runner On Third", nil];
+        actionSheet.tag = 5;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.firstbase.base != NULL && s.secondbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On First", @"Runner On Second", nil];
+        actionSheet.tag = 5;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.firstbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On First", nil];
+        actionSheet.tag = 5;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.secondbase.base != NULL && s.thirdbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On Second", @"Runner On Third", nil];
+        actionSheet.tag = 6;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.secondbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On Second", nil];
+        actionSheet.tag = 6;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else if(s.thirdbase.base != NULL)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Runner On Third", nil];
+        actionSheet.tag = 7;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+-(void)ShowStealMenu {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if((s.whichRunner == 1 && s.secondbase.base == NULL) || (s.whichRunner == 2 && s.thirdbase.base == NULL) || (s.whichRunner == 3))
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"Runners Menu"
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:@"Picked Off", @"Steals Base", @"Caught Stealing", nil];
+        actionSheet.tag = 8;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:@"Runners Menu"
+                                      delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"Picked Off", nil];
+        actionSheet.tag = 8;
+        [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    
 }
 /*--------------------------------------------------------------------------------*/
 -(void)ShowHitMenu {
@@ -444,14 +641,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                      completion:^(BOOL finished)
     {
         [circleView removeFromSuperview];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
-                                                        message:@"The game is over and has been logged in your box scores.  Please return to home page."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert show];
-        
     }];
 }
 

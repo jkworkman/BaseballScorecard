@@ -29,11 +29,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    /*
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
-    
-    [self RestorePList];
+    */
+    //[self RestorePList];
 }
 
 -(void)SavePList {
@@ -210,7 +210,9 @@
 }
 
 - (IBAction)MainMenuButton:(id)sender {
+    GameDataController* s = [GameDataController sharedInstance];
     
+    [s initilizeGame];
 }
 
 

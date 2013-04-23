@@ -32,6 +32,7 @@
 @property (nonatomic) BOOL GameInProgress;
 @property (nonatomic) NSMutableArray *FinalGameArray;
 @property (nonatomic) NSMutableArray *BoxScoreList;
+@property (nonatomic) NSInteger whichRunner;
 
 
 + (id)sharedInstance;

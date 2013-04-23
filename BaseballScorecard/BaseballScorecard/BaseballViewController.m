@@ -27,8 +27,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    
-    GameDataController* s = [GameDataController sharedInstance];
     /*
     s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
     s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
@@ -39,7 +37,6 @@
     s.thirdbase = [[Bases alloc] init];
     s.atbat = [[Bases alloc] init];
     */
-    [s initilizeGame];
     
     //[self LoadFromPlist];
 

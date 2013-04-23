@@ -32,6 +32,7 @@
 @synthesize atbat;
 @synthesize BoxScoreList;
 @synthesize FinalGameArray;
+@synthesize whichRunner;
 
 static GameDataController *sharedInstance = nil;
 
@@ -70,6 +71,10 @@ static GameDataController *sharedInstance = nil;
     
     firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = atbat.temp = NULL;
     firstbase.runnerAdvance = secondbase.runnerAdvance = thirdbase.runnerAdvance = atbat.runnerAdvance = TypeofHit = 0;
+    balls = strikes = outs = HomeTeamLineupIndex = AwayTeamLineupIndex = HomeScore = AwayScore = 0;
+    sideInning = @"Top";
+    numInning = 1;
+    isBottomInning = false;
     
     [self AwayPlayerLineup];
     [self HomePlayerLineup];
@@ -77,6 +82,17 @@ static GameDataController *sharedInstance = nil;
     atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
 }
 
+-(void)StealsBase {
+    if(whichRunner == 1) {
+        
+    }
+    else if(whichRunner == 2) {
+    
+    }
+    else if(whichRunner == 3) {
+    
+    }
+}
 
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedBall {
