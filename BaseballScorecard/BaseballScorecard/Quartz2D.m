@@ -98,11 +98,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                     [s PitchedStrike];
                     [self RunnerAdvancing];
                     break;
-                case 2: /* Hit button */
+                case 2: /* Foul Ball button */
+                    if(s.strikes != 2)
+                        s.strikes += 1;
+                    [self UpdateLabels];
+                    break;
+                case 3: /* Hit button */
                     [self ShowHitMenu];
                     break;
-                case 3: /* Runners button */
+                case 4: /* Runners button */
                     [self ShowRunnersMenu];
+                    break;
             }
         }
             break;
@@ -310,7 +316,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                   delegate:self
                                   cancelButtonTitle:nil
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", @"Runners", nil];
+                                  otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", @"Runners", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -321,7 +327,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                       delegate:self
                                       cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", nil];
+                                      otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }

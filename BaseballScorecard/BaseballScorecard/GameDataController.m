@@ -82,18 +82,6 @@ static GameDataController *sharedInstance = nil;
     atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
 }
 
--(void)StealsBase {
-    if(whichRunner == 1) {
-        
-    }
-    else if(whichRunner == 2) {
-    
-    }
-    else if(whichRunner == 3) {
-    
-    }
-}
-
 /*--------------------------------------------------------------------------------*/
 -(void)PitchedBall {
     balls += 1;

@@ -26,17 +26,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
-    /*
-    s.HomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.AwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
-    s.BoxScoreList = [[NSMutableArray alloc] init];
-    s.FinalGameArray = [[NSMutableArray alloc] init];
-    s.firstbase = [[Bases alloc] init];
-    s.secondbase = [[Bases alloc] init];
-    s.thirdbase = [[Bases alloc] init];
-    s.atbat = [[Bases alloc] init];
-    */
     
     //[self LoadFromPlist];
 
