@@ -416,19 +416,90 @@ static GameDataController *sharedInstance = nil;
         atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
     }
 }
+-(void)RunnerSteals {
+    TypeofHit = 5;
+    firstbase.checked = true;
+    secondbase.checked = true;
+    thirdbase.checked = true;
+    if(whichRunner == 1) {
+        firstbase.runnerAdvance = 1;
+        firstbase.base.StolenBases += 1;
+        secondbase.temp = firstbase.base;
+    }
+    else if(whichRunner == 2) {
+        secondbase.runnerAdvance = 1;
+        secondbase.base.StolenBases += 1;
+        thirdbase.temp = secondbase.base;
+    }
+    else if(whichRunner == 3) {
+        thirdbase.runnerAdvance = 1;
+        thirdbase.base.RunsScored += 1;
+        thirdbase.base.StolenBases += 1;
+        if(!isBottomInning)
+            AwayScore += 1;
+        else
+            HomeScore += 1;
+        thirdbase.temp = NULL;
+    }
+}
+
+-(void)RunnerPickedOff {
+    outs += 1;
+    if(outs == 3)
+    {
+        outs = 0;
+        if(isBottomInning)
+        {
+            sideInning = @"Top";
+            numInning += 1;
+            isBottomInning = false;
+        }
+        else
+        {
+            sideInning = @"Bottom";
+            isBottomInning = true;
+        }
+        
+        firstbase.base = firstbase.temp = secondbase.base = secondbase.temp = thirdbase.base = thirdbase.temp = atbat.base = atbat.temp = NULL;
+        firstbase.checked = secondbase.checked = thirdbase.checked = false;
+    }
+    else
+    {
+        TypeofHit = 5;
+        firstbase.checked = true;
+        secondbase.checked = true;
+        thirdbase.checked = true;
+    
+        if(whichRunner == 1) {
+            firstbase.temp = NULL;
+            secondbase.temp = secondbase.base;
+            thirdbase.temp = thirdbase.base;
+        }
+        else if(whichRunner == 2) {
+            secondbase.temp = NULL;
+            firstbase.temp = firstbase.base;
+            thirdbase.temp = thirdbase.base;
+        }
+        else if(whichRunner == 3) {
+            thirdbase.temp = NULL;
+            firstbase.temp = firstbase.base;
+            secondbase.temp = secondbase.base;
+        }
+    }
+}
 
 
 /*--------------------------------------------------------------------------------*/
 -(void)HomePlayerLineup {
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]atIndex:0];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:1];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]atIndex:2];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:3];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:4];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]atIndex:5];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:6];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:7];
-    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:8];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:0];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:1];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:2];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:3];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:4];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:5];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:6];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
+    [HomeTeam insertObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
     /*
     [HomeTeam addObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
     [HomeTeam addObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
@@ -443,15 +514,15 @@ static GameDataController *sharedInstance = nil;
 }
 /*--------------------------------------------------------------------------------*/
 -(void)AwayPlayerLineup {
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:0];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:1];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:2];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:3];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:4];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:5];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:6];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:7];
-    [AwayTeam insertObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0] atIndex:8];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:0];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:1];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:2];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:3];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:4];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:5];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:6];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
+    [AwayTeam insertObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
 }
 
 

@@ -246,37 +246,16 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             switch ( buttonIndex )
         {
             case 0: /*Picked Off*/
+                [s RunnerPickedOff];
+                [self RunnerAdvancing];
                 break;
             case 1: /*SB button*/
-                /*
-                s.firstbase.temp = s.firstbase.base;
-                s.secondbase.temp = s.secondbase.base;
-                s.thirdbase.temp = s.thirdbase.base;
-                 */
-                s.TypeofHit = 5;
-                s.firstbase.checked = true;
-                s.secondbase.checked = true;
-                s.thirdbase.checked = true;
-                if(s.whichRunner == 1) {
-                    s.firstbase.runnerAdvance = 1;
-                    s.secondbase.temp = s.firstbase.base;
-                }
-                else if(s.whichRunner == 2) {
-                    s.secondbase.runnerAdvance = 1;
-                    s.thirdbase.temp = s.secondbase.base;
-                }
-                else if(s.whichRunner == 3) {
-                    s.thirdbase.runnerAdvance = 1;
-                    s.thirdbase.temp.RunsScored += 1;
-                    if(!s.isBottomInning)
-                        s.AwayScore += 1;
-                    else
-                        s.HomeScore += 1;
-                    s.thirdbase.temp = NULL;
-                }
+                [s RunnerSteals];
                 [self RunnerAdvancing];
                 break;
             case 2: /*CS button*/
+                [s RunnerPickedOff];
+                [self RunnerAdvancing];
                 break;
         }
             break;
@@ -329,7 +308,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:@"Pitch Menu"
                                   delegate:self
-                                  cancelButtonTitle:@"Cancel"
+                                  cancelButtonTitle:nil
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", @"Runners", nil];
         actionSheet.tag = 0;
@@ -340,7 +319,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Pitch Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Ball", @"Strike", @"Ball in Play", nil];
         actionSheet.tag = 0;
@@ -355,10 +334,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     if(s.firstbase.base != NULL && s.secondbase.base != NULL && s.thirdbase.base != NULL)
     {
+        s.firstbase.runnerAdvance = 5;
+        s.secondbase.runnerAdvance = 5;
+        s.thirdbase.runnerAdvance = 5;
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On First", @"Runner On Second", @"Runner On Third", nil];
         actionSheet.tag = 5;
@@ -366,10 +349,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     else if(s.firstbase.base != NULL && s.secondbase.base != NULL)
     {
+        s.firstbase.runnerAdvance = 5;
+        s.secondbase.runnerAdvance = 5;
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On First", @"Runner On Second", nil];
         actionSheet.tag = 5;
@@ -380,7 +366,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On First", nil];
         actionSheet.tag = 5;
@@ -388,10 +374,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     else if(s.secondbase.base != NULL && s.thirdbase.base != NULL)
     {
+        s.secondbase.runnerAdvance = 5;
+        s.thirdbase.runnerAdvance = 5;
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On Second", @"Runner On Third", nil];
         actionSheet.tag = 6;
@@ -402,7 +391,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On Second", nil];
         actionSheet.tag = 6;
@@ -413,7 +402,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Runner On Third", nil];
         actionSheet.tag = 7;
@@ -429,7 +418,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:@"Runners Menu"
                                   delegate:self
-                                  cancelButtonTitle:@"Cancel"
+                                  cancelButtonTitle:nil
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"Picked Off", @"Steals Base", @"Caught Stealing", nil];
         actionSheet.tag = 8;
@@ -440,7 +429,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runners Menu"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Picked Off", nil];
         actionSheet.tag = 8;
@@ -453,7 +442,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:@"Ball in Play"
                                   delegate:self
-                                  cancelButtonTitle:@"Cancel"
+                                  cancelButtonTitle:nil
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"Single", @"Double", @"Triple", @"Home Run", @"Out", nil];
     actionSheet.tag = 1;
@@ -470,7 +459,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Third"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Stay On Base", nil];
         actionSheet.tag = 2;
@@ -481,7 +470,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Third"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", nil];
         actionSheet.tag = 2;
@@ -498,7 +487,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Stay On Base", nil];
         actionSheet.tag = 3;
@@ -509,7 +498,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Advance To Third", nil];
         actionSheet.tag = 3;
@@ -520,7 +509,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", nil];
         actionSheet.tag = 3;
@@ -537,7 +526,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On First"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Advance To Second", @"Stay On Base", nil];
         actionSheet.tag = 4;
@@ -548,7 +537,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On First"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Advance To Third", @"Advance To Second", nil];
         actionSheet.tag = 4;
@@ -559,7 +548,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On First"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", @"Advance To Third", nil];
         actionSheet.tag = 4;
@@ -570,7 +559,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On First"
                                       delegate:self
-                                      cancelButtonTitle:@"Cancel"
+                                      cancelButtonTitle:nil
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Out", @"Score", nil];
         actionSheet.tag = 4;
@@ -1295,10 +1284,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSLog(@"B:%d, S:%d, O:%d, Hscore:%d, Ascore:%d, NumInning:%d, SideInning:%@, IsBottomInning:%d, Hindex:%d, Aindex:%d", s.balls, s.strikes, s.outs, s.HomeScore, s.AwayScore, s.numInning, s.sideInning, s.isBottomInning, s.HomeTeamLineupIndex, s.AwayTeamLineupIndex);
     
     
-    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %.3f", s.balls, s.strikes, s.outs, s.atbat.base.FirstName, s.atbat.base.LastName, s.atbat.base.Position, s.atbat.base.Hits, s.atbat.base.PlateAppearances, s.atbat.base.RunsScored, s.atbat.base.RBI, s.atbat.base.BattingAverage);
-    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.firstbase.base.FirstName, s.firstbase.base.LastName, s.firstbase.base.Position, s.firstbase.base.Hits, s.firstbase.base.PlateAppearances, s.firstbase.base.RunsScored, s.firstbase.base.RBI, s.firstbase.base.BattingAverage);
-    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.secondbase.base.FirstName, s.secondbase.base.LastName, s.secondbase.base.Position, s.secondbase.base.Hits, s.secondbase.base.PlateAppearances, s.secondbase.base.RunsScored, s.secondbase.base.RBI, s.secondbase.base.BattingAverage);
-    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %.3f", s.thirdbase.base.FirstName, s.thirdbase.base.LastName, s.thirdbase.base.Position, s.thirdbase.base.Hits, s.thirdbase.base.PlateAppearances, s.thirdbase.base.RunsScored, s.thirdbase.base.RBI, s.thirdbase.base.BattingAverage);
+    NSLog(@"AtBat: B:%d, S:%d, O:%d, %@ %@ %@ %d/%d, %d run(s), %d RBI(s), %d SB, %.3f", s.balls, s.strikes, s.outs, s.atbat.base.FirstName, s.atbat.base.LastName, s.atbat.base.Position, s.atbat.base.Hits, s.atbat.base.PlateAppearances, s.atbat.base.RunsScored, s.atbat.base.RBI, s.atbat.base.StolenBases, s.atbat.base.BattingAverage);
+    NSLog(@"FirstBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %d SB, %.3f", s.firstbase.base.FirstName, s.firstbase.base.LastName, s.firstbase.base.Position, s.firstbase.base.Hits, s.firstbase.base.PlateAppearances, s.firstbase.base.RunsScored, s.firstbase.base.RBI, s.firstbase.base.StolenBases, s.firstbase.base.BattingAverage);
+    NSLog(@"SecondBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %d SB, %.3f", s.secondbase.base.FirstName, s.secondbase.base.LastName, s.secondbase.base.Position, s.secondbase.base.Hits, s.secondbase.base.PlateAppearances, s.secondbase.base.RunsScored, s.secondbase.base.RBI, s.secondbase.base.StolenBases, s.secondbase.base.BattingAverage);
+    NSLog(@"ThirdBase: %@ %@ %@ %d/%d %d run(s), %d RBI(s), %d SB, %.3f", s.thirdbase.base.FirstName, s.thirdbase.base.LastName, s.thirdbase.base.Position, s.thirdbase.base.Hits, s.thirdbase.base.PlateAppearances, s.thirdbase.base.RunsScored, s.thirdbase.base.RBI, s.thirdbase.base.StolenBases, s.thirdbase.base.BattingAverage);
 }
 
 -(void)UpdateLabels {

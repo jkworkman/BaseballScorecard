@@ -30,8 +30,8 @@
 -(id)init {
     self = [super init];
     if (self) {
-        base = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
-        temp = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0];
+        base = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0];
+        temp = [[Player alloc] initWithName:@"temp" LastName:@"temp" Position:@"temp" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0];
         checked = false;
         runnerAdvance = 0;
         return self;

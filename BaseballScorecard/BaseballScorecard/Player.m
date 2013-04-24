@@ -19,8 +19,9 @@
 @synthesize RBI;
 @synthesize BattingAverage;
 @synthesize HR;
+@synthesize StolenBases;
 
--(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position PlateAppearances:(NSInteger)pa Hits:(NSInteger)h RunsScored:(NSInteger)rs RBI:(NSInteger)rbi BattingAverage:(CGFloat)ba HR:(NSInteger)hr
+-(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position PlateAppearances:(NSInteger)pa Hits:(NSInteger)h RunsScored:(NSInteger)rs RBI:(NSInteger)rbi BattingAverage:(CGFloat)ba HR:(NSInteger)hr StolenBases:(NSInteger)sb
 {
     self = [super init];
     if (self) {
@@ -33,6 +34,7 @@
         RBI = rbi;
         BattingAverage = ba;
         HR = hr;
+        StolenBases = sb;
         return self;
     }
     return nil;

@@ -52,6 +52,9 @@
 -(void)RunnerOut;
 -(void)RunnerStaysOnBase;
 
+-(void)RunnerSteals;
+-(void)RunnerPickedOff;
+
 -(void)HomePlayerLineup;
 -(void)AwayPlayerLineup;
 

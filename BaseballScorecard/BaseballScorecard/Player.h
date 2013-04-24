@@ -19,7 +19,8 @@
 @property (nonatomic) NSInteger RBI;
 @property (nonatomic) CGFloat BattingAverage;
 @property (nonatomic) NSInteger HR;
+@property (nonatomic) NSInteger StolenBases;
 
--(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position PlateAppearances:(NSInteger)pa Hits:(NSInteger)h RunsScored:(NSInteger)rs RBI:(NSInteger)rbi BattingAverage:(CGFloat)ba HR:(NSInteger)hr;
+-(id)initWithName:(NSString *)fname LastName:(NSString *)lname Position:(NSString *)position PlateAppearances:(NSInteger)pa Hits:(NSInteger)h RunsScored:(NSInteger)rs RBI:(NSInteger)rbi BattingAverage:(CGFloat)ba HR:(NSInteger)hr StolenBases:(NSInteger)sb;
 
 @end
