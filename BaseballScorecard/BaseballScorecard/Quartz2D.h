@@ -11,12 +11,17 @@
 @interface Quartz2D : UIView <UIActionSheetDelegate>
 
 - (IBAction)Pitch:(id)sender;
+- (IBAction)UndoButton:(id)sender;
+- (IBAction)RedoButton:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *HomeScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AwayScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitchCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *InningLabel;
 @property (weak, nonatomic) IBOutlet UIButton *PitchButtonLabel;
+@property (weak, nonatomic) IBOutlet UIButton *UndoButtonLabel;
+@property (weak, nonatomic) IBOutlet UIButton *RedoButtonLabel;
 
 
 

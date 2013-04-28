@@ -33,7 +33,42 @@
 @property (nonatomic) NSMutableArray *FinalGameArray;
 @property (nonatomic) NSMutableArray *BoxScoreList;
 @property (nonatomic) NSInteger whichRunner;
+@property (nonatomic) NSString *HomeTeamName;
+@property (nonatomic) NSString *AwayTeamName;
 
+@property (nonatomic) NSInteger undoballs;
+@property (nonatomic) NSInteger undostrikes;
+@property (nonatomic) NSInteger undoouts;
+@property (nonatomic) NSString *undosideInning;
+@property (nonatomic) NSInteger undonumInning;
+@property (nonatomic) BOOL undoisBottomInning;
+@property (nonatomic) NSMutableArray *undoHomeTeam;
+@property (nonatomic) NSMutableArray *undoAwayTeam;
+@property (nonatomic) NSInteger undoHomeTeamLineupIndex;
+@property (nonatomic) NSInteger undoAwayTeamLineupIndex;
+@property (nonatomic) NSInteger undoHomeScore;
+@property (nonatomic) NSInteger undoAwayScore;
+@property (nonatomic) Bases *undofirstbase;
+@property (nonatomic) Bases *undosecondbase;
+@property (nonatomic) Bases *undothirdbase;
+@property (nonatomic) Bases *undoatbat;
+
+@property (nonatomic) NSInteger redoballs;
+@property (nonatomic) NSInteger redostrikes;
+@property (nonatomic) NSInteger redoouts;
+@property (nonatomic) NSString *redosideInning;
+@property (nonatomic) NSInteger redonumInning;
+@property (nonatomic) BOOL redoisBottomInning;
+@property (nonatomic) NSMutableArray *redoHomeTeam;
+@property (nonatomic) NSMutableArray *redoAwayTeam;
+@property (nonatomic) NSInteger redoHomeTeamLineupIndex;
+@property (nonatomic) NSInteger redoAwayTeamLineupIndex;
+@property (nonatomic) NSInteger redoHomeScore;
+@property (nonatomic) NSInteger redoAwayScore;
+@property (nonatomic) Bases *redofirstbase;
+@property (nonatomic) Bases *redosecondbase;
+@property (nonatomic) Bases *redothirdbase;
+@property (nonatomic) Bases *redoatbat;
 
 + (id)sharedInstance;
 

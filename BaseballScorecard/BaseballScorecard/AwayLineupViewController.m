@@ -46,6 +46,8 @@
 
 - (IBAction)AwaySubmit:(id)sender {
     GameDataController* s = [GameDataController sharedInstance];
+    
+    s.AwayTeamName = _AwayTeamName.text;
 
     [s.AwayTeam addObject:[[Player alloc] initWithName:_FirstFirstName.text LastName:_FirstLastName.text Position:_FirstPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
     [s.AwayTeam addObject:[[Player alloc] initWithName:_SecondFirstName.text LastName:_SecondLastName.text Position:_SecondPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];

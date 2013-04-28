@@ -16,6 +16,8 @@
 @synthesize balls;
 @synthesize strikes;
 @synthesize outs;
+@synthesize HomeTeamName;
+@synthesize AwayTeamName;
 @synthesize numInning;
 @synthesize sideInning;
 @synthesize isBottomInning;
@@ -33,6 +35,40 @@
 @synthesize BoxScoreList;
 @synthesize FinalGameArray;
 @synthesize whichRunner;
+
+@synthesize undoballs;
+@synthesize undostrikes;
+@synthesize undoouts;
+@synthesize undonumInning;
+@synthesize undosideInning;
+@synthesize undoisBottomInning;
+@synthesize undoHomeTeam;
+@synthesize undoAwayTeam;
+@synthesize undoHomeScore;
+@synthesize undoAwayScore;
+@synthesize undoHomeTeamLineupIndex;
+@synthesize undoAwayTeamLineupIndex;
+@synthesize undofirstbase;
+@synthesize undosecondbase;
+@synthesize undothirdbase;
+@synthesize undoatbat;
+
+@synthesize redoballs;
+@synthesize redostrikes;
+@synthesize redoouts;
+@synthesize redonumInning;
+@synthesize redosideInning;
+@synthesize redoisBottomInning;
+@synthesize redoHomeTeam;
+@synthesize redoAwayTeam;
+@synthesize redoHomeScore;
+@synthesize redoAwayScore;
+@synthesize redoHomeTeamLineupIndex;
+@synthesize redoAwayTeamLineupIndex;
+@synthesize redofirstbase;
+@synthesize redosecondbase;
+@synthesize redothirdbase;
+@synthesize redoatbat;
 
 static GameDataController *sharedInstance = nil;
 
@@ -68,6 +104,8 @@ static GameDataController *sharedInstance = nil;
     secondbase = [[Bases alloc] init];
     thirdbase = [[Bases alloc] init];
     atbat = [[Bases alloc] init];
+    HomeTeamName = @"Cubs";
+    AwayTeamName = @"Giants";
     
     firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = atbat.temp = NULL;
     firstbase.runnerAdvance = secondbase.runnerAdvance = thirdbase.runnerAdvance = atbat.runnerAdvance = TypeofHit = 0;
@@ -75,7 +113,36 @@ static GameDataController *sharedInstance = nil;
     sideInning = @"Top";
     numInning = 1;
     isBottomInning = false;
+    //*********************************undo***************************************
+    undoHomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    undoAwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    undofirstbase = [[Bases alloc] init];
+    undosecondbase = [[Bases alloc] init];
+    undothirdbase = [[Bases alloc] init];
+    undoatbat = [[Bases alloc] init];
     
+    undofirstbase.base = undosecondbase.base = undothirdbase.base = undoatbat.base = undofirstbase.temp = undosecondbase.temp = undothirdbase.temp = undoatbat.temp = NULL;
+    undofirstbase.runnerAdvance = undosecondbase.runnerAdvance = undothirdbase.runnerAdvance = undoatbat.runnerAdvance = 0;
+    undoballs = undostrikes = undoouts = undoHomeTeamLineupIndex = undoAwayTeamLineupIndex = undoHomeScore = undoAwayScore = 0;
+    undosideInning = @"Top";
+    undonumInning = 1;
+    undoisBottomInning = false;
+    //*********************************undo***************************************
+    //*********************************redo***************************************
+    redoHomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    redoAwayTeam = [[NSMutableArray alloc] initWithCapacity:9];
+    redofirstbase = [[Bases alloc] init];
+    redosecondbase = [[Bases alloc] init];
+    redothirdbase = [[Bases alloc] init];
+    redoatbat = [[Bases alloc] init];
+    
+    redofirstbase.base = redosecondbase.base = redothirdbase.base = redoatbat.base = redofirstbase.temp = redosecondbase.temp = redothirdbase.temp = redoatbat.temp = NULL;
+    redofirstbase.runnerAdvance = redosecondbase.runnerAdvance = redothirdbase.runnerAdvance = redoatbat.runnerAdvance = 0;
+    redoballs = redostrikes = redoouts = redoHomeTeamLineupIndex = redoAwayTeamLineupIndex = redoHomeScore = redoAwayScore = 0;
+    redosideInning = @"Top";
+    redonumInning = 1;
+    redoisBottomInning = false;
+    //*********************************redo***************************************
     [self AwayPlayerLineup];
     [self HomePlayerLineup];
     
@@ -489,15 +556,15 @@ static GameDataController *sharedInstance = nil;
     [HomeTeam insertObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
     [HomeTeam insertObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
     /*
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
-    [HomeTeam addObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0]];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Jake" LastName:@"Workman" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:0];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Lester" LastName:@"Pacquio" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:1];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Jamal" LastName:@"Tinsley" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:2];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Brad" LastName:@"Meester" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:3];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Ziggy" LastName:@"Hood" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:4];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Allen" LastName:@"Ascher" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]atIndex:5];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Jason" LastName:@"Kipnis" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:6];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Yovanni" LastName:@"Gallardo" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
+    [undoHomeTeam insertObject:[[Player alloc] initWithName:@"Jurickson" LastName:@"Profar" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
      */
 }
 /*--------------------------------------------------------------------------------*/
@@ -511,6 +578,18 @@ static GameDataController *sharedInstance = nil;
     [AwayTeam insertObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:6];
     [AwayTeam insertObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
     [AwayTeam insertObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
+    
+    /*
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Jeremy" LastName:@"Sandcastle" Position:@"2B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:0];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Myles" LastName:@"Leonard" Position:@"1B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:1];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Sabby" LastName:@"Piscatelli" Position:@"3B" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:2];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Garvin" LastName:@"Greene" Position:@"CF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:3];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Gibralter" LastName:@"Maker" Position:@"C" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:4];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Obtulla" LastName:@"Muhammad" Position:@"LF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:5];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Dekker" LastName:@"Austin" Position:@"SS" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:6];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Grevious" LastName:@"Clark" Position:@"RF" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:7];
+    [undoAwayTeam insertObject:[[Player alloc] initWithName:@"Jim" LastName:@"Plunkett" Position:@"P" PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0] atIndex:8];
+     */
 }
 
 

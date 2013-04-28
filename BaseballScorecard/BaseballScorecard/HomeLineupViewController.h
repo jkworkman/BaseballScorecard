@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeLineupViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *HomeTeamName;
 
 @property (weak, nonatomic) IBOutlet UITextField *FirstFirstName;
 @property (weak, nonatomic) IBOutlet UITextField *FirstLastName;

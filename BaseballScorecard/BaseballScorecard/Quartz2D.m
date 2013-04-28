@@ -22,6 +22,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize PitchCountLabel;
 @synthesize InningLabel;
 @synthesize PitchButtonLabel;
+@synthesize UndoButtonLabel;
+@synthesize RedoButtonLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -281,6 +283,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     else
     {
         [self setNeedsDisplay];
+        //UndoButtonLabel.hidden = false;
         s.firstbase.base = s.firstbase.temp;
         s.secondbase.base = s.secondbase.temp;
         s.thirdbase.base = s.thirdbase.temp;
@@ -314,7 +317,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:@"Pitch Menu"
                                   delegate:self
-                                  cancelButtonTitle:nil
+                                  cancelButtonTitle:@"Cancel"
                                   destructiveButtonTitle:nil
                                   otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", @"Runners", nil];
         actionSheet.tag = 0;
@@ -325,7 +328,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Pitch Menu"
                                       delegate:self
-                                      cancelButtonTitle:nil
+                                      cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
                                       otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", nil];
         actionSheet.tag = 0;
@@ -1281,7 +1284,163 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (IBAction)Pitch:(id)sender {
+    [self SetUndos];
     [self ShowPitchCountMenu];
+}
+
+- (IBAction)UndoButton:(id)sender {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    //***********************redo*******************************
+    s.redoballs = s.balls;
+    s.redostrikes = s.strikes;
+    s.redoouts = s.outs;
+    s.redosideInning = s.sideInning;
+    s.redonumInning = s.numInning;
+    s.redoisBottomInning = s.isBottomInning;
+    s.redoHomeScore = s.HomeScore;
+    s.redoAwayScore = s.AwayScore;
+    s.redoHomeTeamLineupIndex = s.HomeTeamLineupIndex;
+    s.redoAwayTeamLineupIndex = s.AwayTeamLineupIndex;
+    s.redoatbat.base = s.atbat.base;
+    s.redofirstbase.base = s.firstbase.base;
+    s.redosecondbase.base = s.secondbase.base;
+    s.redothirdbase.base = s.thirdbase.base;
+    //**********************************************************
+    
+    s.balls = s.undoballs;
+    s.strikes = s.undostrikes;
+    s.outs = s.undoouts;
+    s.sideInning = s.undosideInning;
+    s.numInning = s.undonumInning;
+    s.isBottomInning = s.undoisBottomInning;
+    s.HomeScore = s.undoHomeScore;
+    s.AwayScore = s.undoAwayScore;
+    s.HomeTeamLineupIndex = s.undoHomeTeamLineupIndex;
+    s.AwayTeamLineupIndex = s.undoAwayTeamLineupIndex;
+    
+    s.atbat.base = s.undoatbat.base;
+    s.firstbase.base = s.undofirstbase.base;
+    s.secondbase.base = s.undosecondbase.base;
+    s.thirdbase.base = s.undothirdbase.base;
+    /*
+    [s.AwayTeam replaceObjectAtIndex:0 withObject:[s.undoAwayTeam objectAtIndex:0]];
+    [s.AwayTeam replaceObjectAtIndex:1 withObject:[s.undoAwayTeam objectAtIndex:1]];
+    [s.AwayTeam replaceObjectAtIndex:2 withObject:[s.undoAwayTeam objectAtIndex:2]];
+    [s.AwayTeam replaceObjectAtIndex:3 withObject:[s.undoAwayTeam objectAtIndex:3]];
+    [s.AwayTeam replaceObjectAtIndex:4 withObject:[s.undoAwayTeam objectAtIndex:4]];
+    [s.AwayTeam replaceObjectAtIndex:5 withObject:[s.undoAwayTeam objectAtIndex:5]];
+    [s.AwayTeam replaceObjectAtIndex:6 withObject:[s.undoAwayTeam objectAtIndex:6]];
+    [s.AwayTeam replaceObjectAtIndex:7 withObject:[s.undoAwayTeam objectAtIndex:7]];
+    [s.AwayTeam replaceObjectAtIndex:8 withObject:[s.undoAwayTeam objectAtIndex:8]];
+    
+    [s.HomeTeam replaceObjectAtIndex:0 withObject:[s.undoHomeTeam objectAtIndex:0]];
+    [s.HomeTeam replaceObjectAtIndex:1 withObject:[s.undoHomeTeam objectAtIndex:1]];
+    [s.HomeTeam replaceObjectAtIndex:2 withObject:[s.undoHomeTeam objectAtIndex:2]];
+    [s.HomeTeam replaceObjectAtIndex:3 withObject:[s.undoHomeTeam objectAtIndex:3]];
+    [s.HomeTeam replaceObjectAtIndex:4 withObject:[s.undoHomeTeam objectAtIndex:4]];
+    [s.HomeTeam replaceObjectAtIndex:5 withObject:[s.undoHomeTeam objectAtIndex:5]];
+    [s.HomeTeam replaceObjectAtIndex:6 withObject:[s.undoHomeTeam objectAtIndex:6]];
+    [s.HomeTeam replaceObjectAtIndex:7 withObject:[s.undoHomeTeam objectAtIndex:7]];
+    [s.HomeTeam replaceObjectAtIndex:8 withObject:[s.undoHomeTeam objectAtIndex:8]];
+    */
+
+    if(s.firstbase.base != NULL)
+        s.firstbase.runnerAdvance = 5;
+    if(s.secondbase.base != NULL)
+        s.secondbase.runnerAdvance = 5;
+    if(s.thirdbase.base != NULL)
+        s.thirdbase.runnerAdvance = 5;
+    /*
+    RedoButtonLabel.hidden = false;
+    UndoButtonLabel.hidden = true;
+    */
+    UndoButtonLabel.enabled = false;
+    RedoButtonLabel.enabled = true;
+    
+    [self UpdateLabels];
+    [self Log];
+    [self setNeedsDisplay];
+}
+
+-(void)SetUndos {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    s.undoballs = s.balls;
+    s.undostrikes = s.strikes;
+    s.undoouts = s.outs;
+    s.undosideInning = s.sideInning;
+    s.undonumInning = s.numInning;
+    s.undoisBottomInning = s.isBottomInning;
+    s.undoHomeScore = s.HomeScore;
+    s.undoAwayScore = s.AwayScore;
+    s.undoHomeTeamLineupIndex = s.HomeTeamLineupIndex;
+    s.undoAwayTeamLineupIndex = s.AwayTeamLineupIndex;
+    
+    s.undoatbat.base = s.atbat.base;
+    s.undofirstbase.base = s.firstbase.base;
+    s.undosecondbase.base = s.secondbase.base;
+    s.undothirdbase.base = s.thirdbase.base;
+    /*
+    [s.undoAwayTeam replaceObjectAtIndex:0 withObject:[s.AwayTeam objectAtIndex:0]];
+    [s.undoAwayTeam replaceObjectAtIndex:1 withObject:[s.AwayTeam objectAtIndex:1]];
+    [s.undoAwayTeam replaceObjectAtIndex:2 withObject:[s.AwayTeam objectAtIndex:2]];
+    [s.undoAwayTeam replaceObjectAtIndex:3 withObject:[s.AwayTeam objectAtIndex:3]];
+    [s.undoAwayTeam replaceObjectAtIndex:4 withObject:[s.AwayTeam objectAtIndex:4]];
+    [s.undoAwayTeam replaceObjectAtIndex:5 withObject:[s.AwayTeam objectAtIndex:5]];
+    [s.undoAwayTeam replaceObjectAtIndex:6 withObject:[s.AwayTeam objectAtIndex:6]];
+    [s.undoAwayTeam replaceObjectAtIndex:7 withObject:[s.AwayTeam objectAtIndex:7]];
+    [s.undoAwayTeam replaceObjectAtIndex:8 withObject:[s.AwayTeam objectAtIndex:8]];
+    
+    [s.undoHomeTeam replaceObjectAtIndex:0 withObject:[s.HomeTeam objectAtIndex:0]];
+    [s.undoHomeTeam replaceObjectAtIndex:1 withObject:[s.HomeTeam objectAtIndex:1]];
+    [s.undoHomeTeam replaceObjectAtIndex:2 withObject:[s.HomeTeam objectAtIndex:2]];
+    [s.undoHomeTeam replaceObjectAtIndex:3 withObject:[s.HomeTeam objectAtIndex:3]];
+    [s.undoHomeTeam replaceObjectAtIndex:4 withObject:[s.HomeTeam objectAtIndex:4]];
+    [s.undoHomeTeam replaceObjectAtIndex:5 withObject:[s.HomeTeam objectAtIndex:5]];
+    [s.undoHomeTeam replaceObjectAtIndex:6 withObject:[s.HomeTeam objectAtIndex:6]];
+    [s.undoHomeTeam replaceObjectAtIndex:7 withObject:[s.HomeTeam objectAtIndex:7]];
+    [s.undoHomeTeam replaceObjectAtIndex:8 withObject:[s.HomeTeam objectAtIndex:8]];
+     */
+}
+
+- (IBAction)RedoButton:(id)sender {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    s.balls = s.redoballs;
+    s.strikes = s.redostrikes;
+    s.outs = s.redoouts;
+    s.sideInning = s.redosideInning;
+    s.numInning = s.redonumInning;
+    s.isBottomInning = s.redoisBottomInning;
+    s.HomeScore = s.redoHomeScore;
+    s.AwayScore = s.redoAwayScore;
+    s.HomeTeamLineupIndex = s.redoHomeTeamLineupIndex;
+    s.AwayTeamLineupIndex = s.redoAwayTeamLineupIndex;
+    
+    s.atbat.base = s.redoatbat.base;
+    s.firstbase.base = s.redofirstbase.base;
+    s.secondbase.base = s.redosecondbase.base;
+    s.thirdbase.base = s.redothirdbase.base;
+    
+    if(s.firstbase.base != NULL)
+        s.firstbase.runnerAdvance = 5;
+    if(s.secondbase.base != NULL)
+        s.secondbase.runnerAdvance = 5;
+    if(s.thirdbase.base != NULL)
+        s.thirdbase.runnerAdvance = 5;
+    /*
+    UndoButtonLabel.hidden = false;
+    RedoButtonLabel.hidden = true;
+    */
+    UndoButtonLabel.enabled = true;
+    RedoButtonLabel.enabled = false;
+    
+    [self UpdateLabels];
+    [self Log];
+    [self setNeedsDisplay];
 }
 
 -(void)Log {
@@ -1300,8 +1459,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     GameDataController* s = [GameDataController sharedInstance];
     
     PitchCountLabel.text = [NSString stringWithFormat:@"Balls: %@ Strikes: %@ Outs: %@", Convert(s.balls), Convert(s.strikes), Convert(s.outs)];
-    HomeScoreLabel.text = [NSString stringWithFormat:@"Home: %@",Convert(s.HomeScore)];
-    AwayScoreLabel.text = [NSString stringWithFormat:@"Away: %@",Convert(s.AwayScore)];
+    HomeScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.HomeTeamName, Convert(s.HomeScore)];
+    AwayScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.AwayTeamName, Convert(s.AwayScore)];
     InningLabel.text = [NSString stringWithFormat:@"%@ %@", s.sideInning, Convert(s.numInning)];
 }
 

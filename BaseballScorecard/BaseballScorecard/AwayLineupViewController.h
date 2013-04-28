@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AwayLineupViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *AwayTeamName;
 
 @property (weak, nonatomic) IBOutlet UITextField *FirstFirstName;
 @property (weak, nonatomic) IBOutlet UITextField *FirstLastName;
