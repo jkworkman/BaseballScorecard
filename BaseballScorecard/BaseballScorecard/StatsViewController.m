@@ -34,71 +34,84 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    StatsView* a = [[StatsView alloc] init];
-    
     GameDataController* s = [GameDataController sharedInstance];
-    Player *t = [[Player alloc] init];
     
-    self.view = a;
-    self.view.backgroundColor = [UIColor whiteColor];
+    if(s.AwayLineupSubmitted == true && s.HomeLineupSubmitted == true)
+    {
     
-    [a addSubview:[self LabelProperties:100 :25 :100 :15 :[NSString stringWithFormat: @"%@: %d %@: %d", s.AwayTeamName, s.AwayScore, s.HomeTeamName, s.HomeScore]]];
+        StatsView* a = [[StatsView alloc] init];
+        Player *t = [[Player alloc] init];
+        
+        self.view = a;
+        self.view.backgroundColor = [UIColor whiteColor];
     
-    [a addSubview:[self LabelProperties:50 :45 :40 :15 :@"Name"]];
-    [a addSubview:[self LabelProperties:125 :45 :25 :15 :@"P"]];
-    [a addSubview:[self LabelProperties:150 :45 :30 :15 :@"H/AB"]];
-    [a addSubview:[self LabelProperties:180 :45 :30 :15 :@"Runs"]];
-    [a addSubview:[self LabelProperties:210 :45 :25 :15 :@"HR"]];
-    [a addSubview:[self LabelProperties:235 :45 :25 :15 :@"RBI"]];
-    [a addSubview:[self LabelProperties:260 :45 :25 :15 :@"SB"]];
-    [a addSubview:[self LabelProperties:285 :45 :25 :15 :@"BA"]];
+        [a addSubview:[self LabelProperties:100 :30 :100 :15 :[NSString stringWithFormat: @"%@: %d", s.AwayTeamName, s.AwayScore]]];
     
-    int y = 60;
+        [a addSubview:[self LabelProperties:50 :45 :40 :15 :@"Name"]];
+        [a addSubview:[self LabelProperties:125 :45 :25 :15 :@"P"]];
+        [a addSubview:[self LabelProperties:150 :45 :30 :15 :@"H/AB"]];
+        [a addSubview:[self LabelProperties:180 :45 :30 :15 :@"Runs"]];
+        [a addSubview:[self LabelProperties:210 :45 :25 :15 :@"HR"]];
+        [a addSubview:[self LabelProperties:235 :45 :25 :15 :@"RBI"]];
+        [a addSubview:[self LabelProperties:260 :45 :25 :15 :@"SB"]];
+        [a addSubview:[self LabelProperties:285 :45 :25 :15 :@"BA"]];
+    
+        int y = 60;
 
     
-    for(int i=0;i<9;i++)
-    {
-        t = [s.AwayTeam objectAtIndex:i];
-        [a addSubview:[self LabelProperties:5 :y :60 :15 :[NSString stringWithFormat: @"%@",t.FirstName]]];
-        [a addSubview:[self LabelProperties:65 :y :60 :15 :[NSString stringWithFormat: @"%@",t.LastName]]];
-        [a addSubview:[self LabelProperties:125 :y :25 :15 :[NSString stringWithFormat: @"%@",t.Position]]];
-        [a addSubview:[self LabelProperties:150 :y :30 :15 :[NSString stringWithFormat: @"%d/%d",t.Hits, t.PlateAppearances]]];
-        [a addSubview:[self LabelProperties:180 :y :30 :15 :[NSString stringWithFormat: @"%d",t.RunsScored]]];
-        [a addSubview:[self LabelProperties:210 :y :25 :15 :[NSString stringWithFormat: @"%d",t.HR]]];
-        [a addSubview:[self LabelProperties:235 :y :25 :15 :[NSString stringWithFormat: @"%d",t.RBI]]];
-        [a addSubview:[self LabelProperties:260 :y :25 :15 :[NSString stringWithFormat: @"%d",t.StolenBases]]];
-        [a addSubview:[self LabelProperties:285 :y :25 :15 :[NSString stringWithFormat: @"%.3f",t.BattingAverage]]];
-        y += 15;
+        for(int i=0;i<9;i++)
+        {
+            t = [s.AwayTeam objectAtIndex:i];
+            [a addSubview:[self LabelProperties:5 :y :60 :15 :[NSString stringWithFormat: @"%@",t.FirstName]]];
+            [a addSubview:[self LabelProperties:65 :y :60 :15 :[NSString stringWithFormat: @"%@",t.LastName]]];
+            [a addSubview:[self LabelProperties:125 :y :25 :15 :[NSString stringWithFormat: @"%@",t.    Position]]];
+            [a addSubview:[self LabelProperties:150 :y :30 :15 :[NSString stringWithFormat: @"%d/%d",t.Hits, t.PlateAppearances]]];
+            [a addSubview:[self LabelProperties:180 :y :30 :15 :[NSString stringWithFormat: @"%d",t.RunsScored]]];
+            [a addSubview:[self LabelProperties:210 :y :25 :15 :[NSString stringWithFormat: @"%d",t.HR]]];
+            [a addSubview:[self LabelProperties:235 :y :25 :15 :[NSString stringWithFormat: @"%d",t.RBI]]];
+            [a addSubview:[self LabelProperties:260 :y :25 :15 :[NSString stringWithFormat: @"%d",t.StolenBases]]];
+            [a addSubview:[self LabelProperties:285 :y :25 :15 :[NSString stringWithFormat: @"%.3f",t.BattingAverage]]];
+            y += 15;
+        }
+    
+        [a addSubview:[self LabelProperties:100 :210 :100 :15 :[NSString stringWithFormat: @"%@: %d", s.HomeTeamName, s.HomeScore]]];
+        [a addSubview:[self LabelProperties:50 :225 :40 :15 :@"Name"]];
+        [a addSubview:[self LabelProperties:125 :225 :25 :15 :@"P"]];
+        [a addSubview:[self LabelProperties:150 :225 :30 :15 :@"H/AB"]];
+        [a addSubview:[self LabelProperties:180 :225 :30 :15 :@"Runs"]];
+        [a addSubview:[self LabelProperties:210 :225 :25 :15 :@"HR"]];
+        [a addSubview:[self LabelProperties:235 :225 :25 :15 :@"RBI"]];
+        [a addSubview:[self LabelProperties:260 :225 :25 :15 :@"SB"]];
+        [a addSubview:[self LabelProperties:285 :225 :25 :15 :@"BA"]];
+    
+        y = 240;
+    
+    
+        for(int i=0;i<9;i++)
+        {
+            t = [s.HomeTeam objectAtIndex:i];
+            [a addSubview:[self LabelProperties:5 :y :60 :15 :[NSString stringWithFormat: @"%@",t.FirstName]]];
+            [a addSubview:[self LabelProperties:65 :y :60 :15 :[NSString stringWithFormat: @"%@",t.LastName]]];
+            [a addSubview:[self LabelProperties:125 :y :25 :15 :[NSString stringWithFormat: @"%@",t.Position]]];
+            [a addSubview:[self LabelProperties:150 :y :30 :15 :[NSString stringWithFormat: @"%d/%d",t.Hits, t.PlateAppearances]]];
+            [a addSubview:[self LabelProperties:180 :y :30 :15 :[NSString stringWithFormat: @"%d",t.RunsScored]]];
+            [a addSubview:[self LabelProperties:210 :y :25 :15 :[NSString stringWithFormat: @"%d",t.HR]]];
+            [a addSubview:[self LabelProperties:235 :y :25 :15 :[NSString stringWithFormat: @"%d",t.RBI]]];
+            [a addSubview:[self LabelProperties:260 :y :25 :15 :[NSString stringWithFormat: @"%d",t.StolenBases]]];
+            [a addSubview:[self LabelProperties:285 :y :25 :15 :[NSString stringWithFormat: @"%.3f",t.BattingAverage]]];
+            y += 15;
+        }
     }
-    
-    
-    [a addSubview:[self LabelProperties:50 :225 :40 :15 :@"Name"]];
-    [a addSubview:[self LabelProperties:125 :225 :25 :15 :@"P"]];
-    [a addSubview:[self LabelProperties:150 :225 :30 :15 :@"H/AB"]];
-    [a addSubview:[self LabelProperties:180 :225 :30 :15 :@"Runs"]];
-    [a addSubview:[self LabelProperties:210 :225 :25 :15 :@"HR"]];
-    [a addSubview:[self LabelProperties:235 :225 :25 :15 :@"RBI"]];
-    [a addSubview:[self LabelProperties:260 :225 :25 :15 :@"SB"]];
-    [a addSubview:[self LabelProperties:285 :225 :25 :15 :@"BA"]];
-    
-    y = 240;
-    
-    
-    for(int i=0;i<9;i++)
+    else
     {
-        t = [s.HomeTeam objectAtIndex:i];
-        [a addSubview:[self LabelProperties:5 :y :60 :15 :[NSString stringWithFormat: @"%@",t.FirstName]]];
-        [a addSubview:[self LabelProperties:65 :y :60 :15 :[NSString stringWithFormat: @"%@",t.LastName]]];
-        [a addSubview:[self LabelProperties:125 :y :25 :15 :[NSString stringWithFormat: @"%@",t.Position]]];
-        [a addSubview:[self LabelProperties:150 :y :30 :15 :[NSString stringWithFormat: @"%d/%d",t.Hits, t.PlateAppearances]]];
-        [a addSubview:[self LabelProperties:180 :y :30 :15 :[NSString stringWithFormat: @"%d",t.RunsScored]]];
-        [a addSubview:[self LabelProperties:210 :y :25 :15 :[NSString stringWithFormat: @"%d",t.HR]]];
-        [a addSubview:[self LabelProperties:235 :y :25 :15 :[NSString stringWithFormat: @"%d",t.RBI]]];
-        [a addSubview:[self LabelProperties:260 :y :25 :15 :[NSString stringWithFormat: @"%d",t.StolenBases]]];
-        [a addSubview:[self LabelProperties:285 :y :25 :15 :[NSString stringWithFormat: @"%.3f",t.BattingAverage]]];
-        y += 15;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Both lineups must be inputed before stats can be viewed."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
     }
-    
 }
 
 -(UIView*)LabelProperties:(NSInteger)x :(NSInteger)y :(NSInteger)w :(NSInteger)h :(NSString *)text{

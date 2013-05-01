@@ -90,12 +90,33 @@
         [s.HomeTeam addObject:[[Player alloc] initWithName:_EighthFirstName.text LastName:_EighthLastName.text Position:_EighthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
         [s.HomeTeam addObject:[[Player alloc] initWithName:_NinthFirstName.text LastName:_NinthLastName.text Position:_NinthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
         
-        s.AwayLineupSubmitted = true;
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_FirstFirstName.text LastName:_FirstLastName.text Position:_FirstPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_SecondFirstName.text LastName:_SecondLastName.text Position:_SecondPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_ThirdFirstName.text LastName:_ThirdLastName.text Position:_ThirdPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_FourthFirstName.text LastName:_FourthLastName.text Position:_FourthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_FifthFirstName.text LastName:_FifthLastName.text Position:_FifthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_SixthFirstName.text LastName:_SixthLastName.text Position:_SixthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_SeventhFirstName.text LastName:_SeventhLastName.text Position:_SeventhPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_EighthFirstName.text LastName:_EighthLastName.text Position:_EighthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.undoHomeTeam addObject:[[Player alloc] initWithName:_NinthFirstName.text LastName:_NinthLastName.text Position:_NinthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_FirstFirstName.text LastName:_FirstLastName.text Position:_FirstPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_SecondFirstName.text LastName:_SecondLastName.text Position:_SecondPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_ThirdFirstName.text LastName:_ThirdLastName.text Position:_ThirdPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_FourthFirstName.text LastName:_FourthLastName.text Position:_FourthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_FifthFirstName.text LastName:_FifthLastName.text Position:_FifthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_SixthFirstName.text LastName:_SixthLastName.text Position:_SixthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_SeventhFirstName.text LastName:_SeventhLastName.text Position:_SeventhPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_EighthFirstName.text LastName:_EighthLastName.text Position:_EighthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        [s.redoHomeTeam addObject:[[Player alloc] initWithName:_NinthFirstName.text LastName:_NinthLastName.text Position:_NinthPosition.text PlateAppearances:0 Hits:0 RunsScored:0 RBI:0 BattingAverage:0.00 HR:0 StolenBases:0]];
+        
+        s.HomeLineupSubmitted = true;
         _HomeSubmitLabel.hidden = true;
         _RandomLineupButtonLabel.hidden = true;
+        _UpdateButtonLabel.hidden = false;
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Away Lineup submitted successfully."
+                                                        message:@"Home Lineup submitted successfully."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -112,5 +133,54 @@
         
         [alert show];
     }
+}
+- (IBAction)UpdateButton:(id)sender {
+    GameDataController* s = [GameDataController sharedInstance];
+    Player *t = [[Player alloc] init];
+    
+    t = [s.HomeTeam objectAtIndex:0];
+    t.FirstName = _FirstFirstName.text;
+    t.LastName = _FirstLastName.text;
+    t.Position = _FirstPosition.text;
+    t = [s.HomeTeam objectAtIndex:1];
+    t.FirstName = _SecondFirstName.text;
+    t.LastName = _SecondLastName.text;
+    t.Position = _SecondPosition.text;
+    t = [s.HomeTeam objectAtIndex:2];
+    t.FirstName = _ThirdFirstName.text;
+    t.LastName = _ThirdLastName.text;
+    t.Position = _ThirdPosition.text;
+    t = [s.HomeTeam objectAtIndex:3];
+    t.FirstName = _FourthFirstName.text;
+    t.LastName = _FourthLastName.text;
+    t.Position = _FourthPosition.text;
+    t = [s.HomeTeam objectAtIndex:4];
+    t.FirstName = _FifthFirstName.text;
+    t.LastName = _FifthLastName.text;
+    t.Position = _FifthPosition.text;
+    t = [s.HomeTeam objectAtIndex:5];
+    t.FirstName = _SixthFirstName.text;
+    t.LastName = _SixthLastName.text;
+    t.Position = _SixthPosition.text;
+    t = [s.HomeTeam objectAtIndex:6];
+    t.FirstName = _SeventhFirstName.text;
+    t.LastName = _SeventhLastName.text;
+    t.Position = _SeventhPosition.text;
+    t = [s.HomeTeam objectAtIndex:7];
+    t.FirstName = _EighthFirstName.text;
+    t.LastName = _EighthLastName.text;
+    t.Position = _EighthPosition.text;
+    t = [s.HomeTeam objectAtIndex:8];
+    t.FirstName = _NinthFirstName.text;
+    t.LastName = _NinthLastName.text;
+    t.Position = _NinthPosition.text;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Home Lineup updated successfully."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
 }
 @end

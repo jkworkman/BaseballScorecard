@@ -50,7 +50,7 @@
     self.view = a;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [a addSubview:[self LabelProperties:100 :25 :100 :15 :[NSString stringWithFormat: @"%@ %@", [t objectAtIndex:0], [t objectAtIndex:1]]]];
+    [a addSubview:[self LabelProperties:100 :30 :100 :15 :[NSString stringWithFormat: @"%@: %d", s.AwayTeamName, s.AwayScore]]];
     
     [a addSubview:[self LabelProperties:50 :45 :40 :15 :@"Name"]];
     [a addSubview:[self LabelProperties:125 :45 :25 :15 :@"P"]];
@@ -92,6 +92,7 @@
         y += 15;
     }
     
+    [a addSubview:[self LabelProperties:100 :210 :100 :15 :[NSString stringWithFormat: @"%@: %d", s.HomeTeamName, s.HomeScore]]];
     [a addSubview:[self LabelProperties:50 :225 :40 :15 :@"Name"]];
     [a addSubview:[self LabelProperties:125 :225 :25 :15 :@"P"]];
     [a addSubview:[self LabelProperties:150 :225 :30 :15 :@"H/AB"]];

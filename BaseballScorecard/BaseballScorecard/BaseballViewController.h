@@ -12,7 +12,7 @@
 
 @class GameDataController;
 
-@interface BaseballViewController : UIViewController <UIActionSheetDelegate>
+@interface BaseballViewController : UIViewController <UIAlertViewDelegate>
 
 - (IBAction)HomeButton:(id)sender;
 

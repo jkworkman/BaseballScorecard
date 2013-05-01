@@ -43,5 +43,7 @@
 
 - (IBAction)AwaySubmit:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *AwaySubmitLabel;
+- (IBAction)UpdateButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *UpdateButtonLabel;
 
 @end

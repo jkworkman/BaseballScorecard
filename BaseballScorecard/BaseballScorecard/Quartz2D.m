@@ -298,7 +298,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     else
     {
         [self setNeedsDisplay];
-        //UndoButtonLabel.hidden = false;
         s.firstbase.base = s.firstbase.temp;
         s.secondbase.base = s.secondbase.temp;
         s.thirdbase.base = s.thirdbase.temp;
@@ -312,7 +311,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             [s BatterHit];
         }
         s.TypeofHit = 0;
-        
+        UndoButtonLabel.enabled = true;
+        RedoButtonLabel.enabled = false;
         [self UpdateLabels];
         [self Log];
         
@@ -1337,6 +1337,44 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     s.redofirstbase.base = s.firstbase.base;
     s.redosecondbase.base = s.secondbase.base;
     s.redothirdbase.base = s.thirdbase.base;
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        u = [s.AwayTeam objectAtIndex:i];
+        t = [s.redoAwayTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.HomeTeam objectAtIndex:i];
+        u = [s.redoHomeTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
     //**********************************************************
     
     s.balls = s.undoballs;
@@ -1354,27 +1392,44 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     s.firstbase.base = s.undofirstbase.base;
     s.secondbase.base = s.undosecondbase.base;
     s.thirdbase.base = s.undothirdbase.base;
-    /*
-    [s.AwayTeam replaceObjectAtIndex:0 withObject:[s.undoAwayTeam objectAtIndex:0]];
-    [s.AwayTeam replaceObjectAtIndex:1 withObject:[s.undoAwayTeam objectAtIndex:1]];
-    [s.AwayTeam replaceObjectAtIndex:2 withObject:[s.undoAwayTeam objectAtIndex:2]];
-    [s.AwayTeam replaceObjectAtIndex:3 withObject:[s.undoAwayTeam objectAtIndex:3]];
-    [s.AwayTeam replaceObjectAtIndex:4 withObject:[s.undoAwayTeam objectAtIndex:4]];
-    [s.AwayTeam replaceObjectAtIndex:5 withObject:[s.undoAwayTeam objectAtIndex:5]];
-    [s.AwayTeam replaceObjectAtIndex:6 withObject:[s.undoAwayTeam objectAtIndex:6]];
-    [s.AwayTeam replaceObjectAtIndex:7 withObject:[s.undoAwayTeam objectAtIndex:7]];
-    [s.AwayTeam replaceObjectAtIndex:8 withObject:[s.undoAwayTeam objectAtIndex:8]];
     
-    [s.HomeTeam replaceObjectAtIndex:0 withObject:[s.undoHomeTeam objectAtIndex:0]];
-    [s.HomeTeam replaceObjectAtIndex:1 withObject:[s.undoHomeTeam objectAtIndex:1]];
-    [s.HomeTeam replaceObjectAtIndex:2 withObject:[s.undoHomeTeam objectAtIndex:2]];
-    [s.HomeTeam replaceObjectAtIndex:3 withObject:[s.undoHomeTeam objectAtIndex:3]];
-    [s.HomeTeam replaceObjectAtIndex:4 withObject:[s.undoHomeTeam objectAtIndex:4]];
-    [s.HomeTeam replaceObjectAtIndex:5 withObject:[s.undoHomeTeam objectAtIndex:5]];
-    [s.HomeTeam replaceObjectAtIndex:6 withObject:[s.undoHomeTeam objectAtIndex:6]];
-    [s.HomeTeam replaceObjectAtIndex:7 withObject:[s.undoHomeTeam objectAtIndex:7]];
-    [s.HomeTeam replaceObjectAtIndex:8 withObject:[s.undoHomeTeam objectAtIndex:8]];
-    */
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.AwayTeam objectAtIndex:i];
+        u = [s.undoAwayTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.HomeTeam objectAtIndex:i];
+        u = [s.undoHomeTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
 
     if(s.firstbase.base != NULL)
         s.firstbase.runnerAdvance = 5;
@@ -1413,33 +1468,103 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     s.undofirstbase.base = s.firstbase.base;
     s.undosecondbase.base = s.secondbase.base;
     s.undothirdbase.base = s.thirdbase.base;
-    /*
-    [s.undoAwayTeam replaceObjectAtIndex:0 withObject:[s.AwayTeam objectAtIndex:0]];
-    [s.undoAwayTeam replaceObjectAtIndex:1 withObject:[s.AwayTeam objectAtIndex:1]];
-    [s.undoAwayTeam replaceObjectAtIndex:2 withObject:[s.AwayTeam objectAtIndex:2]];
-    [s.undoAwayTeam replaceObjectAtIndex:3 withObject:[s.AwayTeam objectAtIndex:3]];
-    [s.undoAwayTeam replaceObjectAtIndex:4 withObject:[s.AwayTeam objectAtIndex:4]];
-    [s.undoAwayTeam replaceObjectAtIndex:5 withObject:[s.AwayTeam objectAtIndex:5]];
-    [s.undoAwayTeam replaceObjectAtIndex:6 withObject:[s.AwayTeam objectAtIndex:6]];
-    [s.undoAwayTeam replaceObjectAtIndex:7 withObject:[s.AwayTeam objectAtIndex:7]];
-    [s.undoAwayTeam replaceObjectAtIndex:8 withObject:[s.AwayTeam objectAtIndex:8]];
     
-    [s.undoHomeTeam replaceObjectAtIndex:0 withObject:[s.HomeTeam objectAtIndex:0]];
-    [s.undoHomeTeam replaceObjectAtIndex:1 withObject:[s.HomeTeam objectAtIndex:1]];
-    [s.undoHomeTeam replaceObjectAtIndex:2 withObject:[s.HomeTeam objectAtIndex:2]];
-    [s.undoHomeTeam replaceObjectAtIndex:3 withObject:[s.HomeTeam objectAtIndex:3]];
-    [s.undoHomeTeam replaceObjectAtIndex:4 withObject:[s.HomeTeam objectAtIndex:4]];
-    [s.undoHomeTeam replaceObjectAtIndex:5 withObject:[s.HomeTeam objectAtIndex:5]];
-    [s.undoHomeTeam replaceObjectAtIndex:6 withObject:[s.HomeTeam objectAtIndex:6]];
-    [s.undoHomeTeam replaceObjectAtIndex:7 withObject:[s.HomeTeam objectAtIndex:7]];
-    [s.undoHomeTeam replaceObjectAtIndex:8 withObject:[s.HomeTeam objectAtIndex:8]];
-     */
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.AwayTeam objectAtIndex:i];
+        u = [s.undoAwayTeam objectAtIndex:i];
+        
+        u.FirstName = t.FirstName;
+        u.LastName = t.LastName;
+        u.Position = t.Position;
+        u.PlateAppearances = t.PlateAppearances;
+        u.RunsScored = t.RunsScored;
+        u.RBI = t.RBI;
+        u.StolenBases = t.StolenBases;
+        u.BattingAverage = t.BattingAverage;
+        u.HR = t.HR;
+        u.Hits = t.Hits;
+    }
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.HomeTeam objectAtIndex:i];
+        u = [s.undoHomeTeam objectAtIndex:i];
+        
+        u.FirstName = t.FirstName;
+        u.LastName = t.LastName;
+        u.Position = t.Position;
+        u.PlateAppearances = t.PlateAppearances;
+        u.RunsScored = t.RunsScored;
+        u.RBI = t.RBI;
+        u.StolenBases = t.StolenBases;
+        u.BattingAverage = t.BattingAverage;
+        u.HR = t.HR;
+        u.Hits = t.Hits;
+    }
 }
 
 - (IBAction)RedoButton:(id)sender {
     
     GameDataController* s = [GameDataController sharedInstance];
+    //***********************redo*******************************
+    s.undoballs = s.balls;
+    s.undostrikes = s.strikes;
+    s.undoouts = s.outs;
+    s.undosideInning = s.sideInning;
+    s.undonumInning = s.numInning;
+    s.undoisBottomInning = s.isBottomInning;
+    s.undoHomeScore = s.HomeScore;
+    s.undoAwayScore = s.AwayScore;
+    s.undoHomeTeamLineupIndex = s.HomeTeamLineupIndex;
+    s.undoAwayTeamLineupIndex = s.AwayTeamLineupIndex;
+    s.undoatbat.base = s.atbat.base;
+    s.undofirstbase.base = s.firstbase.base;
+    s.undosecondbase.base = s.secondbase.base;
+    s.undothirdbase.base = s.thirdbase.base;
     
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        u = [s.AwayTeam objectAtIndex:i];
+        t = [s.undoAwayTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.HomeTeam objectAtIndex:i];
+        u = [s.undoHomeTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    //**********************************************************
     s.balls = s.redoballs;
     s.strikes = s.redostrikes;
     s.outs = s.redoouts;
@@ -1462,10 +1587,45 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         s.secondbase.runnerAdvance = 5;
     if(s.thirdbase.base != NULL)
         s.thirdbase.runnerAdvance = 5;
-    /*
-    UndoButtonLabel.hidden = false;
-    RedoButtonLabel.hidden = true;
-    */
+
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.AwayTeam objectAtIndex:i];
+        u = [s.redoAwayTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    
+    for (NSInteger i=0; i<9; i++) {
+        Player *t = [[Player alloc] init];
+        Player *u = [[Player alloc] init];
+        
+        t = [s.HomeTeam objectAtIndex:i];
+        u = [s.redoHomeTeam objectAtIndex:i];
+        
+        t.FirstName = u.FirstName;
+        t.LastName = u.LastName;
+        t.Position = u.Position;
+        t.PlateAppearances = u.PlateAppearances;
+        t.RunsScored = u.RunsScored;
+        t.RBI = u.RBI;
+        t.StolenBases = u.StolenBases;
+        t.BattingAverage = u.BattingAverage;
+        t.HR = u.HR;
+        t.Hits = u.Hits;
+    }
+    
     UndoButtonLabel.enabled = true;
     RedoButtonLabel.enabled = false;
     
@@ -1499,8 +1659,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     InningLabel.adjustsFontSizeToFitWidth = YES;
     
     PitchCountLabel.text = [NSString stringWithFormat:@"Balls: %@ Strikes: %@ Outs: %@", Convert(s.balls), Convert(s.strikes), Convert(s.outs)];
-    HomeScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.HomeTeamName, Convert(s.HomeScore)];
-    AwayScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.AwayTeamName, Convert(s.AwayScore)];
+    HomeScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.AwayTeamName, Convert(s.AwayScore)];
+    AwayScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.HomeTeamName, Convert(s.HomeScore)];
     InningLabel.text = [NSString stringWithFormat:@"%@ %@ ", s.sideInning, Convert(s.numInning)];
 }
 
@@ -1619,6 +1779,9 @@ NSString *Convert(int p)
     
     [alert show];
     PitchButtonLabel.hidden = true;
+    UndoButtonLabel.hidden = true;
+    RedoButtonLabel.hidden = true;
+    
 }
 
 @end

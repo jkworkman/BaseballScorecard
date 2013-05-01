@@ -45,6 +45,8 @@
 
 - (IBAction)SubmitButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *HomeSubmitLabel;
+- (IBAction)UpdateButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *UpdateButtonLabel;
 
 
 @end

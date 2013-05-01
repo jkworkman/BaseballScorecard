@@ -64,7 +64,7 @@
                                     <action selector="HomeButton:" destination="2" eventType="touchUpInside" id="1l9-5b-CSz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ycH-XV-zaN">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ycH-XV-zaN">
                                 <rect key="frame" x="96" y="379" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -79,7 +79,7 @@
                                     <action selector="UndoButton:" destination="3" eventType="touchUpInside" id="pWk-3t-DAA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="prP-lC-pmw">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="prP-lC-pmw">
                                 <rect key="frame" x="164" y="379" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -133,7 +133,7 @@
                             <outlet property="UndoButtonLabel" destination="ycH-XV-zaN" id="dTj-UX-H8E"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Game" id="Tyx-B2-mXs"/>
+                    <tabBarItem key="tabBarItem" title="Game" image="Default.png" id="Tyx-B2-mXs"/>
                     <navigationItem key="navigationItem" id="uks-1s-TQ0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -149,10 +149,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lr3-iz-0dc">
-                                <rect key="frame" x="110" y="144" width="101" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="115" y="162" width="90" height="35"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
                                 <state key="normal" title="New Game">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -164,10 +164,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x3x-C6-oWl">
-                                <rect key="frame" x="111" y="257" width="99" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <rect key="frame" x="115" y="218" width="90" height="35"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
                                 <state key="normal" title="Box Score">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -654,6 +654,21 @@
                                     <action selector="RandomLineupButton:" destination="xfc-1x-IHv" eventType="touchUpInside" id="WkC-sH-183"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qij-O9-b5P">
+                                <rect key="frame" x="239" y="369" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="UpdateButton:" destination="xfc-1x-IHv" eventType="touchUpInside" id="a1d-Ie-6N9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
@@ -689,6 +704,7 @@
                         <outlet property="ThirdFirstName" destination="NGx-Dl-kPH" id="OZR-ol-VAT"/>
                         <outlet property="ThirdLastName" destination="tqY-L3-vkf" id="MSH-hZ-Mfg"/>
                         <outlet property="ThirdPosition" destination="A57-js-jUw" id="GtN-r3-hol"/>
+                        <outlet property="UpdateButtonLabel" destination="qij-O9-b5P" id="8nt-DM-r1x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kl-4n-73n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1091,6 +1107,21 @@
                                     <action selector="RandomLineupButton:" destination="Dxg-Dw-Sx6" eventType="touchUpInside" id="4A1-a7-hsd"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cqg-fj-B7a">
+                                <rect key="frame" x="240" y="369" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="UpdateButton:" destination="Dxg-Dw-Sx6" eventType="touchUpInside" id="Zg3-E5-Ork"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
@@ -1126,6 +1157,7 @@
                         <outlet property="ThirdFirstName" destination="3Ck-Gi-tno" id="XQo-Qt-OLs"/>
                         <outlet property="ThirdLastName" destination="8UV-wW-3IY" id="EBp-0t-7sr"/>
                         <outlet property="ThirdPosition" destination="TEx-ZG-ZBG" id="k0z-Wo-Ylb"/>
+                        <outlet property="UpdateButtonLabel" destination="cqg-fj-B7a" id="edF-nT-dA9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKh-oK-psG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1170,6 +1202,140 @@
             <point key="canvasLocation" x="-1741" y="170"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Default.png" width="320" height="480"/>
+    </resources>
+    <classes>
+        <class className="AwayLineupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AwayLineupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="AwaySubmit:"/>
+                <relationship kind="action" name="RandomLineupButton:"/>
+                <relationship kind="action" name="UpdateButton:"/>
+                <relationship kind="outlet" name="AwaySubmitLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="AwayTeamName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="RandomLineupButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="UpdateButtonLabel" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="BaseballViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseballViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="HomeButton:"/>
+            </relationships>
+        </class>
+        <class className="BoxScoreDetailView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoxScoreDetailView.h"/>
+        </class>
+        <class className="BoxScoreDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoxScoreDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BoxScoreMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoxScoreMasterViewController.h"/>
+        </class>
+        <class className="GameTabViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameTabViewController.h"/>
+        </class>
+        <class className="HomeLineupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeLineupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="RandomLineupButton:"/>
+                <relationship kind="action" name="SubmitButton:"/>
+                <relationship kind="action" name="UpdateButton:"/>
+                <relationship kind="outlet" name="EighthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="EighthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FifthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FirstPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="FourthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="HomeSubmitLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="HomeTeamName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="NinthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="RandomLineupButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="SecondFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SecondPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SeventhPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="SixthPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdFirstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdLastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ThirdPosition" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="UpdateButtonLabel" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="MainMenuButton:"/>
+            </relationships>
+        </class>
+        <class className="Quartz2D" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Quartz2D.h"/>
+            <relationships>
+                <relationship kind="action" name="Pitch:"/>
+                <relationship kind="action" name="RedoButton:"/>
+                <relationship kind="action" name="UndoButton:"/>
+                <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="FirstBaseLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="InningLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PitchButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="PitchCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="RedoButtonLabel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="SecondBaseLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ThirdBaseLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="UndoButtonLabel" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="StatsView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatsView.h"/>
+        </class>
+        <class className="StatsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatsViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

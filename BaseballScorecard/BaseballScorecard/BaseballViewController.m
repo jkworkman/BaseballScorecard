@@ -38,10 +38,25 @@
     // Dispose of any resources that can be recreated.
 }
 /*--------------------------------------------------------------------------------*/
-
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 0)
+        [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)HomeButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.AwayLineupSubmitted == true || s.HomeLineupSubmitted == true)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Are you sure you want to exit? All game data will be lost."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:@"cancel", nil];
+        [alert show];
+    }
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)StartNewGame {
