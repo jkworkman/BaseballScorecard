@@ -29,6 +29,8 @@
 		1CD334FD1709E5B60006989F /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD334FC1709E5B60006989F /* MainMenuViewController.m */; };
 		1CD5A02F16CDB0D500B5BA81 /* GameTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */; };
 		1CD6B4C316C974AA00584EDE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD6B4C216C974AA00584EDE /* Player.m */; };
+		1CE278051731741A00A5B28F /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE278041731741900A5B28F /* StatsViewController.m */; };
+		1CE278091731749B00A5B28F /* StatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE278081731749B00A5B28F /* StatsView.m */; };
 		1CE77A0216EFE04600AE9175 /* GameDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */; };
 		1CF1EC31171216340088E5DD /* BoxScoreDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF1EC30171216340088E5DD /* BoxScoreDetailView.m */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,10 @@
 		1CD5A02E16CDB0D500B5BA81 /* GameTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTabViewController.m; sourceTree = "<group>"; };
 		1CD6B4C116C974AA00584EDE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1CD6B4C216C974AA00584EDE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		1CE278031731741900A5B28F /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
+		1CE278041731741900A5B28F /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
+		1CE278071731749B00A5B28F /* StatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsView.h; sourceTree = "<group>"; };
+		1CE278081731749B00A5B28F /* StatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsView.m; sourceTree = "<group>"; };
 		1CE77A0116EFE04600AE9175 /* GameDataPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameDataPlist.plist; sourceTree = "<group>"; };
 		1CF1EC2F171216340088E5DD /* BoxScoreDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxScoreDetailView.h; sourceTree = "<group>"; };
 		1CF1EC30171216340088E5DD /* BoxScoreDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxScoreDetailView.m; sourceTree = "<group>"; };
@@ -125,6 +131,10 @@
 				1CAAFE7C16C6D87F00F0C44C /* BaseballAppDelegate.h */,
 				1CAAFE7D16C6D87F00F0C44C /* BaseballAppDelegate.m */,
 				1CAAFE8516C6D87F00F0C44C /* MainStoryboard.storyboard */,
+				1CE278031731741900A5B28F /* StatsViewController.h */,
+				1CE278041731741900A5B28F /* StatsViewController.m */,
+				1CE278071731749B00A5B28F /* StatsView.h */,
+				1CE278081731749B00A5B28F /* StatsView.m */,
 				1CD334FB1709E5B60006989F /* MainMenuViewController.h */,
 				1CD334FC1709E5B60006989F /* MainMenuViewController.m */,
 				1C7F0D2316F1312500441C47 /* BoxScoreMasterViewController.h */,
@@ -251,6 +261,8 @@
 				1C7F0D2916F1327E00441C47 /* BoxScoreDetailViewController.m in Sources */,
 				1CD334FD1709E5B60006989F /* MainMenuViewController.m in Sources */,
 				1CF1EC31171216340088E5DD /* BoxScoreDetailView.m in Sources */,
+				1CE278051731741A00A5B28F /* StatsViewController.m in Sources */,
+				1CE278091731749B00A5B28F /* StatsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

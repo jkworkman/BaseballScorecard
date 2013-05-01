@@ -35,6 +35,8 @@
 @property (nonatomic) NSInteger whichRunner;
 @property (nonatomic) NSString *HomeTeamName;
 @property (nonatomic) NSString *AwayTeamName;
+@property (nonatomic) BOOL HomeLineupSubmitted;
+@property (nonatomic) BOOL AwayLineupSubmitted;
 
 @property (nonatomic) NSInteger undoballs;
 @property (nonatomic) NSInteger undostrikes;

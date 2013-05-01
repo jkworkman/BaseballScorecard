@@ -53,12 +53,13 @@
     [a addSubview:[self LabelProperties:100 :25 :100 :15 :[NSString stringWithFormat: @"%@ %@", [t objectAtIndex:0], [t objectAtIndex:1]]]];
     
     [a addSubview:[self LabelProperties:50 :45 :40 :15 :@"Name"]];
-    [a addSubview:[self LabelProperties:125 :45 :30 :15 :@"P"]];
-    [a addSubview:[self LabelProperties:155 :45 :30 :15 :@"H/AB"]];
-    [a addSubview:[self LabelProperties:185 :45 :30 :15 :@"Runs"]];
-    [a addSubview:[self LabelProperties:215 :45 :30 :15 :@"HR"]];
-    [a addSubview:[self LabelProperties:245 :45 :30 :15 :@"RBI"]];
-    [a addSubview:[self LabelProperties:275 :45 :30 :15 :@"BA"]];
+    [a addSubview:[self LabelProperties:125 :45 :25 :15 :@"P"]];
+    [a addSubview:[self LabelProperties:150 :45 :30 :15 :@"H/AB"]];
+    [a addSubview:[self LabelProperties:180 :45 :30 :15 :@"Runs"]];
+    [a addSubview:[self LabelProperties:210 :45 :25 :15 :@"HR"]];
+    [a addSubview:[self LabelProperties:235 :45 :25 :15 :@"RBI"]];
+    [a addSubview:[self LabelProperties:260 :45 :25 :15 :@"SB"]];
+    [a addSubview:[self LabelProperties:285 :45 :25 :15 :@"BA"]];
     
     int x = 5;
     int y = 60;
@@ -72,10 +73,19 @@
             x += 60;
             z += 1;
         }
-        for(int j=0;j<6;j++)
+        [a addSubview:[self LabelProperties:x :y :25 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+        x += 25;
+        z += 1;
+        for(int j=0;j<2;j++)
         {
             [a addSubview:[self LabelProperties:x :y :30 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
             x += 30;
+            z += 1;
+        }
+        for(int j=0;j<4;j++)
+        {
+            [a addSubview:[self LabelProperties:x :y :25 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 25;
             z += 1;
         }
         x = 5;
@@ -83,12 +93,13 @@
     }
     
     [a addSubview:[self LabelProperties:50 :225 :40 :15 :@"Name"]];
-    [a addSubview:[self LabelProperties:125 :225 :30 :15 :@"P"]];
-    [a addSubview:[self LabelProperties:155 :225 :30 :15 :@"H/AB"]];
-    [a addSubview:[self LabelProperties:185 :225 :30 :15 :@"Runs"]];
-    [a addSubview:[self LabelProperties:215 :225 :30 :15 :@"HR"]];
-    [a addSubview:[self LabelProperties:245 :225 :30 :15 :@"RBI"]];
-    [a addSubview:[self LabelProperties:275 :225 :30 :15 :@"BA"]];
+    [a addSubview:[self LabelProperties:125 :225 :25 :15 :@"P"]];
+    [a addSubview:[self LabelProperties:150 :225 :30 :15 :@"H/AB"]];
+    [a addSubview:[self LabelProperties:180 :225 :30 :15 :@"Runs"]];
+    [a addSubview:[self LabelProperties:210 :225 :25 :15 :@"HR"]];
+    [a addSubview:[self LabelProperties:235 :225 :25 :15 :@"RBI"]];
+    [a addSubview:[self LabelProperties:260 :225 :25 :15 :@"SB"]];
+    [a addSubview:[self LabelProperties:285 :225 :25 :15 :@"BA"]];
     
     x = 5;
     y = 240;
@@ -100,10 +111,19 @@
             x += 60;
             z += 1;
         }
-        for(int j=0;j<6;j++)
+        [a addSubview:[self LabelProperties:x :y :25 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+        x += 25;
+        z += 1;
+        for(int j=0;j<2;j++)
         {
             [a addSubview:[self LabelProperties:x :y :30 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
             x += 30;
+            z += 1;
+        }
+        for(int j=0;j<4;j++)
+        {
+            [a addSubview:[self LabelProperties:x :y :25 :15 :[NSString stringWithFormat: @"%@",[t objectAtIndex:z]]]];
+            x += 25;
             z += 1;
         }
         x = 5;

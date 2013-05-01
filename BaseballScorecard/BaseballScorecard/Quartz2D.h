@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *PitchButtonLabel;
 @property (weak, nonatomic) IBOutlet UIButton *UndoButtonLabel;
 @property (weak, nonatomic) IBOutlet UIButton *RedoButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SecondBaseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *FirstBaseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ThirdBaseLabel;
 
 
 

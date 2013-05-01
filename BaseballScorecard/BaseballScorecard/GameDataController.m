@@ -69,6 +69,8 @@
 @synthesize redosecondbase;
 @synthesize redothirdbase;
 @synthesize redoatbat;
+@synthesize HomeLineupSubmitted;
+@synthesize AwayLineupSubmitted;
 
 static GameDataController *sharedInstance = nil;
 
@@ -106,6 +108,8 @@ static GameDataController *sharedInstance = nil;
     atbat = [[Bases alloc] init];
     HomeTeamName = @"Cubs";
     AwayTeamName = @"Giants";
+    HomeLineupSubmitted = false;
+    AwayLineupSubmitted = false;
     
     firstbase.base = secondbase.base = thirdbase.base = atbat.base = firstbase.temp = secondbase.temp = thirdbase.temp = atbat.temp = NULL;
     firstbase.runnerAdvance = secondbase.runnerAdvance = thirdbase.runnerAdvance = atbat.runnerAdvance = TypeofHit = 0;
@@ -143,10 +147,10 @@ static GameDataController *sharedInstance = nil;
     redonumInning = 1;
     redoisBottomInning = false;
     //*********************************redo***************************************
-    [self AwayPlayerLineup];
-    [self HomePlayerLineup];
+    //[self AwayPlayerLineup];
+    //[self HomePlayerLineup];
     
-    atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
+    //atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
 }
 
 /*--------------------------------------------------------------------------------*/

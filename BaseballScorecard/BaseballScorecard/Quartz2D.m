@@ -24,6 +24,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize PitchButtonLabel;
 @synthesize UndoButtonLabel;
 @synthesize RedoButtonLabel;
+@synthesize FirstBaseLabel;
+@synthesize SecondBaseLabel;
+@synthesize ThirdBaseLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,6 +47,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         }
     }
     GameDataController* s = [GameDataController sharedInstance];
+    
+    FirstBaseLabel.text = NULL;
+    SecondBaseLabel.text = NULL;
+    ThirdBaseLabel.text = NULL;
     
     int x = 160;
     int y = 375;
@@ -78,6 +85,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawThirdToHome:x :y];
     else if(s.thirdbase.runnerAdvance == 5)
         [self DrawStayOnThird:x :y];
+    
+    if(s.firstbase.base != NULL)
+        FirstBaseLabel.text = [NSString stringWithFormat:@"%@", s.firstbase.base.LastName];
+    if(s.secondbase.base != NULL)
+
+        SecondBaseLabel.text = [NSString stringWithFormat:@"%@", s.secondbase.base.LastName];
+    if(s.thirdbase.base != NULL)
+        ThirdBaseLabel.text = [NSString stringWithFormat:@"%@", s.thirdbase.base.LastName];
     
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
 }
@@ -1284,8 +1299,24 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 - (IBAction)Pitch:(id)sender {
+    
+    GameDataController* s = [GameDataController sharedInstance];
+    
+    if(s.HomeLineupSubmitted == false && s.AwayLineupSubmitted == false)
+    {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Home and Away lineups must be submitted before game can start."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+    }
+    else
+    {
     [self SetUndos];
     [self ShowPitchCountMenu];
+    }
 }
 
 - (IBAction)UndoButton:(id)sender {
@@ -1458,10 +1489,19 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void)UpdateLabels {
     GameDataController* s = [GameDataController sharedInstance];
     
+    HomeScoreLabel.adjustsFontSizeToFitWidth = YES;
+    HomeScoreLabel.adjustsLetterSpacingToFitWidth = YES;
+    AwayScoreLabel.adjustsLetterSpacingToFitWidth = YES;
+    AwayScoreLabel.adjustsFontSizeToFitWidth = YES;
+    PitchCountLabel.adjustsFontSizeToFitWidth = YES;
+    PitchCountLabel.adjustsLetterSpacingToFitWidth = YES;
+    InningLabel.adjustsLetterSpacingToFitWidth = YES;
+    InningLabel.adjustsFontSizeToFitWidth = YES;
+    
     PitchCountLabel.text = [NSString stringWithFormat:@"Balls: %@ Strikes: %@ Outs: %@", Convert(s.balls), Convert(s.strikes), Convert(s.outs)];
     HomeScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.HomeTeamName, Convert(s.HomeScore)];
     AwayScoreLabel.text = [NSString stringWithFormat:@"%@: %@",s.AwayTeamName, Convert(s.AwayScore)];
-    InningLabel.text = [NSString stringWithFormat:@"%@ %@", s.sideInning, Convert(s.numInning)];
+    InningLabel.text = [NSString stringWithFormat:@"%@ %@ ", s.sideInning, Convert(s.numInning)];
 }
 
 NSString *Convert(int p)
@@ -1547,6 +1587,7 @@ NSString *Convert(int p)
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RunsScored]];
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.HR]];
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RBI]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.StolenBases]];
         temp = [NSString stringWithFormat: @"%.3f", a.BattingAverage];
         [s.FinalGameArray addObject:temp];
     }
@@ -1560,6 +1601,7 @@ NSString *Convert(int p)
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RunsScored]];
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.HR]];
         [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.RBI]];
+        [s.FinalGameArray addObject:[NSString stringWithFormat: @"%d", a.StolenBases]];
         temp = [NSString stringWithFormat: @"%.3f", a.BattingAverage];
         [s.FinalGameArray addObject:temp];
     }

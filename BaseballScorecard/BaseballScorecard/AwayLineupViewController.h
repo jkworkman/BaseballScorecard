@@ -38,7 +38,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *NinthFirstName;
 @property (weak, nonatomic) IBOutlet UITextField *NinthLastName;
 @property (weak, nonatomic) IBOutlet UITextField *NinthPosition;
+- (IBAction)RandomLineupButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *RandomLineupButtonLabel;
 
 - (IBAction)AwaySubmit:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *AwaySubmitLabel;
 
 @end
