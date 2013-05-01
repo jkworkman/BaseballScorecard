@@ -35,6 +35,7 @@
 @synthesize BoxScoreList;
 @synthesize FinalGameArray;
 @synthesize whichRunner;
+@synthesize gameString;
 
 @synthesize undoballs;
 @synthesize undostrikes;
@@ -117,6 +118,7 @@ static GameDataController *sharedInstance = nil;
     sideInning = @"Top";
     numInning = 1;
     isBottomInning = false;
+    gameString = [[NSMutableString alloc] init];
     //*********************************undo***************************************
     undoHomeTeam = [[NSMutableArray alloc] initWithCapacity:9];
     undoAwayTeam = [[NSMutableArray alloc] initWithCapacity:9];

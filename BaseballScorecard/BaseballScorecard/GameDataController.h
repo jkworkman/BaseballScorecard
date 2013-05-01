@@ -37,6 +37,7 @@
 @property (nonatomic) NSString *AwayTeamName;
 @property (nonatomic) BOOL HomeLineupSubmitted;
 @property (nonatomic) BOOL AwayLineupSubmitted;
+@property (nonatomic) NSMutableString *gameString;
 
 @property (nonatomic) NSInteger undoballs;
 @property (nonatomic) NSInteger undostrikes;

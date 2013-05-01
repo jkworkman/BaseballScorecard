@@ -27,6 +27,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize FirstBaseLabel;
 @synthesize SecondBaseLabel;
 @synthesize ThirdBaseLabel;
+@synthesize LeftFieldLabel;
+@synthesize CenterFieldLabel;
+@synthesize RightFieldLabel;
+@synthesize ThirdFielderLabel;
+@synthesize ShortstopLabel;
+@synthesize SecondFielderLabel;
+@synthesize FirstFielderLabel;
+@synthesize PitcherFielderLabel;
+@synthesize CatcherLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,8 +58,20 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     GameDataController* s = [GameDataController sharedInstance];
     
     FirstBaseLabel.text = NULL;
+    FirstBaseLabel.backgroundColor = [UIColor clearColor];
     SecondBaseLabel.text = NULL;
+    SecondBaseLabel.backgroundColor = [UIColor clearColor];
     ThirdBaseLabel.text = NULL;
+    ThirdBaseLabel.backgroundColor = [UIColor clearColor];
+    LeftFieldLabel.text = NULL;
+    RightFieldLabel.text = NULL;
+    CenterFieldLabel.text = NULL;
+    ShortstopLabel.text = NULL;
+    SecondFielderLabel.text = NULL;
+    FirstFielderLabel.text = NULL;
+    PitcherFielderLabel.text = NULL;
+    CatcherLabel.text = NULL;
+    ThirdFielderLabel.text = NULL;
     
     int x = 160;
     int y = 375;
@@ -87,13 +108,50 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self DrawStayOnThird:x :y];
     
     if(s.firstbase.base != NULL)
+    {
         FirstBaseLabel.text = [NSString stringWithFormat:@"%@", s.firstbase.base.LastName];
+        FirstBaseLabel.backgroundColor = [UIColor blackColor];
+    }
     if(s.secondbase.base != NULL)
-
+    {
         SecondBaseLabel.text = [NSString stringWithFormat:@"%@", s.secondbase.base.LastName];
+        SecondBaseLabel.backgroundColor = [UIColor blackColor];
+    }
     if(s.thirdbase.base != NULL)
+    {
         ThirdBaseLabel.text = [NSString stringWithFormat:@"%@", s.thirdbase.base.LastName];
-    
+        ThirdBaseLabel.backgroundColor = [UIColor blackColor];
+    }
+    if(s.HomeLineupSubmitted == true && s.AwayLineupSubmitted == true)
+    {
+    for(NSInteger i=0;i<9;i++)
+    {
+        Player *p = [[Player alloc] init];
+        if(s.isBottomInning)
+            p = [s.AwayTeam objectAtIndex:i];
+        else
+            p = [s.HomeTeam objectAtIndex:i];
+            
+        if([p.Position isEqualToString:@"LF"])
+            LeftFieldLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"CF"])
+            CenterFieldLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"RF"])
+            RightFieldLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"3B"])
+            ThirdFielderLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"2B"])
+            SecondFielderLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"1B"])
+            FirstFielderLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"SS"])
+            ShortstopLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"C"])
+            CatcherLabel.text = p.LastName;
+        if([p.Position isEqualToString:@"P"])
+            PitcherFielderLabel.text = p.LastName;
+    }
+    }
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
 }
 
@@ -134,18 +192,22 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         {
             case 0: /* Single button*/
                 [s HitSingle];
+                s.gameString = [NSString stringWithFormat:@"%@ hit a single", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 1: /* Double button */
                 [s HitDouble];
+                s.gameString = [NSString stringWithFormat:@"%@ hit a double", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 2: /* Triple button */
                 [s HitTriple];
+                s.gameString = [NSString stringWithFormat:@"%@ hit a triple", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 3: /* HomeRun button */
                 [s HitHomeRun];
+                s.gameString = [NSString stringWithFormat:@"%@ hit a homerun", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 4: /* HitOut button */
@@ -217,6 +279,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             case 3: /* AdvanceToSecond button */
                 s.firstbase.runnerAdvance = 1;
                 [s RunnerToSecond];
+                //[s.gameString appendString:@"advance to second"];
+                [s.gameString appendFormat:@"%@ advanced to second", s.firstbase.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 4: /* StayOnBase button */
@@ -320,8 +384,20 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         {
             [self GameEnded];
         }
+        /*
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:s.gameString
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        //[alert performSelector:@selector(show) withObject:nil afterDelay:4];
+        [alert show];
+        s.gameString = nil;
+         */
     }
 }
+
 /*--------------------------------------------------------------------------------*/
 -(void)ShowPitchCountMenu {
     
@@ -1304,18 +1380,19 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     if(s.HomeLineupSubmitted == false && s.AwayLineupSubmitted == false)
     {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:@"Home and Away lineups must be submitted before game can start."
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     
-    [alert show];
+        [alert show];
     }
     else
     {
-    [self SetUndos];
-    [self ShowPitchCountMenu];
+        s.gameString = nil;
+        [self SetUndos];
+        [self ShowPitchCountMenu];
     }
 }
 

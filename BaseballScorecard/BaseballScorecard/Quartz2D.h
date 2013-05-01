@@ -25,6 +25,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *SecondBaseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *FirstBaseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ThirdBaseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *LeftFieldLabel;
+@property (weak, nonatomic) IBOutlet UILabel *CenterFieldLabel;
+@property (weak, nonatomic) IBOutlet UILabel *RightFieldLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ShortstopLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SecondFielderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *FirstFielderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ThirdFielderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PitcherFielderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *CatcherLabel;
+
 
 
 
