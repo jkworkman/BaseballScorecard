@@ -28,12 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    GameDataController* s = [GameDataController sharedInstance];
 	// Do any additional setup after loading the view.
     /*
     UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
     */
     //[self RestorePList];
+    s.BoxScoreList = [[NSMutableArray alloc] init];
 }
 
 -(void)SavePList {

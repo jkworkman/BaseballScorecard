@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *OnDeckLabel;
 @property (weak, nonatomic) IBOutlet UILabel *IntheHoleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *Dueuplabel;
+@property (weak, nonatomic) IBOutlet UILabel *atbathomeplatelabel;
 
 
 

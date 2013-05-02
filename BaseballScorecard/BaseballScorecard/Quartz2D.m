@@ -413,21 +413,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self UpdateLabels];
         [self Log];
         
-        if(s.numInning >=9 && s.HomeScore != s.AwayScore)
+        if((s.numInning > 4 && s.HomeScore != s.AwayScore) || ([s.sideInning isEqual: @"Bottom"] && s.numInning == 4 && s.HomeScore > s.AwayScore))
         {
             [self GameEnded];
         }
-        /*
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:s.gameString
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        //[alert performSelector:@selector(show) withObject:nil afterDelay:4];
-        [alert show];
-        s.gameString = nil;
-         */
     }
 }
 
@@ -615,7 +604,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if((s.TypeofHit == 1 || s.TypeofHit == 5) && s.secondbase.temp == NULL && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
+    if((s.TypeofHit != 2 || s.TypeofHit != 3) && s.secondbase.temp == NULL && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"
@@ -714,7 +703,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = YES;
-    pathAnimation.duration = 4.0;
+    pathAnimation.duration = 2.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -755,7 +744,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
     //[circleView.layer addAnimation:pathAnimation forKey:@"HomeRun"];
     
-    [UIView animateWithDuration:4.0f animations:^
+    [UIView animateWithDuration:2.0f animations:^
     { 
         circleView.alpha=4.0f;
         [circleView.layer addAnimation:pathAnimation forKey:@"HomeRun"];
@@ -777,7 +766,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1.0;
+    pathAnimation.duration = 0.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -830,7 +819,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 2.0;
+    pathAnimation.duration = 1.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -883,7 +872,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 3.0;
+    pathAnimation.duration = 1.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -936,7 +925,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = YES;
-    pathAnimation.duration = 3.0;
+    pathAnimation.duration = 1.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -973,7 +962,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [UIView animateWithDuration:3.0f animations:^
+    [UIView animateWithDuration:1.5f animations:^
      {
          circleView.alpha=3.0f;
          [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
@@ -996,7 +985,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 2.0;
+    pathAnimation.duration = 1.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -1048,7 +1037,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1.0;
+    pathAnimation.duration = 0.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -1100,7 +1089,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = YES;
-    pathAnimation.duration = 2.0;
+    pathAnimation.duration = 1.0;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -1136,7 +1125,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [UIView animateWithDuration:2.0f animations:^
+    [UIView animateWithDuration:1.0f animations:^
      {
          circleView.alpha=2.0f;
          [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
@@ -1159,7 +1148,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1.0;
+    pathAnimation.duration = 0.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -1210,7 +1199,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     //then we would need these parameters
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = YES;
-    pathAnimation.duration = 1.0;
+    pathAnimation.duration = 0.5;
     //Lets loop continuously for the demonstration
     //pathAnimation.repeatCount = 1000;
     
@@ -1245,7 +1234,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self addSubview:circleView];
     
     //Add the animation to the circleView - once you add the animation to the layer, the animation starts
-    [UIView animateWithDuration:1.0f animations:^
+    [UIView animateWithDuration:0.5f animations:^
      {
          circleView.alpha=2.0f;
          [circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
