@@ -184,17 +184,48 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Oa-BH-2pD">
+                                <rect key="frame" x="20" y="337.5" width="80" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="10"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BzV-jM-NvI">
+                                <rect key="frame" x="20" y="322" width="80" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FIT-IO-rwo">
+                                <rect key="frame" x="20" y="307.5" width="80" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d8J-Sl-DWh">
+                                <rect key="frame" x="20" y="292" width="80" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <connections>
+                            <outlet property="AtbatLabel" destination="FIT-IO-rwo" id="jGv-Uf-gSY"/>
                             <outlet property="AwayScoreLabel" destination="jyF-oG-qIU" id="SH3-1S-hs5"/>
                             <outlet property="CatcherLabel" destination="QBV-UH-nfn" id="ImN-2B-UVZ"/>
                             <outlet property="CenterFieldLabel" destination="WK1-jS-fxR" id="xsc-ED-svL"/>
+                            <outlet property="Dueuplabel" destination="d8J-Sl-DWh" id="UdL-ZI-Ov1"/>
                             <outlet property="FirstBaseLabel" destination="EuU-vO-cqa" id="yNy-9C-JfG"/>
                             <outlet property="FirstFielderLabel" destination="ZmJ-rs-ZQp" id="xTz-2k-H4H"/>
                             <outlet property="HomeScoreLabel" destination="ELG-hE-WP2" id="zFV-uu-fLh"/>
                             <outlet property="InningLabel" destination="6Oc-lN-Vnk" id="fEL-Rj-r3s"/>
+                            <outlet property="IntheHoleLabel" destination="5Oa-BH-2pD" id="0qM-EX-WcC"/>
                             <outlet property="LeftFieldLabel" destination="haJ-Jv-fjC" id="Arn-VF-YOR"/>
+                            <outlet property="OnDeckLabel" destination="BzV-jM-NvI" id="x6C-F2-oWe"/>
                             <outlet property="PitchButtonLabel" destination="YwY-EL-OV8" id="QFQ-ij-AtG"/>
                             <outlet property="PitchCountLabel" destination="hqg-SV-gvv" id="xo3-eI-W0x"/>
                             <outlet property="PitcherFielderLabel" destination="GvA-uO-irJ" id="XJo-WT-vQr"/>
@@ -1392,14 +1423,18 @@
                 <relationship kind="action" name="Pitch:"/>
                 <relationship kind="action" name="RedoButton:"/>
                 <relationship kind="action" name="UndoButton:"/>
+                <relationship kind="outlet" name="AtbatLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="AwayScoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="CatcherLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="CenterFieldLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Dueuplabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="FirstBaseLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="FirstFielderLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="HomeScoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="InningLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="IntheHoleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="LeftFieldLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="OnDeckLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="PitchButtonLabel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="PitchCountLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="PitcherFielderLabel" candidateClass="UILabel"/>

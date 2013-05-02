@@ -36,6 +36,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @synthesize FirstFielderLabel;
 @synthesize PitcherFielderLabel;
 @synthesize CatcherLabel;
+@synthesize OnDeckLabel;
+@synthesize IntheHoleLabel;
+@synthesize AtbatLabel;
+@synthesize Dueuplabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -72,6 +76,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     PitcherFielderLabel.text = NULL;
     CatcherLabel.text = NULL;
     ThirdFielderLabel.text = NULL;
+    OnDeckLabel.text = NULL;
+    AtbatLabel.text = NULL;
+    IntheHoleLabel.text = NULL;
+    Dueuplabel.text = NULL;
     
     int x = 160;
     int y = 375;
@@ -124,33 +132,59 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     }
     if(s.HomeLineupSubmitted == true && s.AwayLineupSubmitted == true)
     {
-    for(NSInteger i=0;i<9;i++)
-    {
         Player *p = [[Player alloc] init];
-        if(s.isBottomInning)
-            p = [s.AwayTeam objectAtIndex:i];
-        else
-            p = [s.HomeTeam objectAtIndex:i];
+        for(NSInteger i=0;i<9;i++)
+        {
+            if(s.isBottomInning)
+                p = [s.AwayTeam objectAtIndex:i];
+            else
+                p = [s.HomeTeam objectAtIndex:i];
             
-        if([p.Position isEqualToString:@"LF"])
-            LeftFieldLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"CF"])
-            CenterFieldLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"RF"])
-            RightFieldLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"3B"])
-            ThirdFielderLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"2B"])
-            SecondFielderLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"1B"])
-            FirstFielderLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"SS"])
-            ShortstopLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"C"])
-            CatcherLabel.text = p.LastName;
-        if([p.Position isEqualToString:@"P"])
-            PitcherFielderLabel.text = p.LastName;
-    }
+            if([p.Position isEqualToString:@"LF"])
+                LeftFieldLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"CF"])
+                CenterFieldLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"RF"])
+                RightFieldLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"3B"])
+                ThirdFielderLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"2B"])
+                SecondFielderLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"1B"])
+                FirstFielderLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"SS"])
+                ShortstopLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"C"])
+                CatcherLabel.text = p.LastName;
+            if([p.Position isEqualToString:@"P"])
+                PitcherFielderLabel.text = p.LastName;
+        }
+        NSInteger v;
+        Dueuplabel.text = @"Due Up";
+        if(s.isBottomInning)
+        {
+            v = s.HomeTeamLineupIndex;
+            p = [s.HomeTeam objectAtIndex:v];
+            AtbatLabel.text = [NSString stringWithFormat:@"1.%@", p.LastName];
+            v += 1;
+            p = [s.HomeTeam objectAtIndex:v];
+            OnDeckLabel.text = [NSString stringWithFormat:@"2.%@", p.LastName];
+            v += 2;
+            p = [s.HomeTeam objectAtIndex:v];
+            IntheHoleLabel.text = [NSString stringWithFormat:@"3.%@", p.LastName];
+        }
+        else
+        {
+            v = s.AwayTeamLineupIndex;
+            p = [s.AwayTeam objectAtIndex:v];
+            AtbatLabel.text = [NSString stringWithFormat:@"1.%@", p.LastName];
+            v += 1;
+            p = [s.AwayTeam objectAtIndex:v];
+            OnDeckLabel.text = [NSString stringWithFormat:@"2.%@", p.LastName];
+            v += 2;
+            p = [s.AwayTeam objectAtIndex:v];
+            IntheHoleLabel.text = [NSString stringWithFormat:@"3.%@", p.LastName];
+        }
     }
     s.firstbase.runnerAdvance = s.secondbase.runnerAdvance = s.thirdbase.runnerAdvance = s.atbat.runnerAdvance = 0;
 }
@@ -192,22 +226,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         {
             case 0: /* Single button*/
                 [s HitSingle];
-                s.gameString = [NSString stringWithFormat:@"%@ hit a single", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 1: /* Double button */
                 [s HitDouble];
-                s.gameString = [NSString stringWithFormat:@"%@ hit a double", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 2: /* Triple button */
                 [s HitTriple];
-                s.gameString = [NSString stringWithFormat:@"%@ hit a triple", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 3: /* HomeRun button */
                 [s HitHomeRun];
-                s.gameString = [NSString stringWithFormat:@"%@ hit a homerun", s.atbat.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 4: /* HitOut button */
@@ -279,8 +309,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             case 3: /* AdvanceToSecond button */
                 s.firstbase.runnerAdvance = 1;
                 [s RunnerToSecond];
-                //[s.gameString appendString:@"advance to second"];
-                [s.gameString appendFormat:@"%@ advanced to second", s.firstbase.base.LastName];
                 [self RunnerAdvancing];
                 break;
             case 4: /* StayOnBase button */
@@ -582,7 +610,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
     GameDataController* s = [GameDataController sharedInstance];
     
-    if(s.TypeofHit == 1 && s.secondbase.temp == NULL && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
+    if((s.TypeofHit == 1 || s.TypeofHit == 5) && s.secondbase.temp == NULL && s.thirdbase.temp == NULL && s.firstbase.runnerAdvance != 3 && s.firstbase.runnerAdvance != 2)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:@"Runner On Second"

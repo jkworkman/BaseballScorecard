@@ -34,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *ThirdFielderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PitcherFielderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *CatcherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *AtbatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *OnDeckLabel;
+@property (weak, nonatomic) IBOutlet UILabel *IntheHoleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *Dueuplabel;
 
 
 
