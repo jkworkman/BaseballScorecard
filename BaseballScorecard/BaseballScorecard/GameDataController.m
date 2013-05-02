@@ -414,17 +414,20 @@ static GameDataController *sharedInstance = nil;
     outs += 1;
     if(outs == 3)
     {
+        TypeofHit = 5;
         outs = 0;
         if(isBottomInning)
         {
             sideInning = @"Top";
             numInning += 1;
             isBottomInning = false;
+            atbat.base = [AwayTeam objectAtIndex:AwayTeamLineupIndex];
         }
         else
         {
             sideInning = @"Bottom";
             isBottomInning = true;
+            atbat.base = [HomeTeam objectAtIndex:HomeTeamLineupIndex];
         }
         
         firstbase.base = firstbase.temp = secondbase.base = secondbase.temp = thirdbase.base = thirdbase.temp = atbat.base = atbat.temp = NULL;

@@ -159,17 +159,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             if([p.Position isEqualToString:@"P"])
                 PitcherFielderLabel.text = p.LastName;
         }
-        NSInteger v;
+        int v;
         Dueuplabel.text = @"Due Up";
         if(s.isBottomInning)
         {
             v = s.HomeTeamLineupIndex;
             p = [s.HomeTeam objectAtIndex:v];
             AtbatLabel.text = [NSString stringWithFormat:@"1.%@", p.LastName];
-            v += 1;
+            v = (v+1) % 9;
             p = [s.HomeTeam objectAtIndex:v];
             OnDeckLabel.text = [NSString stringWithFormat:@"2.%@", p.LastName];
-            v += 2;
+            v = (v+2) % 9;
             p = [s.HomeTeam objectAtIndex:v];
             IntheHoleLabel.text = [NSString stringWithFormat:@"3.%@", p.LastName];
         }
@@ -178,10 +178,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
             v = s.AwayTeamLineupIndex;
             p = [s.AwayTeam objectAtIndex:v];
             AtbatLabel.text = [NSString stringWithFormat:@"1.%@", p.LastName];
-            v += 1;
+            v = (v+1) % 9;
             p = [s.AwayTeam objectAtIndex:v];
             OnDeckLabel.text = [NSString stringWithFormat:@"2.%@", p.LastName];
-            v += 2;
+            v = (v+2) % 9;
             p = [s.AwayTeam objectAtIndex:v];
             IntheHoleLabel.text = [NSString stringWithFormat:@"3.%@", p.LastName];
         }
@@ -212,10 +212,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                         s.strikes += 1;
                     [self UpdateLabels];
                     break;
-                case 3: /* Hit button */
+                case 3: /* Hit by Pitch button */
+                    s.balls = 3;
+                    [s PitchedBall];
+                    [self RunnerAdvancing];
+                    break;
+                case 4: /* Hit button */
                     [self ShowHitMenu];
                     break;
-                case 4: /* Runners button */
+                case 5: /* Runners button */
                     [self ShowRunnersMenu];
                     break;
             }
@@ -408,7 +413,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         [self UpdateLabels];
         [self Log];
         
-        if(s.numInning >=2 && s.HomeScore != s.AwayScore)
+        if(s.numInning >=9 && s.HomeScore != s.AwayScore)
         {
             [self GameEnded];
         }
@@ -438,7 +443,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                   delegate:self
                                   cancelButtonTitle:@"Cancel"
                                   destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", @"Runners", nil];
+                                  otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Hit by Pitch", @"Ball in Play", @"Runners", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
@@ -449,7 +454,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                       delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Ball in Play", nil];
+                                      otherButtonTitles:@"Ball", @"Strike", @"Foul Ball", @"Hit by Pitch", @"Ball in Play", nil];
         actionSheet.tag = 0;
         [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     }
